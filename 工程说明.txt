@@ -1,0 +1,45 @@
+1、node-red的启动说明：在/home/myserver/下载/node-red中的red.js文件，通过命令sudu node red.js就可以启动了；
+然后再浏览器中输入localhost:1880就可以了；如果node-red遇到节点不能正确加载就在配置文件setting中找到userDir；
+然后删除相应的文件加就可以了！
+
+
+2、redis的启动直接redis-server就可以启动了
+
+3、board的启动就是在家目录下面的orientboard下执行python orientboard.py
+
+4、pushserver的启动安装：
+?
+
+2、安装psex
+psex以voyager用户安装。
+1)psex包解压到/opt/voyager目录下（命令如下）：
+cd /opt/voyager
+tar xvf /opt/software/voyager-psex.tar
+2)修改配置
+./PsWeb/settings.js
+./PsWeb/public/js/config.js
+./default_config.json
+3)[我只找到这几个文件]
+执行如下命令搜索需要改的配置文件和所改IP在配置文件中的哪一行：
+grep –rn –color ‘192.168.0.209’ .（192.168.0.209为默认配置好的ip，所以以该ip进行搜索并修改，当日nohup.out日志就不用修改了）[请不要使用搜索某个IP这种方式，明确给出需要改哪个文件的相关配置行。]
+根据找到的配置文件，和所在的行数通过vim 对IP地址的进行更改并保存退出。
+
+如上由搜索可知，需要修改的为以下4个文件（并且指定了需要修改的位置，在第几行）：
+/opt/voyager/voyager-psex/PsWeb/routes/index.js（36，64，94行）
+/opt/voyager/voyager-psex/PsWeb/views/access.ejs （183行）
+/opt/voyager/voyager-psex/PsWeb/public/js/config.js （2行）
+/opt/voyager/voyager-psex/default_config.json  （2,9,12行）
+
+4)启动psex（命令如下）：
+1：启动psex要先启动orientboard
+cd /opt/voyager/orientboard
+nohup python orientboard.py 
+
+2： cd /opt/voyager/voyager-psex
+node psEX.js –F ./default_config.json –d
+
+3： cd /opt/voyager/voyager-psex/PsWeb
+./psweb.sh start。
+
+注：启动的时候要以voyager用户进行启动。
+
