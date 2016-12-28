@@ -43,3 +43,5 @@ node psEX.js –F ./default_config.json –d
 
 注：启动的时候要以voyager用户进行启动。
 
+
+数据是在~/ecommerce下面
