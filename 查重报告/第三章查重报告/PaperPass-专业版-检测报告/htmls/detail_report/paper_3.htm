@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_2.htm">上一页</a>
+<a class="pagelink" href="#">下一页</a>
+<a class="pagelink" href="paper_3.htm">尾页</a>
+页码：3/3页
+]
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">51</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.3.3 数据计算节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">52</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>数据计算节点在Node-red中起着举足轻重的作用，几乎所有的flow中都会用到数据计算节点。</span><span class='green'>数据计算节点允许用户编写JavaScript函数来处理进入Node-red中的数据，编写自己的业务代码，将定义好的数据类型转化为在Node-red中流动的message对象。</span><a href='../sentence_detail/140/140.htm' target='right' class='orange' >在Node-red中的message实际上就是一个JavaScript对象，message对象至少要包含payload属性，用来保存具体的数据。</a><span class='green'>就像下面这样一个最基本的Node-red的massage数据格式：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">53</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>计算节点接收到message后，主要处理的也是payload字段中保存的信息，处理后的数据也会封装成一个message对象传到下一个节点。</span><span class='green'>然而，message对象不仅只具有payload字段，还可以扩展出更多的其他字段来补充说明message对象的属性。</span><span class='green'>比如下面这个message对象：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">54</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>计算节点通常包含一个数据输入端点和一个或多个数据输出端点，在 Node- red中提供了部分具有特殊功能的数据处理节点，</span><span class='green'>比如 change_ node，可以用来增加或者删除 message的字段，再如 switch_ node，可以用来做开关节点使用，</span><span class='green'>它是通过判断 message对象的某一字段是否存在或者真假来决定最后输出什么样的 message对象。</span><span class='green'>为了能够进一步扩展Node-red的功能，方便利用JavaScript函数加载外部的js模块，这里引入function_node，也就是函数节点。</span><span class='green'>可以说function_node在Node-red中就像一把瑞士军刀，可以使用户不必依赖于现有的数量有限的几个节点来处理数据。</span><span class='green'>顾名思义，函数节点其实就是暴露出来的一个JavaScript函数，用户可用通过编写一个JavaScript函数来处理从上游节点流下来的message，并返回处理后的一个或多个massage。</span><span class='green'>函数节点是用来做数据处理和数据格式化的利器，引入函数节点使得Node-red的对流式数据进行处理变得简单容易。</span><span class='green'>图3-7 是function_node的设计图：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">55</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-7 Function_node的设计图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">56</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>用户可以通过function_node内置的编辑器sandBox，编写用户自己的JavaScript函数来处理message。</span><span class='green'>在 function_ node内编写的 JavaScript函数内部是调用本机上的 JavaScript运行环境来解释执行的，同时在函数节点中可以去调用外部的 js模块，</span><span class='green'>但是这首先会去配置文件 setting. js文件中找到要包含的模块。</span><span class='green'>所以function_node在执行每一个函数的时候首先会去检查这个配置文件，在这个文件中去查找全局的函数模块。</span><span class='green'>在setting.js中，通过functionGlobalContext支持全局模块：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">57</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>对于自己编写的 JavaScript函数要求每一个函数都有一个返回值，也就是一个 message对象，</span><span class='green'>即使没有显式地返回，每个函数都会默认返回一个 payload字段为空字符串的 message对象。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">58</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.3.4 数据库访问节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">59</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>由于在原始的 Node- red中没有与 Redis数据库进行交互的节点，但是本文所提出的模型中用到了 Redis server来存储中间结果集，</span><span class='green'>并在 Redis server中进行去重统计，比如计算最大值、最小值、累计求和等。</span><span class='green'>所以为了能够让Node-red与Redis进行交换，进行数据传输，所以必须设计出对Redis数据库的访问操作节点。</span><span class='green'>在该模型中，主要需要的节点就是redis_in和redis_out节点，它们分别完成Redis读取数据和把数据存储到Redis两项任务。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">60</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在redis_in中封装了几乎所有的Redis操作命令，该节点提供一个命令选择器，指定用户命令进行Redis操作。</span><span class='green'>另外， redis_ in节点是一个具有数据输入端点的节点，它的数据同样来源于上游函数节点提供的 message对象中的 payload字段+( msg. payload)，</span><span class='green'>用于指定命令的格式和所要操作的 Redis集合。</span><span class='green'>而对于 redis_ out节点恰好与 redis_ in节点相反，它没有数据的输入端，只有数据的输出端，</span><span class='green'>因为在该节点内部已经将数据的输入端固化了，数据就是从 Redis中来的，</span><a href='../sentence_detail/171/171.htm' target='right' class='orange' >但是该节点具有一个数据的输出端，为下游节点提供数据源。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">61</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>根据以上对这两个节点功能的分析，接下来对这两个节点进行详细设计，首先是redis_in节点。</span><span class='green'>该节点第一步工作就是要去连接 Redis server，这里就会用到在3.3.1节中所提供的数据库连接池函数，</span><span class='green'>连接成功后需要调用命令选择器，选择用户指定的命令，然后根据上游 function节点提供的命令格式和指定的数据集，</span><span class='green'>将这些信息组装成一条完整的 Redis命令，最后调用 Redis客户端去执行该命令。</span><span class='green'>在图3-8 中展示了redis_in节点的设计方案。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">62</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-8 redis_in设计方案</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">63</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>redis_in节点在向redis server存储数据的时候，主要的工作任务集中在命令选择器上。</span><span class='green'>在命令选择器中保存了几乎所有的 redis写入操作命令，是存放在一个数组对象中，首先要从这个数组中找到用户指定的命令，</span><span class='green'>然后判断该命令是不是 psubscribe或者 subscribe命令，因为这两个命令在获取 redis数据的时候还需要监听 message事件，</span><span class='green'>而其他命令没有该事件，所以必须单独处理。</span><span class='green'>最后，将用户指定的命令与上游节点传输过来的数据集拼接成redis的命令交个redisClient执行。</span><span class='green'>最终实现Node-red里的中间结果集存储到redis中，同时，通过上游节点指定的操作可以实现中间结果集在redis中的统计计算。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">64</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>对于redis_out节点的设计与redis_in节点类似，不同的是，在redis_out节点中同样封装了redis命令，但是这些命令只是读取数据的命令，所以命令选择器中的命令与redis_in的不一样。</span><span class='green'>另外，由于redis_out节点具有一个输出端，所以在input事件监听器中监听到的数据封装完成后，还要通过node.send()方法发送出去，供下一个节点接收。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">65</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.4 节点的重新部署</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">66</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>节点的设计和实现完之后，一步重要的工作就是要将新设计的节点部署到Node-red中。</span><span class='green'>节点可以作为模块打包或者发布到npm库中，这使得它们易于安装其所有依赖的模块。</span><span class='green'>为了解决安装包的依赖关系，在打包节点的时候就要严格按照npm包管理规则来打包。</span><span class='green'>图3-9 是一个redisSub节点打包的目录结构：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">67</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-9 节点package目录结构</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">68</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本文采取的是本地模块安装的方式，在本地安装节点模块，就用到了npm link命令。</span><span class='green'>将节点在本地目录，链接到一个本地Node-red安装目录，这和npm安装是一样的。</span><span class='green'>本地部署节点按照如下两个步骤即可完成部署。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">69</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>1.在包含有package.json的目录下执行sudo npm link命令；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">70</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/196/196.htm' target='right' class='orange' >2.在Node-red的运行运行目录下执行npm link [节点模块的名字]。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">71</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>部署成功后，重新启动Node-red，然后浏览器中打开编辑界面，在最右侧的节点视图就可以看到新增加的节点，这样就完成了节点的设计和部署工作。</span><span class='green'>为接下来改模型的应用提供了技术支持。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">72</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.5 本章小结</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">73</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本章首先去基于 Node- red与 Redis的实时流数据处理模型及其应用进行了需求分析，同时也对整个模型的总体架构进行了设计，</span><a href='../sentence_detail/201/201.htm' target='right' class='orange' >简要阐述了各个模块的功能以及整个模型的数据处理流程。</a><span class='green'>然后对Node-red新引入的数据输入节点、输出节点、数据计算节点以及数据库访问节点给出详细设计方案。</span><span class='green'>最后，阐述将新节点安装部署到Node-red中，使其成为一个完整的流式数据处理框架。</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_2.htm">上一页</a>
+<a class="pagelink" href="#">下一页</a>
+<a class="pagelink" href="paper_3.htm">尾页</a>
+页码：3/3页
+]
+</div>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>
