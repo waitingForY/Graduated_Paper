@@ -1,0 +1,726 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_7.htm">上一页</a>
+<a class="pagelink" href="paper_9.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：8/14页
+]
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">285</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>对于redis_out节点的设计与redis_in节点类似，不同的是，在redis_out节点中同样封装了Redis命令，但是这些命令只是读取数据的命令，所以命令选择器中的命令与redis_in的不一样。</span><span class='green'>另外，由于redis_out节点具有一个输出端，所以在input事件监听器中监听到的数据封装完成后，还要通过node.send()方法发送出去，供下一个节点接收。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">286</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.4 节点的重新部署</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">287</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>节点的设计和实现完之后，一步重要的工作就是要将新设计的节点部署到Node-red中。</span><span class='green'>节点可以作为模块打包或者发布到npm库中，这使得它们易于安装其所有依赖的模块。</span><span class='green'>为了解决安装包的依赖关系，在打包节点的时候就要严格按照npm包管理规则来打包。</span><span class='green'>图3-9 是一个redisSub节点打包的目录结构：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">288</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-9 节点package目录结构</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">289</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本文采取的是本地模块安装的方式，在本地安装节点模块，就用到了npm link命令。</span><span class='green'>将节点在本地目录，链接到一个本地Node-red安装目录，这和npm安装是一样的。</span><span class='green'>本地部署节点按照如下两个步骤即可完成部署。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">290</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>1.在包含有package.json的目录下执行sudo npm link命令；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">291</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/731/731.htm' target='right' class='orange' >2.在Node-red的运行运行目录下执行npm link [节点模块的名字]。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">292</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>部署成功后，重新启动Node-red，然后浏览器中打开编辑界面，在最右侧的节点视图就可以看到新增加的节点，这样就完成了节点的设计和部署工作。</span><span class='green'>为接下来改模型的应用提供了技术支持。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">293</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.5本章小结</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">294</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本章首先对基于 Node- red与 Redis的实时流数据处理模型及其应用进行了需求分析，同时也对整个模型的总体架构进行了设计，</span><span class='green'>简要阐述了架构中各个模块的功能以及整个模型的数据处理流程。</span><span class='green'>然后对Node-red新引入的数据输入节点、输出节点、数据计算节点以及数据库访问节点给出详细设计方案。</span><span class='green'>最后，阐述将新节点安装部署到Node-red中，使其成为一个完整的流式数据处理框架。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">295</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/739/739.htm' target='right' class='orange' >实时流数据处理模型在网站访问监控系统中的应用</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">296</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>第三章对基于 Redis有序集合的去重统计方法进行了研究，提出了新的应用方案，第四章已经对基于 Node- red与 Redis的实时流数据处理模型进行了详细设计，</span><span class='green'>本章的重点是将所设计的流式数据处理模型应用到实际的工程项目中，设计并实现一个网站访问的实时监控系统。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">297</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>5.1 实时网站访问监控系统介绍</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">298</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>该系统的所有数据是来源于某地方政府的电子政务网站群的访问流量，数据真实可靠、说服力强、具有重要的实际意义和研究价值。</span><span class='green'>同时数据具有通用性，因为这是截取的服务器端的访问流量，也就是通用的HTTP报文，适合各类网站群的实时监控与数据分析。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">299</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>随着各级地方政府的电子政务系统的不断发展，但是信息收集与数据分析能力还比较薄弱，急需要一个统一的实时数据收集、储存、分析、应用的平台。</span><span class='green'>因此，本文首先提出一个基于 Node- red与 Redis的实时流数据处理模型，并对流式数据处理过程中重要计算指标的统计方法进行了研究，</span><span class='green'>随后应用这个模型来解决网站群的流量数据的实时收集和实时分析问题，最终将数据分析的结果在前端可视化模块以各种图表的方式做生动直观的展示。</span><span class='green'>为政府的电子政务系统的不断完善，为政府工作任务的工作效率的提高提供数据基础。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">300</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>5.1.1 实时网站访问监控系统的功能介绍</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">301</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本文所设计的系统是通过实时采集网站群的访问流量，利用本文在第三章所设计的流式数据处理模型来解析处理实时数据，</span><a href='../sentence_detail/751/751.htm' target='right' class='orange' >并从中挖掘出用户关心的有价值的信息，最后将分析出来的数据可视化地展示到前端界面。</a><span class='green'>该系统主要包括以下几个功能：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">302</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>1.用户行为监控[27]</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">303</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>实时了解用户访问网站群的行为，捕捉用户请求并跟踪其所有响应，收集、处理并显示用户行为的细节数据。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">304</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>具体实现以下功能：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">305</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）用户终端类型统计，对用户访问网站群的终端进行统计；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">306</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）受访页面统计，对用户访问网站所浏览的页面进行统计；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">307</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）来路页面，统计用户是通过哪个页面跳转到所浏览网站；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">308</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）地区分布，根据用户IP统计访问网站群的地区分布，并区分内外网用户（内网IP地址范围及相关部门的对照表需信息中心提供）；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">309</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（5）IP/PV，一天之内独立IP数，相同IP数被计数一次；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">310</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（6）重复访问率，同一IP，在同一天内访问同一页面的访问量/总访问量；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">311</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.网站群页面监控</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">312</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）错误页面跟踪，对返回码为404，500等出错页面进行统计跟踪；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">313</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/764/764.htm' target='right' class='orange' >（2）关键词搜索频率，用户搜索关键词的频率；</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">314</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）二级域名访问统计（需信息中心提供二级域名对照表）；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">315</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）频道访问统计（需信息中心提供频道名称对照表）；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">316</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（5）热点页面统计；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">317</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>5.1.2 实时数据采集方案设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">318</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>整个系统作为一个实时数据的交互处理中心，除了自己内部的数据通信以外，还需要对网站群的访问流量进行实时采集。</span><span class='green'>这种数据具有实时性、连续性、非结构化等特点，同时数据量也非常巨大。</span><span class='green'>由于实时性明显，同时也要求系统能够实时展示分析出网站群的访问情况，所以不能采用传统的先收集后处理的方案，</span><span class='green'>需要重新设计一套实时流式数据收集方案，在服务器的网关直接利用 http_ tracer拷贝一份访问流量，</span><span class='green'>让后实时的发布到 Redis Server的 http_ trace通道中。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">319</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>考虑到访问流量数据是一种非结构化的数据，为了能够更加准确地收集有效的信息，需要在采集数据的时候进行原始数据的预处理。</span><span class='green'>因为原始的访问流量就是 HTTP请求和响应报文，如果仅仅是收集到了这些报文，它都是以字符串的形式存在的，</span><span class='green'>字符串不论是在数据解析过程还是在最终的数据可视化过程都使得问题变得极为复杂，为了方便解析，</span><a href='../sentence_detail/777/777.htm' target='right' class='orange' >更好更准确的处理这些数据，有必要进行初步地结构化处理。</a><span class='green'>由于 json格式的数据能够有效地反映数据的特点，同时与 JavaScript对象能够实现无损转换，所以在进行数据格式化的时候选择 json格式，</span><span class='green'>同时在后面处理和存储中间结果集的时候也选择 json格式。</span><span class='green'>选择json格式来表示数据，还有一个重要的好处就是方便数据可视化，因为在数据可视化模块采用了highcharts来绘制图表，而highcharts要求的数据格式也是json格式。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">320</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>因此，我们设计出如图5-1 所示的实时数据采集方案：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">321</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图5-1 实时数据采集方案图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">322</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>从该采集方案中可以看出，在客户的服务器端，我们将网站的访问流量做一份拷贝，</span><span class='green'>利用 http_ tracer将这部分流量截取到 Redis server中，专门设置一个 Redis的通道（ channel）用于接收从 http_ tracer发布过来的原始数据。</span><span class='green'>由于原始的数据报结构混乱，难以分析，所以在进行下一步数据分析之前进行了预处理。</span><span class='green'>原始数据通过redisSub节点从Redis server上被订阅，交给msgToJSON模块（这个模块是利用Node-red中的function_node实现的）。</span><span class='green'>msgToJSON模块把原始数据报文分为请求报文和响应报文两类，最后只是在message对象中增加一个type字段加以区分。</span><span class='green'>最终产生的数据就是一个JSON对象，继续传递给下游的数据处理中心，进行后续的数据处理工作。</span><a href='../sentence_detail/789/789.htm' target='right' class='orange' >下面展示的就是预处理前的原始数据报格式：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">323</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>采集到的数据都发布（ publish）到 Redis的一个通道中，得到的数据是原始的 HTTP请求和响应报文，</span><span class='green'>再通过 redisSub节点从 Redis的指定的通道中去订阅（ subscribe）这些数据，通过 msgToJSON模块进行初步的结构化处理。</span><span class='green'>经过预处理的HTTP报文变成形如下面这样的json对象。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">324</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>5.2 数据分析模块的设计与实现</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">325</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>5.2.1 数据分析模块的总体架构设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">326</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>数据分析模块是搭建在第四章所设计的基于 Node- red与 Redis的实时流数据处理模型上的，数据在</span><span class='green'>不同模块之间的流动是利用 Redis的 publish和 subscribe机制以及 node. js的 socket. io通信机制来完成。</span><span class='green'>位于网关的抓包模块抓取原始的报文信息，把数据发布到数据分析系统的 Redis server的 http_ trace通道上，</span><span class='green'>然后在 Node- red中利用在第四章设计的数据输入节点 redisSub节点，从 Redis server的 http_ trace通道订阅原始数据。</span><span class='green'>数据进入Node-red之后，经过计算节点进行数据处理和封装，最后通过redisPub将处理结果publish到Redis的指定通道中，供可视化模块去接收这些数据。</span><a href='../sentence_detail/800/800.htm' target='right' class='orange' >在数据处理过程中，需要用到 Redis做中间结果集的保存和初步的去重统计工作，</a><span class='green'>这里的去重统计就是利用第三章所设计的基于 Redis有序集合的去重统计方法，</span><span class='green'>与 Redis进行通信的节点就是第四章所设计的 redis_ in和 redis_ out节点。</span><span class='green'>在节点之间的数据是通过socket.io的emit和on事件机制进行，这种机制已经被集成到Node-red中，因为Node-red也是基于node.js开发的。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">327</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在进行数据分析的时候，本文主要通过三个flow来完成，分别完成用户行为分析、网站群页面监控以及定时清理Redis server上的中间结果集。</span><span class='green'>在进行用户行为分析的时候，计算节点按照功能的不同划分为5个计算节点 refererCount、 countUserAgent、 repeatVisit、 userIP以及 visitPage，</span><span class='green'>分别完成来路页面统计、用户的浏览器类型统计、重复访问页面统计、独立访问的 IP地址以及受访页面统计。</span><span class='green'>而对于网站群页面监控，主要涉及5个数据分析节点，分别是 errPage、 keyWordCount、 hotVisitPage、 channelVisit以及 hostCount，</span><span class='green'>他们分别完成错误页面统计、关键词统计、热点页面统计、频道访问统计以及网站访问统计。</span><span class='green'>这些节点一起组成了一个计算节点集群，但除了这些用于数据处理和计算的节点外，</span><span class='green'>还包括 Redis数据库的访问节点用于传输中间结果集到 Redis数据库中，还包括一个功能节点（定时节点）用于定时向前端可视化模块推送数据，</span><span class='green'>以达到实时更新显示数据的变化情况，该定时节点也用于清理 Redis的中间结果集，</span><span class='green'>以减轻 Redis server的负担。</span><a href='../sentence_detail/813/813.htm' target='right' class='orange' >整个数据分析模块的总体架构如图5-2所示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">328</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/814/814.htm' target='right' class='orange' >图5-2 用户行为分析模块总体架构图</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">329</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>从数据分析模块的总体架构图可以看出，Redis是整个模块数据交换的纽带，也是进行数据计算的中心。</span><span class='green'>Redis的发布/订阅机制使得各个功能的计算节点所计算的数据结果相互独立、互不影响，这样使得最终数据结果的展示变得清晰、一目了然。</span><span class='green'>前端模块与Redis server进行通信的工具是socket.io，通过事件驱动机制，监听事件是否发生来判断是否有数据到来，从而达到数据传输的目的。</span><span class='green'>另外，由于巨大的数据量和繁重的数据计算任务，导致Redis server的负担也异常繁重。</span><span class='green'>为此，需要定时清理Redis server上的中间结果集以减轻其计算和存储压力，在架构图中的redisClearn_flow就是专门用于清理Redis server上的中间结果集。</span><span class='green'>系统选择在每天的凌晨清理数据，这样一方面可以达到减轻 Redis server负担，提高运行效率的目的，另一方面也不会影响数据分析的结果和前端可视化模块的展示，</span><span class='green'>因为一天的实时数据分析工作在凌晨已经全部完成。</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_7.htm">上一页</a>
+<a class="pagelink" href="paper_9.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：8/14页
+]
+</div>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

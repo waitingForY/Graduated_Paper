@@ -1,0 +1,700 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_4.htm">上一页</a>
+<a class="pagelink" href="paper_6.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：5/14页
+]
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">176</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>接下来研究一下Skip List实现的原理，首先来认识一下Skip List。</span><span class='green'>因为，跳表是在有序链表的基础上做改进的，所以我们从认识有序链表开始研究Skip List。</span><span class='green'>图4-1 展示的就是一个有序链表的数据结构图（这里H表示链表头部，T表示链表尾部，这两个节点不是有效节点）：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">177</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-1 有序链表结构图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">178</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>现在假设要在该有序链表中查找value为7的节点，只能在有序链表中一步一步地从头到尾按照1-]2-]3...的顺序找下去，很明显查找效率是。</span><a href='../sentence_detail/424/424.htm' target='right' class='orange' >如果是数组的话，可以利用二分查找，时间复杂度可以提高到。</a><span class='green'>但是由于链表不支持随机访问，所以不能利用二分法进行查找。</span><span class='green'>但是，如果我们确实想利用二分查找的思想，就可以考虑把中间位置的节点保存下来，重新构成新的顺序链表，经过重构的链表如图4-2 所示：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">179</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-2 重构后的有序链表</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">180</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>毫无疑问，这是一种典型的以空间换时间的设计思想。</span><span class='green'>原始的顺序链表，经过重构后变成了三个顺序链表，从上到下将这三个链表编号为0、1、2，</span><a href='../sentence_detail/430/430.htm' target='right' class='red' >不难发现，2号链表就是原始链表，1号链表就是原始链表的四等分节点构成的，</a><a href='../sentence_detail/431/431.htm' target='right' class='orange' >0号链表是原始链表的二等分节点构成的。</a><span class='green'>现在，假设我们还是要查找value为7的节点则只需要如下三个步骤：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">181</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/433/433.htm' target='right' class='red' >（1）初始的的搜索范围是(H，T)，在0号链表中与4进行比较，7]4，将搜索范围更新为(4，T)。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">182</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/434/434.htm' target='right' class='red' >（2）在1号链表中与6进行比较，7]6，继续更新搜索范围(6，T)。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">183</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/435/435.htm' target='right' class='orange' >（3）在2号链表中与7进行比较，结果7=7，查找成功。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">184</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/436/436.htm' target='right' class='orange' >很明显，在Skip List中保存了二分查找的信息，以此来提高查找效率。</a><span class='green'>不难发现在具体的实现上，如果要开辟额外的空间来保存新链表的话，会造成空间的极大浪费。</span><span class='green'>由于是链表，可以利用链的性质，改进存储结构，以达到节省存储空间，降低空间复杂度的目的，经过改进后的Skip List的存储结构图4-3 所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">185</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-3 改进后的Skip List存储结构</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">186</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>前面所讨论的Skip List结构是一种比较理想的结构，仅仅是为了说明Skip List的原理，实际的Skip List算法是一种随机算法，它非常依赖于所生产的随机函数。</span><span class='green'>当然对随机函数的要求也比较严格，不能简单的按照的形式来生成随机数，而是必须要按照满足概率的几何分布来构造随机函数。</span><span class='green'>可以设计出如下随机函数randLevel():</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">187</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>现在考虑的情况，可能的返回值有0、1、2、3四种情况，他们各自出现的概率是：</span><span class='green'>、、、。</span><a href='../sentence_detail/445/445.htm' target='right' class='orange' >也就是说，如果有16个元素的话，第零层预计有16个元素，第一层预计有8个元素，</a><a href='../sentence_detail/446/446.htm' target='right' class='orange' >第二层约有4个元素，第三层约有2个元素，从下向上每层元素数量大约会减少一半。</a><a href='../sentence_detail/447/447.htm' target='right' class='orange' >因此，Skip List适合自顶向下进行查找，理想情况下，每下降一层搜索的范围就会缩小一半，可以达到二分查找的效率，时间复杂度为。</a><a href='../sentence_detail/448/448.htm' target='right' class='orange' >最坏的情况是当前节点从head移动到链表的尾部，时间复杂度为。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">188</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.2 Redis有序集合的源码分析</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">189</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>Redis的有序集合(zset)的底层数据结构就是通过Skip List来实现的，而没有采用hash和hashtable来实现，虽然hash可以实现快速的查找，但是无法保证有序。</span><span class='green'>在了解了Skip List的基本原理后，接下来通过分析Redis的源码，详细阐述有序集合的底层实现。</span><span class='green'>Redis中的有序集合所使用的Skip List与William Pugh提出的基本一致，只是做了部分改进，主要体现在一下三个方面。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">190</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）Redis中的Skip List可以有重复的分值score，这是为了支持有序集合中可能有多个元素具有相同的分值score这样的需求。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">191</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）在节点进行比较的时候，不仅仅比较他们的score，同时还要比较他们所关联的元素的value。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">192</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）在Skip List中每个节点还有一个前向指针，这就相当于在双向链表中的prev指针，通过这个指针，可以从表尾向表头进行遍历。</span><span class='green'>正因为有了这个改进，zset就支持一些逆向操作命令，比如zrevrange、zremrangebyscore等。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">193</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在Redis的源码中，有序集合的Skip List的节点的数据结构是定义在redis.h头文件中，其具体定义如下：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">194</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>有了节点的定义，那么就该是Skip List的定义了，Skip List同样也是定义在redis.h头文件中的。</span><span class='green'>和定义链表的结构一样，需要头节点、尾节点，他们都是指向zskiplistNode 的指针，同时还需要定义节点的数量，目前跳表的最大层数。</span><a href='../sentence_detail/460/460.htm' target='right' class='orange' >下面就是有序集合的跳表数据结构定义：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">195</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>其实，Redis的有序集合主要支持的编码方式有两种（所谓的编码方式就是底层的实现方式），一种是ZIPLIST（压缩列表）方式，另一种是SKIPLIST（跳表）方式。</span><span class='green'>其中ZIPLIST方式可以表示较小的有序集合，而SKIPLIST方式可以表示任意大小的有序集合。</span><span class='green'>如果zset当前使用的编码方式是ZIPLIST，只要满足下面两个条件之一就可以转换为SKIPLIST编码方式。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">196</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/464/464.htm' target='right' class='orange' >（1）当新增加的字符串的长度超过了server.zset_max_ziplist_value的时候（默认值为64）。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">197</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）当ziplist中保存的节点数超过了server.zset_max_ziplist_entries的时候（默认值为128）。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">198</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在有序集合的源码中这两种方式的转换可以通过zsetConvert函数来完成。</span><span class='green'>这里主要阐述SKIPLIST编码方式，利用该方式实现的有序集合的数据结构是定义在redis.h中的，其定义如下：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">199</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>有了数据结构的定义，接下来就是考虑对这些数据结构的操作了。</span><span class='green'>在Redis的实现中，将对zkiplist的操作都放在t_zset.c源文件中，所支持的操作有三十多种之多。</span><span class='green'>包括创建层数为某一level的跳表节点、创建一个跳表、释放跳表、向跳表中插入一个节点、删除一个节点等基本操作。</span><span class='green'>下面来看一下有序集合在创建一个空的跳表后是如何向跳表中插入节点的。</span><span class='green'>首先，调用zslCreate()函数创建并初始化一个空的Skip List，一个空的Skip List如图4-4 所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">200</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-4 空跳表结构图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">201</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在该跳表的结构图中，level 0到level 31是一个长度为32的zskiplistLevel结构体数组，其大小由redis.h文件中的宏ZSKIPLIST_MAXLEVEL定义，值为32。</span><span class='green'>在zskiplistLevel结构体中还包括了span和forward两个数据成员，这一点从该结构体的定义中可以看出，这里为了展示方便，忽略了span。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">202</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>创建完跳表之后，调用zslInsert()函数，就向该空跳表中插入节点。</span><span class='green'>插入一个新的节点的大致过程如下：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">203</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）按照跳表的结构按层数从上向下遍历。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">204</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）在当前level的当前节点向右遍历，如果发现分值score相同就比较value的值，否则进入下一步。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">205</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）调用随机函数，产生随机的层数。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">206</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）比较当前level与随机函数产生的随机level，记录最大的level，作为下一步遍历的level。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">207</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（5）插入节点，并更新跨度span</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">208</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在第三步中调用随机函数，生成随机的层数，这一点在上一小节关于Skip List的实现原理中已经做了阐述。</span><span class='green'>关于如何查找插入位置，在有序集合的源码中是这样实现的：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">209</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/485/485.htm' target='right' class='orange' >下面举例说明跳表节点的插入操作，假设要向跳表中插入 A、 B、 C、 D四个节点，</a><span class='green'>它们对应的分值为3、5、7、9，则对应的跳表结构如图4-5所示：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">210</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-5 跳表节点插入步骤图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">211</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>从图中可以看出，跳表中的节点都是按照分值score来进行排序的。</span><span class='green'>同时，每个节点的backward指针都指向它的前一个节点，因此，跳表和双向链表类似，支持许多逆向查找，提高了灵活性和操作的效率。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">212</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.3基于有序集合的去重统计方法</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">213</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>去重统计，在数据分析领域是一个耳熟能详的词语，可以说去重统计在大部分数据处理过程中都要用到。</span><span class='green'>众所周知，在大部分的数据分析的中间计算过程中，最终的数据指标主要呈现以下几种形式：</span><span class='green'>最大、最小、稳定性、叠加、去重统计。</span><span class='green'>在这五种数据指标中，前四种在大部分的实时处理框架和nosql中都可以使用相对较小的开销就可以完成计算。</span><span class='green'>而对于去重统计，由于去重的数据有可能是多维的，所以不论是IO效率上，还是计算的效率上都没有前四种标高。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">214</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/496/496.htm' target='right' class='orange' >本文所设计的实时流数据处理模型中，也对这五种数据指标的计算做了设计。</a><span class='green'>经过前两节对Skip List的基本原理和Redis有序集合的源码分析研究，本文认为利用Redis的有序结合来做数据去重统计是可行的。</span><span class='green'>在许多流式数据处理的应用中都会涉及到最大值、最小值、累计求和等数据指标的计算，而要计算这些数据指标的基础就是去重统计，</span><span class='green'>因此，涉及一种高效的去重统计方法显得意义也十分重大。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">215</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本文所提出的基于有序集合的去重统计方法，就是在流式处理模型中引入 Redis数据库的访问节点（第三章所设计的 redis_ in和 redis_ out节点），</span><span class='green'>通过这些节点在流式计算的过程中，将产生的中间结果集存储到 Redis的有序集合中，并根据上游节点提供的命令格式，</span><span class='green'>对指定的集合进行 zincrby操作。</span><span class='green'>在Redis所提供的客户端进行zincrby操作的命令格式是这样的：</span><a href='../sentence_detail/504/504.htm' target='right' class='red' > zincrby zsetkey increment member，如果在名称为 zsetkey的有序集合中已经存在元素 member，那么该元素的 score增加 increment，否则向该集合中添加该元素，</a><a href='../sentence_detail/505/505.htm' target='right' class='red' >其 score的值为 increment，若增加成功返回的是 member增长之后的序列号。</a><span class='green'>也就是说，在Node-red中进行去重统计的过程就是通过redis_in节点对相应结合进行zincrby操作的过程。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">216</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本文在设计redis_in节点的时候规定了上游节点传输过来的数据格式，因为redis_in节点操作数据库的命令就是从上游节点传输过来的数据中获取的。</span><span class='green'>就以实际项目中一个功能来说明这一点，关于某一网站错误页面的统计。</span><span class='green'>对于这个功能，前端页面要求展示错误页面的URL、错误类型、错误页面所属的网站的域名、该错误页面是从哪个页面跳转来的等信息。</span><span class='green'>很显然错误页面具有着四个维度，如果我们单独去统计每一个维度的信息，最后再来进行整合，这样会大大减低计算的效率。</span><span class='green'>为此，我们要将多维统计转换为一维统计，同时也不能影响展示界面要求的四维信息。</span><span class='green'>本文所采取的降低维度的做法是将这四个维度拼接在一起，每个维度之间用特殊字符间隔，</span><span class='green'>这样就形成了一个维度的指标，让后将这个指标作为有序集合的 key值，当有序集合在进行 zincrby操作的时候，</span><span class='green'>就会根据这个 key来进行插入操作。</span><span class='green'>图4-6 所展示的就是在Node-red中redis_in节点所要求的数据格式：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">217</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图4-6 redis_in要求的数据格式</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">218</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在图4-6所编写的函数中，就用到了 Node- red的 function node，该节点将数据封装在 msg对象的 payload字段中，</span><span class='green'>同时返回 msg对象，在该节点的内部调用了 node. send()方法，将 msg对象发送给下一个节点，</span><span class='green'>供下一个节点接收处理。</span><span class='green'>在图中整个msg.payload=[’zincrby’，’errPageDisplay’，1，err]，就是操作redis有序集合的zincrby命令，其中errPageDisplay是有序集合的名字，err是通过降低维度后的一维指标。</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_4.htm">上一页</a>
+<a class="pagelink" href="paper_6.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：5/14页
+]
+</div>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

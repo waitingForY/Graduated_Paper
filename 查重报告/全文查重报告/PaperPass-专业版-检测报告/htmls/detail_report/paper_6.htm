@@ -1,0 +1,648 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_5.htm">上一页</a>
+<a class="pagelink" href="paper_7.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：6/14页
+]
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">219</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>上面这个例子展示了在实际项目中利用本文所设计的redis_in节点进行去重统计的过程。</span><span class='green'>之所以说去重统计是一项基础计算，是因为，在进行去重统计的同时，只需要一些简单的操作就可以去计算最大值、最小值、累计求和等计算指标。</span><span class='green'>不如要想知道有序集合中的最大值或最小值，只需要返回集合中的第一个元素或者最后一个元素，有时候需要返回排名前 N的记录，</span><span class='green'>也就是常用的 Top n操作，在去重统计的基础上也很容易实现。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">220</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>3.4 本章小结</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">221</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/526/526.htm' target='right' class='orange' >由于，实时流数据处理中会经常遇到去重统计，而本文所设计的实时流式数据处理模型中引入了 Redis作为数据计算中心，</a><span class='green'>基于 Redis有序集合的去重统计方法也被应用到该模型中。</span><span class='green'>本章主要是对Redis的有序集合底层实现原理进行分析研究，同时研究分析了有序集合的底层实现源码，最后也阐述了基于有序集合的去重统计方法在该模型中的具体应用。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">222</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>基于Node-red与Redis的实时流数据处理模型的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">223</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>第三章对基于Redis有序集合的实现原理及其源码进行了分析研究，并提出了在流式数据处理模型中利用Redis有序集合来进行去重统计的方法。</span><span class='green'>本章将从需求分析到模型的总体架构设计再到各数据处理节点的详细设计对该实时流数据处理模型进行详细阐述。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">224</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.1 需求分析</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">225</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本论文主要研究并设计一种基于Node-red与Redis的实时流数据处理模型，应用场景为实际项目中的网站群的实时访问监控。</span><span class='green'>本项目旨在实时了解用户访问网站群的行为，捕捉用户请求并跟踪其所有响应，收集、处理并显示用户行为的细节数据，并可视化展示数据和挖掘数据背后的信息。</span><span class='green'>针对该流式计算模型在实际应用场景下的应用提出如下的需求。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">226</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）高实时性；</span><span class='green'>在许多实时流数据处理的应用场景中，不论是数据的采集，还是数据的处理，都要求具有高实时性。</span><span class='green'>高实时性，要求模型在进行数据采集的时候满足不低于每秒钟50笔的采集速度，以免造成数据堆积，同时也要求具备高效的数据计算和处理能力。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">227</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）高性能；</span><span class='green'>随着业务的不断扩展，数据量也不断的增大，对实时流数据处理模型及应用系统的性能要求也越来越严格。</span><span class='green'>因此，从数据采集到数据处理再到数据可视化展示，各个环节都要求系统具有良好的性能。</span><span class='green'>最直观的表现就是在用户看到的可视化模块的数据更新延迟不能超过2秒钟。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">228</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）高可用；</span><span class='green'>要求模型可以通过集群等方式实现分布式部署，避免单点故障。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">229</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）可扩展；</span><span class='green'>数据量、计算量会随着业务的不断扩展而不断增大，这就要求模型需要有良好的扩展性。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">230</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（5）分布式；</span><span class='green'>为了提高数据的处理能力和计算效率，模型还需要具备分布式的处理能力；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">231</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（6）安全性；</span><a href='../sentence_detail/550/550.htm' target='right' class='orange' >数据安全是任何系统的一个首要前提，流式数据处理模型也必须要保证数据的安全性。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">232</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本论文在这些需求的基础之上，提出一种新的实时流数据处理模型，要在Node-red上设计出高效的数据接入和输出节点，同时也要有高效的数据处理节点。</span><span class='green'>结合Redis的内存计算的优势，设计出对Redis数据库访问操作节点，用于对中间结果集进行统计计算，以提高模型数据计算的效率。</span><span class='green'>同时，充分利用Redis的pub/sub机制来实现数据的流式异步传输。</span><span class='green'>最终将这套模型应用到实际应用系统中去加以验证。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">233</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.2 模型的总体架构</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">234</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>基于Node-red与Redis的实时流式数据处理模型是搭建在Ubuntu环境下的，也可以部署在分布式环境上以提高流式数据的处理能力和计算效率。</span><span class='green'>该模型通过重新设计数据输入、输出以及数据计算节点，以完成对实时流式数据的处理。</span><span class='green'>整个模型的架构如图3-1 所示：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">235</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-1 流数据处理模型架构图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">236</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>从该模型的架构图中可以看出，Redis数据库充当了数据交换的中心，而整个数据流的处理逻辑都交给计算节点群去完成。</span><span class='green'>数据首先通过 Redis的 channel（通道）进入 Redis server，然后 Node- red利用 redisSub节点去订阅相应通道（ channel）的数据交给计算节点（ function nodes）集群进行数据计算，</span><span class='green'>而计算节点集群所产生的中间结果集，通过 redis_ in节点传给 Redis server进行统计，最后产生的最终计算结果通过 redisPub节点发布到指定的 Redis通道中，</span><a href='../sentence_detail/563/563.htm' target='right' class='orange' >前端可视化模块在从指定通道去订阅数据做可视化展示。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">237</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在原始的Node-red中是没有任何节点可以与Redis进行交互，为此，新增加了redisSub、redisPub、redis_in和redis_out节点。</span><span class='green'>为了用户可以自定义数据的处理逻辑，引入了函数节点，多个函数节点构成了整个流式计算的计算节点群。</span><span class='green'>有了这些节点，就可以方便快捷地在Node-red上编写流式数据处理的业务代码，更为重要的是，这些业务代码可以实现一次编写多次使用，方便移植和维护。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">238</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3 各数据处理节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">239</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>节点是 Node- red的重要组成元素，所有的数据流（在 Node- red中简称 flow）都是通过一个一个的节点组成的，</span><a href='../sentence_detail/569/569.htm' target='right' class='orange' >在 Node- red中有三类基本的节点，数据输入节点、输出节点以及数据处理节点。</a><span class='green'>为了设计出适合流式数据处理的节点，这里必须对这三类节点进行重新设计，</span><span class='green'>在这一节中主要是对整个流式数据处理模型所需要的节点给出详细的设计方案。</span><span class='green'>Node-red的节点本身主要包括两份文件：</span><a href='../sentence_detail/573/573.htm' target='right' class='red' >js文件和html文件，js文件主要定义了节点具体做些什么事情，有什么样的功能；</a><span class='green'>html文件主要定义了节点的属性，节点编辑框格式和帮助信息等，图3-2 所展示的就是Node-red中一个节点的设计方案：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">240</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-2 Node-red的节点设计方案图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">241</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>将设计好的新节点重新安装部署到Node-red中，就可以在Node-red的前端编辑界面使用该节点进行数据处理。</span><span class='green'>Node-red强大的扩展能力就是体现在用户可以设计Node-red没有提供的节点，来完成特定的任务。</span><span class='green'>为了保证节点设计的正确性和有效性，在节点设计的时候必须按照如下原则来进行：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">242</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/579/579.htm' target='right' class='red' >（1）要求创建的节点要对各种数据类型的输入数据进行必要的处理，即使某些类型并不是这个节点所需要的。</a><span class='green'>这样做有两个目的，一是为了便于对原始数据进行追加额外说明信息，二是为了便于节点的扩展。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">243</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/581/581.htm' target='right' class='red' >（2）由于Node-Red在识别和处理节点的时候使用了大量的字符串匹配操作，所以在节点的定义中有一些名字的字符串是必须保持一致的，否则Node-Red在解析的时候就会出错。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">244</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）.html文件分为3部分：</span><a href='../sentence_detail/583/583.htm' target='right' class='orange' >节点的定义，节点的编辑模板和节点的帮助信息。</a><span class='green'>节点的定义主要用于：</span><a href='../sentence_detail/585/585.htm' target='right' class='red' >确定节点的类型，可编辑的属性，在浏览器中显示的样式，是一段可执行的js代码，RED.nodes.registerType；</a><a href='../sentence_detail/586/586.htm' target='right' class='red' >编辑模板主要是生成用户编辑该节点的实例时的界面(由data-template-name包括的一段HTML代码)，用户的输入最终会保存在node的定义中。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">245</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）在.html文件中，data-template-name、node-input-xx、data-help-name都是Node-Red系统保留字。</span><span class='green'>data-template-name、data-help-name的取值必须和文件名字的name部分一致。</span><a href='../sentence_detail/589/589.htm' target='right' class='red' >RED.nodes.registerType的第一个参数也必须和文件名字的name部分一致。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">246</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/590/590.htm' target='right' class='red' >（5）每个节点的可编辑的域在defaults中声明，data-template-name所包含的node-input-xx负责生成输入框。</a><a href='../sentence_detail/591/591.htm' target='right' class='red' >defaults的每个域的名字必须和node-input-xx中的名字保持一致。</a><a href='../sentence_detail/592/592.htm' target='right' class='red' >在.js文件中使用可编辑域的值的时候，直接访问defaults的域就可以，不必添加defaults前缀。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">247</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/593/593.htm' target='right' class='red' >（6）在.js文件中，RED.nodes.registerType用来注册一个node实例的生成函数，它的第一个参数必须和文件名字的name部分一致。</a><a href='../sentence_detail/594/594.htm' target='right' class='red' >传给生成函数的参数是node可编辑域的值(已编辑完成)及节点共享域的值。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">248</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（7）input的callback是节点输入的处理函数。</span><a href='../sentence_detail/596/596.htm' target='right' class='red' >需要注意的是，Node-Red节点之间数据传输使用的是名字为payload的域，这个也是Node-Red系统保留的。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">249</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.1 数据输入节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">250</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>数据的输入节点（input node），主要是用于从外部设备或者其他外部接口获取数据到Node-red中进行数据分析。</span><span class='green'>在Node-red的一个flow中，输入节点是所有message的入口，为下一个Node产生新的message。</span><span class='green'>由于Node-red自带的输入节点很有限，而且不适合流式数据的输入，所以在这里必须补充设计数据的输入节点。</span><span class='green'>为了满足流式数据的输入需求，数据的输入节点的设计必须要满足以下几个原则：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">251</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）流式化数据，为了让成批到达的数据也能够在这样一个模型中得到计算，我们在设计数据输入节点的时候就要考虑到这点，</span><span class='green'>也就是说让批量到达的数据逐条进入 Node- red的 flow中。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">252</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）统一的数据格式，在一个数据处理模型中，数据格式的好与坏意味着后序进行数据计算的简与繁。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">253</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）高吞吐量，由于流式数据的产生是源源不断的，所以在设计输入节点的时候要充分考虑节点的数据吞吐量问题，</span><span class='green'>不然会造成大量数据的堆积，从而影响后续的数据分析与计算。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">254</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）高稳定性，输入节点是数据的入口，稳定性是必须考虑的一个因素。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">255</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（5）可移植性，为了能够将自己设计的数据输入节点共享给其他用户，节点的可移植性也十分重要。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">256</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>为了设计出高效的适合流式数据传输的输入节点，考虑到流式数据的特点，结合Redis数据库的sub机制，可以为Node-red新增一个redisSub节点。</span><span class='green'>从上一小节的总体架构图中我们可以看出，我们尽量让所有的数据通过 Redis的发布订阅机制来进行收集，</span><span class='green'>把采集到的数据按类别放到不同的 Redis通道（ channel）中，避免数据间的相互影响，</span><span class='green'>后在 Node- red中通过我们新增加的 redisSub节点去订阅相应 channel的数据，这样就可以把数据引入 Node- red中，</span><span class='green'>完成了数据的接入工作。</span><span class='green'>同样redisSub节点也包括两个文件，一个是编写具体功能的实现代码的文件js文件，另一个是用于界面设计和帮助文档描述的html文件。</span><span class='green'>由于Node-red原始节点的存在，所以在进行文件命名标号的时候从52号开始，因为文件名编号和节点的ID是紧密相关的，所以节点的标号必须唯一。</span><span class='green'>设计好新的节点后需要重新安装部署新节点到 Node- red中，在利用 npm安装的时候，</span><span class='green'>Node- red的节点注册模块会去检测 setting. js配置文件，依次加载配置文件中的其他外部模块。</span><span class='green'>图3-3 是整个redisSub节点的设计图。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">257</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-3 redisSub节点设计图</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_5.htm">上一页</a>
+<a class="pagelink" href="paper_7.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：6/14页
+]
+</div>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

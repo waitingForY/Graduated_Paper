@@ -1,0 +1,882 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_2.htm">上一页</a>
+<a class="pagelink" href="paper_4.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：3/14页
+]
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">55</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图2-3 node.js 的事件驱动原理图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">56</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>从图2-3 node. js的事件驱动原理图可以看出，在 node. js的应用中有读文件和查询数据看两种 I/ O操作，</span><span class='green'>该应用的主线程会创建一个事件循环队列，在这个循环队列中有文件的打开操作、读文件、连接数据库、查询数据库等操作。</span><span class='green'>举一个实际的例子来说明，假如node.js在执行下面这样一段代码：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">57</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>程序的第二个参数就是一个回调函数，当程序运行到这里的时候，由于 I/ O操作会消耗大量时间而不会立刻返回查询的结果，</span><a href='../sentence_detail/214/214.htm' target='right' class='orange' >而是将该事件插入事件队列中，转而继续执行下面的代码。</a><span class='green'>而当数据库查询操作返回后，就会将该事件发送到事件循环队列中，直到下一次循环监听到了该事件，就会触发回调函数的执行。</span><a href='../sentence_detail/216/216.htm' target='right' class='orange' >而只有当整个事件循环队列中的任务都执行结束后，node.js应用才会终止。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">58</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/217/217.htm' target='right' class='orange' >对于node.js的异步I/O非阻塞机制也是建立在事件驱动机制之上的，对堵塞I/O的处理[16]，其底层是通过线程池来确保工作的正常执行。</a><span class='green'>node.js从线程池中取得一个线程来执行复杂任务，而不必占用主循环线程，这样就防止堵塞I/O占用空闲资源而造成效率下降。</span><span class='green'>在堵塞任务执行完毕后，通过查找到事件队列中相应的callback函数来处理接下来为完成的工作。</span><span class='green'>也就是说，对于那些相对耗时比较长的 I/ O操作，比如读写文件等，还有一些网络通信，</span><span class='green'>比如套接字， node. js会将这些操作交给一个称之为 worker threads的线程池去执行，当这些操作执行结束后，</span><a href='../sentence_detail/222/222.htm' target='right' class='orange' >通过事件通知，并执行回调函数，这就是异步 I/ O非阻塞机制。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">59</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>正因为node.js的这种事件驱动机制，使得那些十分耗时的I/O操作都可以异步执行，有效地解决了因为I/O操作而带来的性能和效率瓶颈问题。</span><span class='green'>在许多轻量级、高实时、高流量的应用系统中，都能见到node.js的身影。</span><span class='green'>本文中各个数据处理节点的设计和开发都是基于node.js的，同时前端可视化模块也是利用node.js的express框架进行开发的。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">60</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.2 Node-red可视化流式处理框架</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">61</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.2.1 Node-red的概述</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">62</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/228/228.htm' target='right' class='orange' >Node-red是IBM Emerging Technologies团队开发的一个可视化的数据流程编辑工具。</a><span class='green'>程序员可以直接通过 web浏览器就可以实现各种数据流程的编辑，同时可以实现对数据处理逻辑的编写，</span><span class='green'>Node- red把这些数据流程称为一个 flow，所编写的 flow可以以 json对象的形式保存为普通文件或者形成 js库，</span><span class='green'>方便用户分享、修改。</span><a href='../sentence_detail/232/232.htm' target='right' class='orange' >程序员在Node-red中可以通过组合各部件来编写应用程序，这些部件可以是硬件设备(如：</a><span class='green'>Arduino板子)、Web API(如：</span><span class='green'>WebSocket in和WebSocket out)、功能函数(如：</span><span class='green'>range)或者在线服务(如：</span><span class='green'>twitter)。</span><a href='../sentence_detail/237/237.htm' target='right' class='red' > Node- Red提供基于网页的编程环境，通过拖拽已定义 node到工作区并用线连接 node创建数据流来实现编程，</a><a href='../sentence_detail/238/238.htm' target='right' class='red' >程序员通过点击 Deploy按钮实现一键保存并执行。</a><a href='../sentence_detail/239/239.htm' target='right' class='orange' > Node- red本身是基于 node. js开发的，它的执行模型和 node. js一样，也是通过事件驱动和非阻塞 I/ O机制来实现的，</a><span class='green'>这一点在上一节关于 node的事件驱动和非阻塞机制已经作了详尽的阐述。</span><a href='../sentence_detail/241/241.htm' target='right' class='red' >理论上，node.js的所有模块都可以被封装成Node-red的一个或几个节点(node)。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">63</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本文所设计的实时流数据处理模型是通过利用Node-red来完成数据流程的管理以及处理数据的业务代码的编写两项工作。</span><span class='green'>接下来，详细阐述Node-red的编程模型以及它是如何管理数据流程。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">64</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.2.2 Node-red的编程模型</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">65</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>本节我们通过介绍Node-red的一些关键概念和关键组件，并通过实际例子说明Node-red的编程模型。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">66</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）数据流程（flow），这是Node-red中最重要的一个概念，一个flow就是一个Node-red程序，它是多个节点连接在一起进行数据交换的集合。</span><span class='green'>在Node-red的底层，一个flow通常是由一系列的JavaScript对象和各个节点的配置信息组成，通过调用底层的node.js环境来执行JavaScript代码。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">67</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）节点（node），它是组成flow的最基本的元素，也是真正进行数据处理的载体。</span><span class='green'>当一个编写好的flow运行起来的时候，节点主要对从上游节点接收到的消息（简称message）进行处理，并产生新的消息传递给下游节点完成后续的处理工作。</span><a href='../sentence_detail/250/250.htm' target='right' class='orange' >一个Node-red的节点主要包括js文件这html文件，分别完成对节点功能的具体实现和节点UI设计。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">68</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）消息（message），它是节点之间进行传输的对象，也是数据的真正载体。</span><span class='green'>本质上消息是一个JavaScript对象，包含了各种对数据描述的属性。</span><span class='green'>消息是Node-red处理的最基本的数据结构，只有在节点被激活时消息才会被处理，再加上节点是相互独立的，这就保证了所有的数据流式互不影响且无状态。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">69</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）连线（wire），它是节点与节点之间的连接桥梁，它们通常将节点的输出端点连接到下游节点的输入端，表示由一个节点生成的消息应该由下一个连接节点处理。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">70</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在了解了这些基本的Node-red组件之后，下面通过举例说明Node-red的编程模型。</span><span class='green'>假设要实时发送一个消息到 debug节点，来测试消息在节点之间的传输，用到了一个定时器 timestamp节点，</span><span class='green'>一个函数节点 function_ node以及一个 debug节点，如图2-4所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">71</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图2-4 Node-red中的数据流程图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">72</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在图2-4所展示的 flow中 timestamp节点每隔两秒去触发 test function节点，执行其中的代码，</span><span class='green'>而 msg. payload是一个 debug节点，用于在 debug面板展示 test function处理过的数据。</span><span class='green'>这里仅仅是为了说明Node-red的编程模型，因此test function节点并没有复杂的数据处理逻辑，仅仅是返回一个hello world的消息，其实现代码如下：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">73</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在function节点的内部可以编写任何JavaScript函数，用于处理上游节点发送过来的数据。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">74</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.2.3 Node-red的基本配置</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">75</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>由于本文所设计的实时流数据处理模型，要对 Node- red的数据输入节点，输出节点以及数据处理节点进行重新设计，</span><span class='green'>同时新增 Redis数据的访问节点，因此，需要对 Node- red进行源码安装。</span><span class='green'>为了能够有效地利用Node-red进行流式数据处理和数据流程的管理，有必要阐述一下Node-red的基本配置。</span><span class='green'>经过源码安装后，Node-red的目录是十分清晰，各个模块的划分也是仅仅有条。</span><span class='green'>首先来了解一下Node-red的目录结构，图2-5展示了Node-red的目录结构。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">76</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图2-5 Node-red目录结构图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">77</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>下面简单地介绍一下各个目录文件存储的内容和作用：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">78</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（1）在/public目录下是一些关于Node-red本身的静态文件，包括资源文件、css样式文件、以及前端页面的html文件；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">79</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（2）/node-modules目录下面是一些外部依赖库，也就是Node-red需要的一些Node.js模块。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">80</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（3）/red目录下面就是真正的Node-red代码，主要是一些核心api、事件驱动程序、服务器端主程序、系统设计程序以及Node-red的入口程序等。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">81</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（4）/test目录下面主要是放了一些用于测试的Node以及flow；</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">82</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/275/275.htm' target='right' class='orange' >（5）/nodes目录是一个极其重要的目录，Node-red中所有的节点都是存放在这个目录下的，包括各个节点的html和js文件。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">83</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>（6）settings.js文件是整个Node-red的系统配置文件，该文件描述了启动的参数细节、端口和IP设置以及各个启动目录的设置。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">84</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>接下来阐述如何配置Node-red。</span><span class='green'>Node-red几乎所有的配置信息都记录在setting.js文件中，首先要清楚各个配置选项的功能作用，表2-1 展示了Node-red的常用配置选项极其作用。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">85</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>表2-1 Node-red常用配置选项说明</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">86</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>选项名</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">87</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>默认值</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">88</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>作用</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">89</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>uiPort</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">90</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>1880</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">91</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>指定Node-red网页的端口号</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">92</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>uiHost</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">93</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>127.0.0.1</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">94</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>指定Node-red网页的ip地址</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">95</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>debugMaxLength</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">96</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>1000</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">97</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>指定debug节点调试数据的最大显示长度</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">98</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>flowFilePretty</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">99</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>true</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">100</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>是否保存编写的flow</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">101</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>userDir</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">102</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>安装目录</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">103</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>指定flow保存的位置</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">104</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>functionGlobalContext</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">105</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>undefined</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">106</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>用于加载外部依赖，其值是json对象</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">107</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>按照表2-1 所示的配置选项说明进行配置，然后重新启动Node-red，就可以在浏览器中输入http:</span><span class='green'>//127.0.0.1:</span><a href='../sentence_detail/303/303.htm' target='right' class='orange' >1880，即可打开Node-red的可视化流程编辑界面。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">108</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.4 基于内存计算的数据库Redis</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">109</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>2.4.1 Redis数据库的概述</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">110</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/306/306.htm' target='right' class='red' >Redis是一个开源的高性能key-value存储系统，它通过提供多种键值数据类型来适应不同应用场景下的存储需求，并借助许多高级的接口使其可以胜任如缓存、队列系统等不同的角色。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">111</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>Redis和 Memcached类似，数据都是缓存在内存的，而不同之处主要有三点，第一点就是 Redis之处存储的数据类型相对来说更加丰富，</span><span class='green'>比如像 string(字符串)、 list(链表)、 set(集合)、 zset(有序集合)以及 hash（哈希类型）。</span><span class='green'>第二点 Redis还提供了数据持久化的功能，因为在内存中的数据有一个典型的问题，也就是当程序运行结束后，</span><span class='green'>内存上的数据将会丢失，所以 Redis考虑到这点，提供了对数据持久化的支持，即将内存中的数据通过异步的方式写入到磁盘当中，</span><span class='green'>同时也不影响继续提供服务。</span><span class='green'>第三点就是在实现上， Memcached采用的是多线程技术，而 Redis采用的是单线程技术，</span><span class='green'>所以在多核处理器上， Memcached的性能和资源利用率上要高于 Redis，但是针对这一点目前也有很好的解决方案，</span><span class='green'>再加上 Redis的性能也已经足够优秀了，而且提供了许多 Memcached无法提供的高级功能，我们相信在不久的将来，</span><span class='green'>Redis将会在很多领域完全替代 memcached。</span><span class='green'>表2-2 给出了Redis与Memcached的对比。</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_2.htm">上一页</a>
+<a class="pagelink" href="paper_4.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：3/14页
+]
+</div>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

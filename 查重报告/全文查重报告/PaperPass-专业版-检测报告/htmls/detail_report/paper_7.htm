@@ -1,0 +1,492 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_6.htm">上一页</a>
+<a class="pagelink" href="paper_8.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：7/14页
+]
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">258</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/620/620.htm' target='right' class='orange' >对于redisSub节点的界面ui设计，需要考虑有哪些信息需要用户输入该节点。</a><span class='green'>因为每个节点都有自己的名字，所以首先需要的一个信息就是用户为该节点取一个名字，需要用户输入Name字段。</span><span class='green'>由于数据是存放在Redis server上的，所以还需要redisSub节点的描述Redis server的IP地址和端口号。</span><span class='green'>当redisSub节点连接上Redis server后，不知道数据是位于Redis的哪一个channel上，因此还必须给出通道名称，这些都是redisSub节点所需要的最基本的信息。</span><span class='green'>另外还有就是redisSub节点的帮助信息也必须给出一定的说明。</span><span class='green'>ui界面主要是定义在52_redisSub.html文件中。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">259</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>而对于redisSub节点的具体功能，是在52_redisSub.js文件中实现的。</span><span class='green'>首先，要调用Node-red提供的节点创建函数createNode()创建一个节点，并把配置信息告诉节点。</span><a href='../sentence_detail/628/628.htm' target='right' class='orange' >节点接收到这些信息后，创建一个数据库连接池函数redisConnectionPool，将Redis server的IP和port，和createNode函数内部所产生的uuid传递给连接池函数。</a><span class='green'>数据库连接池函数主要是通过一个 connections数组的_ nodeCount来记录有多少 redisSub节点连接 Redis server，当有一个新节点连接 Redis时，</span><span class='green'>该值就会加一，同样当有一个节点断开了解的时候就会减一。</span><span class='green'>当有close请求到的时候首先要判断_nodeCount的值是否为0，来决定是否删除connections对象数组。</span><a href='../sentence_detail/632/632.htm' target='right' class='orange' >关于redis数据库连接池函数的执行流程如图3-4 所示：</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">260</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><a href='../sentence_detail/633/633.htm' target='right' class='orange' >图3-4 Redis数据库连接池函数执行流程</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">261</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>有了数据库连接池函数，就可以来实现redisSub的功能了。</span><span class='green'>redisSub节点的前端页面将用户输入的Redis server的信息保存起来，然后通过参数传给连接池函数连接Redis server。</span><span class='green'>连接数据库后调用 client. subscribe()方法去订阅指定的通道，如果订阅成功，</span><span class='green'>就让 client去监听一个 message事件，看通道是否有数据发送过来，如果有数据就封装在 msg. payload中，</span><span class='green'>让 node的 send()方法发送出来，供下游节点接收。</span><span class='green'>与此同时，client还要去监听Redis的close事件，当redisSub节点断开与Redis server的连接的时候，就要调用redisConnectionPool.close()方法去断开连接。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">262</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>下面就是redisSub的功能函数的伪代码：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">263</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.2 数据输出节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">264</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>数据进入Node-red后，经过各个计算节点的数据计算、封装等工作，然后打包成系统规定的数据格式后，需要从Node-red中输出，进入后续的数据可视化展示。</span><span class='green'>数据的输出就用到了Node-red的输出节点。</span><span class='green'>Node-red的输出节点允许把数据输出到Node-red的flow以外的其他服务和应用上去，对内有一个数据输入的左断点，对外暴露一个公共接口。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">265</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在Node-red中有一个常用的输出节点就是debug节点，这个节点是在编写flow的时候调试的时候用的，主要显示并打印出数据经过上一节点处理之后的具体信息。</span><span class='green'>debug节点是一个具有开关的节点，允许程序员手动开启或者禁用该节点。</span><span class='green'>debug节点的使用也非常简单，只需要在 Node- red左侧的节点栏中找到该节点然后拖拽到相应节点的后面，</span><span class='green'>并用线连接起来就可以实现数据的传输，最后开启 debug的启动按钮，部署了所编写的 flow后，</span><span class='green'>就可以在 Node- red的最右侧的 debug面板中看到打印出来的具体数据。</span><span class='green'>值得注意的是， debug节点的只有一个数据的入口，而没有数据的输出端，在设计 debug的时候，</span><span class='green'>重新封装了 sendDebug()函数，用来发送消息，将消息直接发送到 Node- red的网页编辑器 debug视图上直接显示，</span><span class='green'>而不是交由下游节点做数据处理。</span><a href='../sentence_detail/653/653.htm' target='right' class='orange' >下面给出debug节点的设计逻辑的部分伪代码。</a>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">266</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>有了debug节点，可以方便用户在编写自己的flow的时候，及时查看数据的处理情况。</span><span class='green'>本文在第四章中应用该模型来解决实际问题的时候，将大量应用到debug节点。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">267</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>为了保证数据的实时地输出到Node-red的flow以外的其他服务和应用上，这里我们新引入了redisPub节点。</span><span class='green'>顾名思义， redisPub节点就是将 Redis的 publish功能嵌入到 Node- red中，通过设计一个新的节点来将经过 Node- red处理和计算过的数据输出来，</span><span class='green'>这里之所以选择 Redis的 publis发布数据，一方面保证了数据的异步传输，另一方面也保证了数据的隔离（原因是各个 Redis的通道数据是相互隔离的，</span><span class='green'>互补干预）。</span><span class='green'>在坚持节点的设计原则的前提下，下面给出redisPub节点的设计方案，如图3-5 所示。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">268</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-5 redisPub节点设计图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">269</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>结合上一小节数据输入节点的设计可知， redisPub节点和 redisSub节点的设计恰好相反， redisPub节点只具有一个数据的输入接口，</span><span class='green'>也就是只有数据的输入端点，这一端是连接上一个数据处理节点的，用于接收从上游节点发送过来的数据，</span><span class='green'>而对于该节点的输出端，已经固化在节点内部，就是 Redis指定的通道。</span><span class='green'>在redisPub节点中也必须定位Redis的位置，也就是Redis服务器的IP，端口号，不管是在Redis集群还是在单点的Redis服务器中都必须要指定，同时还要指定数据输出到哪个Redis的channel中。</span><span class='green'>所以redisPub节点的ui设计与redisSub节点的ui设计十分相识，不同的是他们的功能代码不一样，体现在js文件中。</span><span class='green'>图3-6 展示了redisPub节点的设计逻辑的具体流程。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">270</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-6 RedisPub设计逻辑流程图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">271</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>同样，在实现redisPub节点的时候，也用到了数据库连接池函数，关于这个函数的设计思想在上一小节redisSub的设计中已经做了详细阐述。</span><span class='green'>从上面流程图可以看出，当 redisPub节点成功连接 Redis后，将去监听 input事件，当有数据输入该节点后，</span><span class='green'>就会调用 this. client. publish()发布函数，将封装好的数据（ message对象）发布到指定的 channel上。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">272</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.3 数据计算节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">273</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>数据计算节点在Node-red中起着举足轻重的作用，几乎所有的flow中都会用到数据计算节点。</span><span class='green'>数据计算节点允许用户编写JavaScript函数来处理进入Node-red中的数据，编写自己的业务代码，将定义好的数据类型转化为在Node-red中流动的message对象。</span><a href='../sentence_detail/675/675.htm' target='right' class='orange' >在Node-red中的message实际上就是一个JavaScript对象，message对象至少要包含payload属性，用来保存具体的数据。</a><span class='green'>就像下面这样一个最基本的Node-red的massage数据格式：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">274</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>计算节点接收到message后，主要处理的也是payload字段中保存的信息，处理后的数据也会封装成一个message对象传到下一个节点。</span><span class='green'>然而，message对象不仅只具有payload字段，还可以扩展出更多的其他字段来补充说明message对象的属性。</span><span class='green'>比如下面这个message对象：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">275</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>计算节点通常包含一个数据输入端点和一个或多个数据输出端点，在 Node- red中提供了部分具有特殊功能的数据处理节点，</span><span class='green'>比如 change_ node，可以用来增加或者删除 message的字段，再如 switch_ node，可以用来做开关节点使用，</span><span class='green'>它是通过判断 message对象的某一字段是否存在或者真假来决定最后输出什么样的 message对象。</span><span class='green'>为了能够进一步扩展Node-red的功能，方便利用JavaScript函数加载外部的js模块，这里引入function_node，也就是函数节点。</span><span class='green'>可以说function_node在Node-red中就像一把瑞士军刀，可以使用户不必依赖于现有的数量有限的几个节点来处理数据。</span><span class='green'>顾名思义，函数节点其实就是暴露出来的一个JavaScript函数，用户可用通过编写一个JavaScript函数来处理从上游节点流下来的message，并返回处理后的一个或多个massage。</span><span class='green'>函数节点是用来做数据处理和数据格式化的利器，引入函数节点使得Node-red的对流式数据进行处理变得简单容易。</span><span class='green'>图3-7 是function_node的设计图：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">276</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-7 Function_node的设计图</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">277</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>用户可以通过function_node内置的编辑器sandBox，编写用户自己的JavaScript函数来处理message。</span><span class='green'>在 function_ node内编写的 JavaScript函数内部是调用本机上的 JavaScript运行环境来解释执行的，同时在函数节点中可以去调用外部的 js模块，</span><span class='green'>但是这首先会去配置文件 setting. js文件中找到要包含的模块。</span><span class='green'>所以function_node在执行每一个函数的时候首先会去检查这个配置文件，在这个文件中去查找全局的函数模块。</span><span class='green'>在setting.js中，通过functionGlobalContext支持全局模块：</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">278</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>对于自己编写的 JavaScript函数要求每一个函数都有一个返回值，也就是一个 message对象，</span><span class='green'>即使没有显式地返回，每个函数都会默认返回一个 payload字段为空字符串的 message对象。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">279</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>4.3.4 数据库访问节点的设计</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">280</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>由于在原始的 Node- red中没有与 Redis数据库进行交互的节点，但是本文所提出的模型中用到了 Redis server来存储中间结果集，</span><span class='green'>并在 Redis server中进行去重统计，比如计算最大值、最小值、累计求和等。</span><span class='green'>所以为了能够让Node-red与Redis进行数据交换和数据传输，必须设计出对Redis数据库的访问操作节点。</span><span class='green'>在该模型中，主要需要的就是redis_in和redis_out节点，它们分别完成从Redis读取数据和把数据存储到Redis两项任务。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">281</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>在redis_in中封装了几乎所有的Redis操作命令，该节点提供一个命令选择器，指定用户命令进行Redis操作。</span><span class='green'>另外， redis_ in节点是一个具有数据输入端点的节点，它的数据同样来源于上游函数节点提供的 message对象中的 payload字段( msg. payload)，</span><span class='green'>用于指定命令的格式和所要操作的 Redis集合。</span><span class='green'>而对于 redis_ out节点，它既有数据的输入端，又有数据的输出端，数据的输入端是接收的数据和 redis_ in节点接收的类似，</span><span class='green'>都是通过上游的函数节点发送过来，用于指明读数据的命令格式和数据所在的集合，而数据的输出端，</span><span class='green'>就是将从 Redis server上取得的数据封装成 message对象发送给下一个节点。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">282</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>根据以上对这两个节点功能的分析，接下来就对这两个节点进行详细设计。</span><span class='green'>首先是 redis_ in节点，该节点第一步工作就是要去连接 Redis server，这里就会用到在3.3.1节中所提供的数据库连接池函数，</span><span class='green'>连接成功后需要调用命令选择器，选择用户指定的命令，然后根据上游 function节点提供的命令格式和指定的数据集，</span><span class='green'>将这些信息组装成一条完整的 Redis命令，最后调用 Redis客户端去执行该命令。</span><span class='green'>在图3-8 中展示了redis_in节点的设计方案。</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">283</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>图3-8 redis_in设计方案</span>
+</p>
+</div>
+
+<div>
+<p>
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+<tr>
+<td align="left" width="50"><div class="shubu">284</div></td>
+<td>&nbsp;&nbsp;</td>
+</tr>
+</table>
+
+<span style="margin-left:25px"></span><span class='green'>redis_in节点在向Redis server存储数据的时候，主要的工作任务集中在命令选择器上。</span><span class='green'>在命令选择器中保存了几乎所有的 Redis写入操作的命令，是存放在一个数组对象中，首先要从这个数组中找到用户指定的命令，</span><span class='green'>然后判断该命令是不是 psubscribe或者 subscribe命令，因为这两个命令在获 Rredis数据的时候还需要监听 message事件，</span><span class='green'>而其他命令没有该事件，所以必须单独处理。</span><span class='green'>最后，将用户指定的命令与上游节点传输过来的数据集拼接成Redis的命令交个redisClient执行。</span><span class='green'>最终实现Node-red里的中间结果集存储到Redis server中，同时，通过上游节点指定的操作可以实现中间结果集在Redis中的统计计算。</span>
+</p>
+</div>
+
+
+<div>
+<span style="margin-left:25px"></span>
+[
+<a class="pagelink" href="paper_1.htm">首页</a>
+<a class="pagelink" href="paper_6.htm">上一页</a>
+<a class="pagelink" href="paper_8.htm">下一页</a>
+<a class="pagelink" href="paper_14.htm">尾页</a>
+页码：7/14页
+]
+</div>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

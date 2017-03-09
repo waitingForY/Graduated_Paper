@@ -95,105 +95,151 @@ a{TEXT-DECORATION:none}
 
 <div class="zhengwen">
 
-<span style="margin-left:25px"></span><font size=3 color=red>蓝色文字是系统自动修改的结果，仅供参考，如需使用请加工润色！</font><br><br><span style="margin-left:25px"></span>第四章 基于Redis有序集合的去重统计方法的研究上一章详细阐述了基于 Node- red与 Redis的流式数据处理模型的设计，
+<span style="margin-left:25px"></span><font size=3 color=red>蓝色文字是系统自动修改的结果，仅供参考，如需使用请加工润色！</font><br><br><span style="margin-left:25px"></span>第三章 基于Node-red与Redis的实时流数据处理模型的设计3.1 需求分析
 <br><br>
-<span style="margin-left:25px"></span>在整个流式数据处理模型中， Redis作为数据交换和数据计算的中心， Redis的有序集合 zset被用来进行统计计算，最重要的工作就是去重统计。本章将从“跳表”Skip List的基本原理到zset的源码分析，详细阐述有序集合的去重统计的原理。4.1 Skip List基本原理
+<span style="margin-left:25px"></span>本论文主要是研究和设计一种基于Node-red与Redis的实时流数据处理模型，应用场景为实际项目中的网站群的实时访问监控。
 <br><br>
-<span style="margin-left:25px"></span>Skip List是由William Pugh提出的一种基于并联链表的、随机化的数据结构。
+<span style="margin-left:25px"></span>在本项目中旨在实时了解用户访问网站群的行为，捕捉用户请求并跟踪其所有响应，收集、处理并显示用户行为的细节数据，并可视化展示数据和挖掘数据背后的信息。针对该流式计算模型在实际应用场景下提出如下的需求。（1）高实时性；
 <br><br>
-<span style="margin-left:25px"></span>Skip List的查找效率与二叉查找树的查找效率差不多，可以实现平均复杂度为 的插入、删除和查找操作。一般而言，跳表是在有序的链表的基础上增加的额外的链接，这种链接方式的增加，不是随便增加的而是以随机化的方式增加的，同时对随机函数也有要求，必须是以对数函数的方式产生，所以在链表中的查找可以迅速地跳过部分链表，跳表也因此得名。众所周知，对于有序链表的查找操作，其时间复杂度为，尽管真正插入与删除节点的操作的复杂度只有，但是，这些操作都需要首先查找到节点的位置，换句话说，是查找拉低了有序链表的整体性能。而Skip List采用“空间换时间”的设计思想，除了原始链表外还保存一些“跳跃”的链表，达到加速查找的效果。可以很好解决有序链表查找特定值的困难。接下来研究一下Skip List实现的原理，首先来认识一下Skip List。
+<span style="margin-left:25px"></span>在许多实时流数据处理的应用场景中，不论是数据的采集，还是数据的处理，都要求具有高实时性。高实时性，要求模型在进行数据采集的时候满足不低于每秒钟50笔的采集速度，以免造成数据堆积，同时也要求具备高效的数据计算和处理能力。（2）高性能；
 <br><br>
-<span style="margin-left:25px"></span>因为，“跳表”是在有序链表的基础上做改进的，所以我们从认识有序链表开始研究Skip List。图4-1 展示的就是一个有序链表的数据结构图（这里H表示链表头部，T表示链表尾部，不是有效节点）：图4-1 有序链表结构图
+<span style="margin-left:25px"></span>随着业务的不断扩展，数据量也不断的增大，对系统的性能要求也越来越严格。因此，从数据采集到数据处理再到数据可视化展示，各个环节都要求系统具有良好的性能。最直观的表现就是在用户看到的可视化模块的数据更新延迟不能超过2秒钟。（3）高可用；
 <br><br>
-<span style="margin-left:25px"></span>现在假设要在该有序链表中查找value为7的节点，只能一步一步地从头到尾按照1-]2-]3...的顺序找下去，很明显查找效率是 。
+<span style="margin-left:25px"></span>系统可以通过集群等方式实现分布式部署，避免单点故障。（4）可扩展；
 <br><br>
-<span style="margin-left:25px"></span>如果是数组的话，可以利用二分查找，时间复杂度可以提高到 。但是链表不支持随机访问，所以不能应用二分查找。但是可以考虑把中间位置的节点保存下来，重新构成新的顺序链表，经过重构的链表如图4-2 所示：图4-2 重构后的有序链表
+<span style="margin-left:25px"></span>数据量、计算量会随着业务的不断扩展而不断增大，这就要求模型需要有良好的扩展性。（5）分布式；
 <br><br>
-<span style="margin-left:25px"></span>毫无疑问，这是一种典型的以空间换时间的设计思想。
+<span style="margin-left:25px"></span>为了提高数据的处理能力和计算效率，模型还需要具备分布式的处理能力；（6）安全性；
 <br><br>
-<span style="margin-left:25px"></span>原始的顺序链表，经过重构后变成了三个顺序链表，从下到上将这三个链表编号为0、1、2，不难发现，2号链表就是原始链表，1号链表就是原始链表的四等分节点构成的，0号链表是原始链表的二等分节点构成的。现在，再来查找value为7的节点则只需要如下三个步骤：（1）初始的的搜索范围是(H，T)，在0号链表中与4进行比较，7]4，将搜索范围更新为(4，T)。
+<span style="margin-left:25px"></span>数据安全是任何系统的一个首要前提，流式数据处理模型也必须要保证数据的安全性。本论文在这些需求的基础之上，提出一种新的实时流数据处理模型，要在Node-red上设计出高效的数据接入和输出节点，同时也要有高效的数据处理节点。
 <br><br>
-<span style="margin-left:25px"></span>（2）在1号链表中与6进行比较，7]6，继续更新搜索范围(6，T)。
+<span style="margin-left:25px"></span>结合redis的内存计算的优势，设计出redis数据库访问节点，用于统计中间结果集，以调高统计计算的效率。同时，充分利用Redis的pub/sub机制来实现数据的流式异步传输。最终将这套模型应用到实际系统中去加以验证。3.2 模型的总体架构
 <br><br>
-<span style="margin-left:25px"></span>（3）在2号链表中与7进行比较，结果7=7，查找成功。
+<span style="margin-left:25px"></span>基于Node-red与Redis的实时流式数据处理模型的设计是搭建在Ubuntu环境下的，也可以部署在分布式环境上以提高流式数据的处理能力和计算效率。
 <br><br>
-<span style="margin-left:25px"></span>很明显，在Skip List中保存了二分查找的信息，以此来提高查找效率。
+<span style="margin-left:25px"></span>该模型通过重新设计数据输入、输出以及数据计算节点，以完成对实时流式数据的处理。整个模型的架构如图3-1 所示：图3-1 流数据处理模型架构图
 <br><br>
-<span style="margin-left:25px"></span>当然在具体的实现上，如果要开辟额外的空间来保存新链表的话，会造成空间的极大浪费。由于是链表，可以利用链的性质，改进存储结构，改进后的Skip List的存储结构图4-3 所示。图4-3 改进后的Skip List存储结构
+<span style="margin-left:25px"></span>从该模型的架构图中可以看出，Redis数据库充当了数据交换的中心，而整个数据流的处理逻辑都交给计算节点群去完成。
 <br><br>
-<span style="margin-left:25px"></span>前面所讨论的Skip List结构是一种比较理想的结构，实际的Skip List算法是一种随机算法，它非常依赖于所生产的随机函数。
+<span style="margin-left:25px"></span>数据首先通过 Redis的 channel（通道）进入 Redis server，然后 Node- red利用 redisSub节点去订阅相应通道（ channel）的数据交给计算节点（ function nodes）集群进行数据计算，而计算节点集群所产生的中间结果集，通过 redis_ in节点传给 redis server进行统计，最后产生的最终计算结果通过 redisPub节点发布到前端可视化模块中。在原始的Node-red中是没有任何节点可以与Redis进行交互，为此，新增加了redisSub、redisPub、redis_in和redis_out节点。
 <br><br>
-<span style="margin-left:25px"></span>当然对随机函数的要求也比较严格，不能简单的按照 的形式来生成随机数，而是必须要按照满足概率 的几何分布来构造随机函数。可以设计出如下随机函数randLevel():现在考虑 的情况，可能的返回值有0、1、2、3四种情况，他们各自出现的概率是：
+<span style="margin-left:25px"></span>为了，用户可以自定义数据的处理逻辑，引入了函数节点，多个函数节点构成了整个流式计算的计算节点群。有了这些节点，就可以方便快捷地在Node-red上编写流式数据处理的业务代码，更为重要的是，这些业务代码可以实现一次编写多次使用，方便移植和维护。3.3 节点处理模块的设计
 <br><br>
-<span style="margin-left:25px"></span> 、 、 、 。也就是说，如果有16个元素的话，第零层预计有16个元素，第一层预计有8个元素，第二层约有4个元素，第三层约有2个元素，从下向上每层元素数量大约会减少一半。因此，Skip List适合自顶向下进行查找，理想情况下，每下降一层搜索的范围就会缩小一半，可以达到二分查找的效率，时间复杂度为 。最坏的情况是当前节点从head移动到链表的尾部，时间复杂度为 。4.2 redis有序集合zset的源码分析
+<span style="margin-left:25px"></span>节点是Node-red的重要组成元素，所有的flow都是通过一个一个的节点组成的，在Node-red中有三类基本的节点，数据输入节点、输出节点以及数据处理节点。
 <br><br>
-<span style="margin-left:25px"></span>Redis的有序集合zset的底层数据结构就是通过Skip List来实现的，而没有采用hash和hashtable来实现，虽然hash可以实现快速的查找，但是无法保证有序。
+<span style="margin-left:25px"></span>为了设计出适合流式数据处理的节点，这里必须对这三类节点进行补充设计，在这一节中主要是对整个流式数据处理模型所需要的节点给出详细的设计方案。Node-red的节点本身主要包括两份文件：js文件和html文件，js文件主要定义了组件具体做些什么事情，有什么样的功能；html文件主要定义了组件的属性，组件编辑框格式和帮助信息等，图3-2 为一个Node的设计方案：图3-2 Node-red的节点设计方案图
 <br><br>
-<span style="margin-left:25px"></span>在了解了Skip List的基本原理后，接下来通过分析redis的源码，详细阐述zset的实现。Redis中的zset所使用的Skip List与William Pugh提出的基本一致，只是做了部分改进，主要有三个方面的改进。（1）Redis中的Skip List可以有重复的分值score，这是为了支持有序集合中可能有多个元素具有相同的分值score这样的需求。
+<span style="margin-left:25px"></span>将设计好的新节点重新安装部署到Node-red中，就可以在Node-red的前端编辑界面使用该节点进行数据处理。
 <br><br>
-<span style="margin-left:25px"></span>（2）在节点进行比较的时候，不仅仅比较他们的score，同时还要比较他们所关联的元素的value。
+<span style="margin-left:25px"></span>Node-red强大的扩展能力就是体现在用户可以设计Node-red没有提供的节点，来完成特定的任务。由于Node-red本身在定义节点的时候有自己的要求和原则，所以，为了保证节点设计的正确性和有效性，节点设计的必须按照如下原则来进行：（1）要求创建的节点要对各种数据类型的输入数据进行必要的处理，即使某些类型并不是这个节点所需要的。
 <br><br>
-<span style="margin-left:25px"></span>（3）在Skip List中每个节点还有一个前向指针，这就相当于在双向链表中的prev指针，通过这个指针，可以从表尾向表头进行遍历。
+<span style="margin-left:25px"></span>这样做有两个目的，一是为了便于对原始数据进行追加额外说明信息，二是为了便于节点的扩展。（2）由于Node-Red在识别和处理节点的时候使用了大量的字符串匹配操作，所以在节点的定义中有一些名字的字符串是必须保持一致的，否则Node-Red在解析的时候就会出错。
 <br><br>
-<span style="margin-left:25px"></span>正因为有了这个改进，zset就支持一些逆向操作命令，比如zrevrange、zremrangebyscore等。redis的源码中，zset的Skip List的节点定义在redis.h头文件中，其具体定义如下：
+<span style="margin-left:25px"></span>（3）.html文件分为3部分：
 <br><br>
-<span style="margin-left:25px"></span>有了节点的定义，那么就该是Skip List的定义了，Skip List同样也是定义在redis.h头文件中的。
+<span style="margin-left:25px"></span>节点的定义，节点的编辑模板和节点的帮助信息。节点的定义主要用于：确定节点的类型，可编辑的属性，在浏览器中显示的样式，是一段可执行的js代码，RED.nodes.registerType；编辑模板主要是生成用户编辑该节点的实例时的界面(由data-template-name包括的一段HTML代码)，用户的输入最终会保存在node的定义中；（4）在.html文件中，data-template-name、node-input-xx、data-help-name都是Node-Red系统保留字。
 <br><br>
-<span style="margin-left:25px"></span>和定义链表的结构一样，需要头节点、尾节点，他们都是指向zskiplistNode 的指针，同时还需要定义节点的数量，目前跳表的最大层数。下面就是zset的跳表定义：其实，Redis的有序集合zset主要支持的编码方式有两种，一种是ZIPLIST方式，另一种是SKIPLIST方式。
+<span style="margin-left:25px"></span>data-template-name、data-help-name的取值必须和文件名字的name部分一致。RED.nodes.registerType的第一个参数也必须和文件名字的name部分一致。（5）每个节点的可编辑的域在defaults中声明，data-template-name所包含的node-input-xx负责生成输入框。
 <br><br>
-<span style="margin-left:25px"></span>其中ZIPLIST方式可以表示较小的有序集合，而SKIPLIST方式可以表示任意大小的有序集合。如果zset当前使用的编码方式是ZIPLIST，只要满足下面两个条件之一就可以转换为SKIPLIST编码方式。（1）当新增加的字符串的长度超过了server.zset_max_ziplist_value的时候（默认值为64）。
+<span style="margin-left:25px"></span>defaults的每个域的名字必须和node-input-xx中的名字保持一致。在.js文件中使用可编辑域的值的时候，直接访问defaults的域就可以，不必添加defaults前缀。（6）在.js文件中，RED.nodes.registerType用来注册一个node实例的生成函数，它的第一个参数必须和文件名字的name部分一致。
 <br><br>
-<span style="margin-left:25px"></span>（2）当ziplist中保存的节点数超过了server.zset_max_ziplist_entries的时候（默认值为128）。
+<span style="margin-left:25px"></span>传给生成函数的参数是node可编辑域的值(已编辑完成)及节点共享域的值。（7）input的callback是节点输入的处理函数。
 <br><br>
-<span style="margin-left:25px"></span>在zset的源码中这两种方式的转换可以通过zsetConvert函数来完成。
+<span style="margin-left:25px"></span>需要注意的是，Node-Red节点之间数据传输使用的是名字为payload的域，这个也是Node-Red系统保留的。3.3.1 数据输入节点的设计
 <br><br>
-<span style="margin-left:25px"></span>SKIPLIST编码方式的zset集合的结构是定义在redis.h中的，其定义如下：有了数据结构的定义，接下来就是考虑对这些数据结构的操作了。
+<span style="margin-left:25px"></span>数据的输入节点（input node），主要是用于从外部设备或者其他外部接口获取数据到Node-red中进行数据分析。
 <br><br>
-<span style="margin-left:25px"></span>在redis的实现中，将对zkiplist的操作都放在t_zset.c源文件中，所支持的操作有三十多种之多。包括创建层数为某一level的跳表节点、创建一个跳表、释放跳表、向跳表中插入一个节点、删除一个节点等基本操作。下面来看一下zset是创建一个空的跳表后是如何向跳表中插入节点的。首先，调用zslCreate()函数创建并初始化一个新的Skip List，一个空的Skip List如图4-4 所示。图4-4 空跳表结构图
+<span style="margin-left:25px"></span>在Node-red的一个flow中，输入节点是所有message的入口，为下一个Node产生新的message。由于Node-red自带的输入节点很有限，而且不适合流式数据的输入，所以在这里必须补充设计数据的输入节点。为了满足流式数据的输入需求，数据的输入节点的设计必须要满足一下几个原则：
 <br><br>
-<span style="margin-left:25px"></span>在该跳表的结构图中，level 0到level 31是一个长度为32的zskiplistLevel结构体数组，其大小由宏ZSKIPLIST_MAXLEVEL定义，值为32。
+<span style="margin-left:25px"></span>（1）流式化数据，为了让成批到达的数据也能够在这样一个模型中得到计算，我们在设计数据输入节点的时候就要考虑到这点，也就是说让批量到达的数据逐条进入Node-red的flow。
 <br><br>
-<span style="margin-left:25px"></span>在zskiplistLevel结构体中还包括了span和forward两个数据成员，这一点从该结构体的定义中可以看出，这里为了展示方便，忽略了span。创建完跳表之后，调用zslInsert()函数，就该向空跳表中插入节点。
+<span style="margin-left:25px"></span>（2）统一的数据格式，在一个数据处理模型中，数据格式的好与坏意味着后序进行数据计算的简与繁。
 <br><br>
-<span style="margin-left:25px"></span>插入一个新的节点的大致过程如下：（1）按照跳表的结构按层数从上向下遍历。
+<span style="margin-left:25px"></span>（3）高吞吐量，由于流式数据的产生是源源不断的，所以在设计输入节点的时候要充分考虑节点的数据吞吐量问题，
 <br><br>
-<span style="margin-left:25px"></span>（2）在当前level的当前节点向右遍历，如果发现分值score相同就比较value的值，否则进入下一步。
+<span style="margin-left:25px"></span>不然会造成大量数据的堆积，从而影响后续的数据分析与计算。（4）高稳定性，输入节点是数据的入口，稳定性是必须考虑的一个因素。
 <br><br>
-<span style="margin-left:25px"></span>（3）调用随机函数，产生随机的层数。
+<span style="margin-left:25px"></span>（5）可移植性，为了能够将自己设计的数据输入节点共享给其他用户，节点的可移植性也十分重要。
 <br><br>
-<span style="margin-left:25px"></span>（4）比较当前level与随机函数产生的随机level，记录最大的level，作为下一步遍历的level。
+<span style="margin-left:25px"></span>为了设计出高效的适合流式数据传输的输入节点，考虑到流式数据的特点，结合redis数据库的sub机制，可以为Node-red新增一个redisSub节点。
 <br><br>
-<span style="margin-left:25px"></span>（5）插入节点，并更新跨度span
+<span style="margin-left:25px"></span>从上一小节的总体架构图中我们可以看出，我们尽量让所有的数据通过 redis的发布订阅机制来进行收集，把采集到的数据按类别放到不同的 redis通道（ channel）中，然后在 Node- red中通过我们新增加的 redisSub节点去订阅相应 channel的数据，这样就可以把数据引入 Node- red中，完成了数据的接入工作。同样redisSub节点也包括两个文件，一个是编写具体功能的实现代码的文件js文件，另一个是用于界面设计和帮助文档描述的html文件。由于Node-red原始节点的存在，所以在进行文件命名标号的时候从52号开始，因为文件名编号和节点的ID是紧密相关的，所以节点的标号必须唯一。设计好新的节点后需要重新安装部署新节点到 Node- red中，在利用 npm安装的时候， Node- red的节点注册模块会去检测 setting. js配置文件，依次加载配置文件中的其他外部模块。图3-3 是整个redisSub节点的设计图。图3-3 redisSub节点设计图
 <br><br>
-<span style="margin-left:25px"></span>在第三步中调用随机函数，生成随机的层数，这一点在上一小节关于Skip List的实现原理中已经做了阐述。
+<span style="margin-left:25px"></span>对于redisSub节点的界面ui设计，需要考虑有哪些信息需要用户输入该节点。
 <br><br>
-<span style="margin-left:25px"></span>关于如何查找插入位置，在zset的源码中是这样实现的：下面举例说明跳表节点的插入操作，假设要向跳表中插入 A、 B、 C、 D四个节点，
+<span style="margin-left:25px"></span>因为每个节点都有自己的名字，所以首先需要的一个信息就是用户为该节点取一个名字，需要用户输入Name字段。由于数据是存放在redis server上的，所以还需要redisSub节点的描述redis server的ip地址和端口号。当redisSub节点连接上redis server后，不知道数据是位于redis的哪一个channel上，因此还必须给出通道名称，这些都是redisSub节点所需要的最基本的信息。另外还有就是redisSub节点的帮助信息也必须给出一定的说明。ui界面主要是定义在52_redisSub.html文件中。而对于redisSub节点的具体功能，是在52_redisSub.js文件中实现的。
 <br><br>
-<span style="margin-left:25px"></span>它们对应的分值为3、5、7、9，则对应的跳表结构如图4-5所示：图4-5 跳表节点插入步骤图
+<span style="margin-left:25px"></span>首先，要调用Node-red提供的节点创建函数createNode()创建一个节点，并把配置信息告诉节点。节点接收到这些信息后，创建一个数据库连接池函数redisConnectionPool，将redis server的ip和port，和createNode函数内部所产生的uuid传递给连接池函数。数据库连接池函数主要是通过一个 connections数组的_ nodeCount来记录有多少 redisSub节点连接 redis server，当有一个新节点连接 redis时，该值就会加一，同样当有一个节点断开了解的时候就会减一。当有close请求到的时候首先要判断_nodeCount的值是否为0，来决定是否删除connections对象数组。关于redis数据库连接池函数的执行流程如图3-4 所示：图3-4 Redis数据库连接池函数执行流程
 <br><br>
-<span style="margin-left:25px"></span>从图中可以看出，跳表中的节点都是按照分值score来进行排序的。
+<span style="margin-left:25px"></span>有了数据库连接池函数，就可以来实现redisSub的功能了。
 <br><br>
-<span style="margin-left:25px"></span>同时，每个节点的backward指针都指向它的前一个节点，因此，跳表和双向链表类似，支持许多逆向查找，提高了灵活性和操作的效率。4.3 基于zset的去重统计方法
+<span style="margin-left:25px"></span>redisSub节点的前端页面将用户输入的redis server的信息保存起来，然后通过参数传给连接池函数连接redis server。连接数据库后调用 client. subscribe()方法去订阅指定的通道，如果订阅成功，就让 client去监听一个 message事件，看通道是否有数据发送过来，如果有数据就封装在 msg. payload中，让 node的 send()方法发送出来，供下游节点接收。与此同时，client还要去监听redis的close事件，当redisSub节点断开与redis server的连接的时候，就要调用redisConnectionPool.close()方法去断开连接。下面就是redisSub的功能函数的伪代码：
 <br><br>
-<span style="margin-left:25px"></span>去重统计，在数据分析领域是一个耳熟能详的词语，可以说去重统计在大部分数据处理过程中都要用到。
+<span style="margin-left:25px"></span>3.3.2 数据输出节点的设计
 <br><br>
-<span style="margin-left:25px"></span>众所周知，在大部分的数据分析的中间计算过程中，最终的数据指标主要呈现以下几种形式：最大、最小、稳定性、叠加、去重统计。在这五种数据指标中，前四种在大部分的实时处理框架和nosql中都可以使用相对较小的开销就可以完成计算。而对于去重统计，由于去重的数据有可能是多维的，所以不论是io效率上，还是计算的效率上都没有前四种标高。本文所设计的实时流数据处理模型中，也对这五种数据指标的计算做了设计。
+<span style="margin-left:25px"></span>数据进入Node-red后，经过各个计算节点的数据计算、封装等工作，然后打包成系统规定的数据格式后，需要从Node-red中输出，进入后续的数据可视化展示。
 <br><br>
-<span style="margin-left:25px"></span>经过前两节对Skip List的基本原理和redis有序集合的源码分析研究，本文认为利用redis的zset来做数据去重统计是可行的。在许多流式数据处理的应用中都会涉及到最大值、最小值、累计求和等数据指标的计算，而要计算这些数据指标的基础就是去重统计，因此，涉及一种高效的去重统计方法显得意义也十分重大。本文所提出的基于 zset的去重统计方法，就是在流式处理模型中引入 redis数据库的访问节点（第三章所设计的 redis_ in和 redis_ out节点），
+<span style="margin-left:25px"></span>数据的输出就用到了Node-red的输出节点。Node-red的输出节点允许把数据输出到Node-red的flow以外的其他服务和应用上去，对内有一个数据输入的左断点，对外暴露一个公共接口。在Node-red中有一个常用的输出节点就是debug节点，这个节点是在编写flow的时候调试的时候用的，主要显示打印出数据经过上一节点处理之后的具体信息。
 <br><br>
-<span style="margin-left:25px"></span>通过这些节点在流式计算的过程中，将产生的中间结果集存储到 redis的有序集合 zset中，并根据上游节点提供的命令格式，对指定的集合进行 zincrby操作。在redis所提供的客户端进行zincrby操作的命令格式是这样的： zincrby zsetkey increment member，如果在名称为 zsetkey的 zset中已经存在元素 member，那么该元素的 score增加 increment，否则向该集合中添加该元素，其 score的值为 increment，若增加成功返回的是 member增长之后的序列号。也就是说，在Node-red中进行去重统计的过程就是通过redis_in节点对相应结合进行zincrby操作的过程。本文在设计redis_in节点的时候规定了上游节点传输过来的数据格式，因为redis_in节点操作数据库的命令就是从上游节点传输过来的数据中获取的。
+<span style="margin-left:25px"></span>Debug节点是一个具有开关的节点，允许程序员手动开启或者禁用该节点。 debug节点的使用也非常简单，只需要在 Node- red左侧的节点栏中找到该节点然后拖拽到相应节点的后面，并用线连接起来就可以实现数据的传输，最后开启 debug的启动按钮，部署了所编写的 flow后，就可以在 Node- red的最右侧的 debug面板中看到打印出来的具体数据。值得注意的是， debug节点的只有一个数据的入口，而没有数据的输出端，在设计 debug的时候，重新封装了 sendDebug()函数，用来发送消息，将消息直接发送到 Node- red的网页编辑器 debug视图上直接显示，而不是交由下游节点做数据处理。下面给出debug节点的设计逻辑的部分伪代码。有了debug节点，可以方便用户在编写自己的flow的时候，及时查看数据的处理情况。
 <br><br>
-<span style="margin-left:25px"></span>就以实际项目中一个功能来说明这一点，关于某一网站错误页面的统计。对于这个功能，前端页面要求展示错误页面的URL、错误类型、错误页面所属的网站的域名、该错误页面是从哪个页面跳转来的等信息。很显然错误页面具有着四个维度，如果我们单独去统计每一个维度的信息，最后再来进行整合，这样会大大减低计算的效率。为此，我们要将多维统计转换为一维统计，同时也不能影响展示界面要求的四维信息。本文所采取的降低维度的做法是将这四个维度拼接在一起，每个维度之间用特殊字符间隔，这样就形成了一个维度的指标，让后将这个指标作为 zset的 key值，当 zset在进行 zincrby操作的时候，就会根据这个 key来进行插入操作。图4-6 所展示的就是在Node-red中redis_in节点所要求的数据格式：图4-6 redis_in要求的数据格式
+<span style="margin-left:25px"></span>本文在第四章中应用该模型来解决实际问题的时候，将大量应用到debug节点。为了保证数据的实时地输出到Node-red的flow以外的其他服务和应用上，这里我们新引入了redisPub节点。
 <br><br>
-<span style="margin-left:25px"></span>在图4-6所编写的函数中，就用到了 Node- red的 function node，该节点将数据封装在 msg对象的 payload字段中，
+<span style="margin-left:25px"></span>顾名思义， redisPub节点就是将 redis的 publis功能嵌入到 Node- red中，通过设计一个新的节点来将经过 Node- red处理和计算过的数据输出来，这里之所以选择 redis的 publis发布数据，一方面保证了数据的异步传输，另一方面也保证了数据的隔离（原因是各个 redis的通道数据是相互隔离的，互补干预）。在坚持节点的设计原则的前提下，图3-5 给出了redisPub的设计方案。图3-5 redisPub节点设计图
 <br><br>
-<span style="margin-left:25px"></span>同时返回 msg对象，在该节点的内部调用了 node. send()方法，将 msg对象发送给下一个节点，供下一个节点接收处理。在图中整个msg.payload=[’zincrby’，’errPageDisplay’，1，err]，就是操作redis有序集合的zincrby命令，其中errPageDisplay是有序集合的名字，err是通过降低维度后的一维指标。上面这个例子展示了在实际项目中利用本文所设计的redis_in节点进行去重统计的过程。
+<span style="margin-left:25px"></span>结合上一小节数据输入节点的设计可知， redisPub节点和 redisSub节点的设计恰好相反， redisPub节点只具有一个数据的输入接口，
 <br><br>
-<span style="margin-left:25px"></span>之所以说去重统计是一项基础计算，是因为，在进行去重统计的同时，只需要一些简单的操作就可以去计算最大值、最小值、累计求和等计算指标。不如要想知道 zset中的最大值或最小值，只需要返回集合中的第一个元素或者最后一个元素，有时候需要返回排名前 N的记录，也就是常用的 Top n操作，在去重统计的基础上也很容易实现。4.4 本章小结
+<span style="margin-left:25px"></span>也就是只有数据的输入端点，这一端是连接上一个数据处理节点的，在 redisPub节点中也必须定位 redis的位置，也就是 redis服务器的 ip，端口号，不管是在 redis集群还是在单点的 redis服务器中都必须要指定，同时还要指定数据输出到哪个 redis的 channel中。所以redisPub节点的ui设计与redisSub节点的ui设计十分相识，不同的是他们的功能代码不一样，体现在js文件中。图3-6 展示了redisPub节点的设计逻辑的具体流。图3-6 RedisPub设计逻辑流程图
 <br><br>
-<span style="margin-left:25px"></span>由于，实时流数据处理中会经常遇到去重统计，而本文所设计的实时流式数据处理模型中引入了 redis作为数据计算中心，
+<span style="margin-left:25px"></span>同样，在实现redisPub节点的时候，也用到了数据库连接池函数，关于这个函数的设计思想在上一小节redisSub的设计中已经做了详细阐述。
 <br><br>
-<span style="margin-left:25px"></span>基于 redis有序集合的去重统计方法也被应用到该模型中。本章主要是对redis的有序集合底层实现原理进行分析研究，同时研究分析了有序集合的底层实现源码，最后也阐述了基于zset的去重统计方法在该模型中的具体应用。
+<span style="margin-left:25px"></span>从上面流程图可以看出，当 redisPub节点成功连接 redis后，将去监听 input事件，当有数据输入该节点后，就会调用 this. client. publish()发布函数，将封装好的数据（ message对象）发布到指定的 channel上。3.3.3 数据计算节点的设计
+<br><br>
+<span style="margin-left:25px"></span>数据计算节点在Node-red中起着举足轻重的作用，几乎所有的flow中都会用到数据计算节点。
+<br><br>
+<span style="margin-left:25px"></span>数据计算节点允许用户编写JavaScript函数来处理进入Node-red中的数据，编写自己的业务代码，将定义好的数据类型转化为在Node-red中流动的message对象。在Node-red中的message实际上就是一个JavaScript对象，message对象至少要包含payload属性，用来保存具体的数据。就像下面这样一个最基本的Node-red的massage数据格式：计算节点接收到message后，主要处理的也是payload字段中保存的信息，处理后的数据也会封装成一个message对象传到下一个节点。
+<br><br>
+<span style="margin-left:25px"></span>然而，message对象不仅只具有payload字段，还可以扩展出更多的其他字段来补充说明message对象的属性。比如下面这个message对象：计算节点通常包含一个数据输入端点和一个或多个数据输出端点，在 Node- red中提供了部分具有特殊功能的数据处理节点，
+<br><br>
+<span style="margin-left:25px"></span>比如 change_ node，可以用来增加或者删除 message的字段，再如 switch_ node，可以用来做开关节点使用，它是通过判断 message对象的某一字段是否存在或者真假来决定最后输出什么样的 message对象。为了能够进一步扩展Node-red的功能，方便利用JavaScript函数加载外部的js模块，这里引入function_node，也就是函数节点。可以说function_node在Node-red中就像一把瑞士军刀，可以使用户不必依赖于现有的数量有限的几个节点来处理数据。顾名思义，函数节点其实就是暴露出来的一个JavaScript函数，用户可用通过编写一个JavaScript函数来处理从上游节点流下来的message，并返回处理后的一个或多个massage。函数节点是用来做数据处理和数据格式化的利器，引入函数节点使得Node-red的对流式数据进行处理变得简单容易。图3-7 是function_node的设计图：图3-7 Function_node的设计图
+<br><br>
+<span style="margin-left:25px"></span>用户可以通过function_node内置的编辑器sandBox，编写用户自己的JavaScript函数来处理message。
+<br><br>
+<span style="margin-left:25px"></span>在 function_ node内编写的 JavaScript函数内部是调用本机上的 JavaScript运行环境来解释执行的，同时在函数节点中可以去调用外部的 js模块，但是这首先会去配置文件 setting. js文件中找到要包含的模块。所以function_node在执行每一个函数的时候首先会去检查这个配置文件，在这个文件中去查找全局的函数模块。在setting.js中，通过functionGlobalContext支持全局模块：对于自己编写的 JavaScript函数要求每一个函数都有一个返回值，也就是一个 message对象，
+<br><br>
+<span style="margin-left:25px"></span>即使没有显式地返回，每个函数都会默认返回一个 payload字段为空字符串的 message对象。3.3.4 数据库访问节点的设计
+<br><br>
+<span style="margin-left:25px"></span>由于在原始的 Node- red中没有与 Redis数据库进行交互的节点，但是本文所提出的模型中用到了 Redis server来存储中间结果集，
+<br><br>
+<span style="margin-left:25px"></span>并在 Redis server中进行去重统计，比如计算最大值、最小值、累计求和等。所以为了能够让Node-red与Redis进行交换，进行数据传输，所以必须设计出对Redis数据库的访问操作节点。在该模型中，主要需要的节点就是redis_in和redis_out节点，它们分别完成Redis读取数据和把数据存储到Redis两项任务。在redis_in中封装了几乎所有的Redis操作命令，该节点提供一个命令选择器，指定用户命令进行Redis操作。
+<br><br>
+<span style="margin-left:25px"></span>另外， redis_ in节点是一个具有数据输入端点的节点，它的数据同样来源于上游函数节点提供的 message对象中的 payload字段+( msg. payload)，用于指定命令的格式和所要操作的 Redis集合。而对于 redis_ out节点恰好与 redis_ in节点相反，它没有数据的输入端，只有数据的输出端，因为在该节点内部已经将数据的输入端固化了，数据就是从 Redis中来的，但是该节点具有一个数据的输出端，为下游节点提供数据源。根据以上对这两个节点功能的分析，接下来对这两个节点进行详细设计，首先是redis_in节点。
+<br><br>
+<span style="margin-left:25px"></span>该节点第一步工作就是要去连接 Redis server，这里就会用到在3.3.1节中所提供的数据库连接池函数，连接成功后需要调用命令选择器，选择用户指定的命令，然后根据上游 function节点提供的命令格式和指定的数据集，将这些信息组装成一条完整的 Redis命令，最后调用 Redis客户端去执行该命令。在图3-8 中展示了redis_in节点的设计方案。图3-8 redis_in设计方案
+<br><br>
+<span style="margin-left:25px"></span>redis_in节点在向redis server存储数据的时候，主要的工作任务集中在命令选择器上。
+<br><br>
+<span style="margin-left:25px"></span>在命令选择器中保存了几乎所有的 redis写入操作命令，是存放在一个数组对象中，首先要从这个数组中找到用户指定的命令，然后判断该命令是不是 psubscribe或者 subscribe命令，因为这两个命令在获取 redis数据的时候还需要监听 message事件，而其他命令没有该事件，所以必须单独处理。最后，将用户指定的命令与上游节点传输过来的数据集拼接成redis的命令交个redisClient执行。最终实现Node-red里的中间结果集存储到redis中，同时，通过上游节点指定的操作可以实现中间结果集在redis中的统计计算。对于redis_out节点的设计与redis_in节点类似，不同的是，在redis_out节点中同样封装了redis命令，但是这些命令只是读取数据的命令，所以命令选择器中的命令与redis_in的不一样。
+<br><br>
+<span style="margin-left:25px"></span>另外，由于redis_out节点具有一个输出端，所以在input事件监听器中监听到的数据封装完成后，还要通过node.send()方法发送出去，供下一个节点接收。3.4 节点的重新部署
+<br><br>
+<span style="margin-left:25px"></span>节点的设计和实现完之后，一步重要的工作就是要将新设计的节点部署到Node-red中。
+<br><br>
+<span style="margin-left:25px"></span>节点可以作为模块打包或者发布到npm库中，这使得它们易于安装其所有依赖的模块。为了解决安装包的依赖关系，在打包节点的时候就要严格按照npm包管理规则来打包。图3-9 是一个redisSub节点打包的目录结构：图3-9 节点package目录结构
+<br><br>
+<span style="margin-left:25px"></span>本文采取的是本地模块安装的方式，在本地安装节点模块，就用到了npm link命令。
+<br><br>
+<span style="margin-left:25px"></span>将节点在本地目录，链接到一个本地Node-red安装目录，这和npm安装是一样的。本地部署节点按照如下两个步骤即可完成部署。1.在包含有package.json的目录下执行sudo npm link命令；
+<br><br>
+<span style="margin-left:25px"></span>2.在Node-red的运行运行目录下执行npm link [节点模块的名字]。
+<br><br>
+<span style="margin-left:25px"></span>部署成功后，重新启动Node-red，然后浏览器中打开编辑界面，在最右侧的节点视图就可以看到新增加的节点，这样就完成了节点的设计和部署工作。
+<br><br>
+<span style="margin-left:25px"></span>为接下来改模型的应用提供了技术支持。3.5 本章小结
+<br><br>
+<span style="margin-left:25px"></span>本章首先去基于 Node- red与 Redis的实时流数据处理模型及其应用进行了需求分析，同时也对整个模型的总体架构进行了设计，
+<br><br>
+<span style="margin-left:25px"></span>简要阐述了各个模块的功能以及整个模型的数据处理流程。然后对Node-red新引入的数据输入节点、输出节点、数据计算节点以及数据库访问节点给出详细设计方案。最后，阐述将新节点安装部署到Node-red中，使其成为一个完整的流式数据处理框架。
 
 <br>
 <div style="margin-left:8px">

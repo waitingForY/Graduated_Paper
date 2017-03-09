@@ -1,0 +1,1567 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN""http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>PaperPass 最权威论文抄袭检测系统</title>
+<style type="text/css">
+<!--
+user_icon {
+color: #FFFFFF;
+}
+html
+{
+overflow-x:hidden;
+overflow-y:auto;
+}
+body,td,th {
+font-family: "微软雅黑";
+font-size: 12px;
+}
+h1,h2,h3,h4,h5,h6 {
+font-family: "宋体";
+}
+p{
+margin-bottom:10px;
+}
+demo_padding {
+line-height: 30px;
+}
+.zhengwen {
+padding-right: 15px;
+padding-left: 5px;
+padding-bottom:100px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+}
+.zhengwencenter {
+padding-right: 15px;
+padding-left: 0px;
+margin-bottom:10px;
+font-size: 13px;
+line-height: 20px;
+color: #666666;
+text-align:center
+}
+.neikuang {
+background-color: #EBEBEB;
+border: 1px solid #999999;
+padding-right: 10px;
+padding-left: 10px;
+margin-top:10px;
+margin-left:25px;
+width:300px;
+}
+.shubu{
+height: 20px;
+width: 20px;
+margin-left:25px;
+background-color: #FFFFFF;
+border: 1px solid #999999;
+text-align: center;
+vertical-align: middle;
+display: block;
+color: #666666;
+}
+a.red:link {color:#FF0000}
+a.red:visited {color:#FF0000}
+a.red:hover {color:#000000}
+a.red:active {color:#000000}
+
+a.orange:link {color:#FF6600}
+a.orange:visited {color:#FF6600}
+a.orange:hover {color:#000000}
+a.orange:active {color:#000000}
+
+a.dark:link {color:#666666}
+a.dark:visited {color:#666666}
+a.dark:hover {color:#000000}
+a.dark:active {color:#000000}
+
+a.pagelink:hover {color:#000000}
+a.pagelink:active {color:#000000}
+
+.green{color:#008000}
+.gray{color:#666666}
+.red{color:#FF0000}
+.orange{color:#FF6600}
+a{TEXT-DECORATION:none}
+
+-->
+</style>
+</head>
+<body>
+
+
+<div class="zhengwen">
+
+<span style="margin-left:25px"></span>摘要近年来，随着云计算、物联网、社交媒体等新兴信息技术和应用模式的快速发展，推动人类社会不断地向大数据时代迈进。
+<br><br>
+<span style="margin-left:25px"></span>大数据的分析计算模式主要分为批量计算（batch computing）、流式计算（stream computing）、交互式计算（interactive computing）、图形计算（graph computing）等等。其中流式计算不论是在学术界还是在工业界，其研究和应用已经越来越广泛。大数据时代下的实时流数据处理已经具有广泛的应用场景，金融行业的业务实时监控、电商平台的实时推荐、网站访问监控等各类系统都离不开实时流数据处理。本论文正是在当前的应用现状下提出基于Node-red与Redis的实时流数据处理模型。本文首先阐述了实时流数据处理模型的研究意义和背景，并对实时流数据处理、Node-red以及Redis的国内外研究应用现状进行了简单分析。
+<br><br>
+<span style="margin-left:25px"></span>并以此为依据，设计出了基于Node-red与Redis的实时流数据处理模型。从总体架构上对该模型进行设计，重新设计并实现了 Node- red的数据输入节点、数据输出节点、数据处理节点以及 redis数据库访问节点，并将这些节点重新部署到 Node- red中，使其成为一个完整的实时数据流式处理模型。在实时流数据处理过程中，经常会遇到最大值、最小值、累计求和、top(n)等数据指标的计算，而计算这些指标的基础就是去重统计。
+<br><br>
+<span style="margin-left:25px"></span>本文通过分析redis有序集合zset的源码，结合Skip List的基本原理，提出了基于redis有序集合的去重统计方法。实时流数据处理模型设计完成之后，一个重要任务就是对模型进行应用验证，因此本文设计并实现了网站访问监控系统，并利用该模型对数据进行实时处理，最终将分析结果展示在前端可视化界面上。该系统主要包括三个模块，分别负责用户行为分析、网站群页面监控以及数据可视化。其中，数据可视化模块是利用 node. js的 express框架实现的一个 web应用，用户只需在浏览器上登录就可以访问监控页面，同时利用 highcharts将数据可视化用到的图表组件化，以此来适应因业务的不断扩展而带来的数据多样化。本文最后对设计的系统进行了功能测试和性能分析，测试结果均已达到要求。综上所述，本文完成了从模型的设计到模型的应用的全过程，同时在实际的生产线上已经得到了验证。
+<br><br>
+<span style="margin-left:25px"></span>关键字：
+<br><br>
+<span style="margin-left:25px"></span>实时流数据处理，Node-red，Redis，数据可视化，网站访问监控ABSTRACT
+<br><br>
+<span style="margin-left:25px"></span> At present days， the rapid development of new information technique and application modes like cloud computing，
+<br><br>
+<span style="margin-left:25px"></span> Internet of Things and social media， is keeping pushing human society towards the age of Big Data. The analyzing computation mode of big data is mainly divided into batch computing， stream computing， interactive computing and graph computing. Among those， stream computing is being widely researched and applied in industry and academic fields. In the age of Big Data， real-time stream computing has been applied in great varieties; it can be seen in financial business real-time monitoring， e-commerce platform real-time recommendations， real-time website monitoring.This paper puts forwards the real-time stream data computing model on the base of current using of application.
+<br><br>
+<span style="margin-left:25px"></span> Firstly， it describes the meaning and background for research work on real-time stream data computing model. Secondly， it analyzes the present situation about the domestic and foreign researches and applications of real-time data computing， Node-red and REDIS. Finally， it designs and redesigns the main frames and achieves data input node， data output node， data computing node for Node- red and access node to REDIS， and resign these nodes to Node- red to make it a complete real- time data stream computing model. In the process of real- time data computing， maximum and minimum values， cumulative sum and Top( n) are often seen， which base on the removing of repetition and then computing. This paper comes up with the method of REDIS based ordered set to remove repetition and recount， by analyzing REDIS ordered set source code and combining with Skip List.One important task after the finishing of designing real-time stream data computing model is to apply and testify;
+<br><br>
+<span style="margin-left:25px"></span> therefore this paper designs and achieves the web-site visiting monitoring system to apply and demonstrate the analyzing results on screens. This system includes three modes: userbehavior analysis， web-sites homepage monitoring and data visualizing. Among which， data visualizing is a web application used express frame of node. js， all the users need to do is to log in the browser to visit monitoring pages and visualize data by using HIGHTCHARTS. JS into charts and forms， so as to apply to the variety of demands of data. This paper also provides testing results and function analysis， which all meets the request. In short， the whole process from designing to the functioning of the real- time data stream computing model is covered in this paper，
+<br><br>
+<span style="margin-left:25px"></span> and the model has been testified and used in the product lines.Key words:
+<br><br>
+<span style="margin-left:25px"></span> stream data computing，Node-red，REDIS，data visualization，web-site visiting monitoring绪论
+<br><br>
+<span style="margin-left:25px"></span>1.1 研究背景与意义
+<br><br>
+<span style="margin-left:25px"></span>近年来，由于云计算[1]、物联网、移动互联、社交媒体等信息技术和应用模式的快速发展，不断地推动人类社会迈向大数据时代。
+<br><br>
+<span style="margin-left:25px"></span>早在2010年，全球的数据量就已经具有 ZB级的规模，有预测显示，到2020年全球的数据量将达到35 ZB，大量数据无时无刻地影响着人们的生活、工作，甚至是社会的发展和国家经济，大数据时代已经到来。而近年来，有关大数据方面的研究和应用也越来越广泛，新形式下的大数据技术为我们分析问题和解决问题提供了新的思路和方法，其研究已经成为业界的热点。大数据的分析计算模式主要分为批量计算（batch computing）、流式计算（stream computing）、交互式计算（interactive computing）、图形计算（graph computing）等等。
+<br><br>
+<span style="margin-left:25px"></span>其中批量计算和流式计算[2，3，4]这两种计算模式不管是在学术界还是在工业界都是主要的研究模式，同时各自都有广泛的大数据应用场景。其中批量计算是一种适用于大估摸并行批量处理作业的分布式计算模式，也就是我们大家都十分熟悉的MapReduce计算模式。 MapReduce本身是一种编程模型，这种编程思想有着广泛的应用，尤其在大规模数据集的并行计算中，由于其简单易用性的特点使得它成为目前最为流行的大数据并行处理模型[5，6]。后来，在开源社区的努力下， Hadoop系统[5]应运而生，在 Hadoop系统中包括 HDFS（ hadoop分布式文件系统）和 MapReduce两个核心组件， HDFS用于存储海量的数据，而 MapReduce是用于海量数据的并行处理。Hadoop平台的应用也十分广泛，国内外许多企业都在用Hadoop平台来进行大数据处理。此外，Spark系统[7]也具备批处理计算的能力。而对于流式数据计算，它是一种对实时性要求极高的计算模式，由于数据的到来是不确定的、无序的、不间断的，为了避免在数据处理过程中造成数据的大量堆积或者数据丢失，这就要求流式计算必须在指定时间限度内对系统所产生的新数据完成实时处理。在许多行业的大数据应用系统中，比如金融银行业的业务监控系统、政府政务管理系统、道路监控系统、互联网行业的访问日志处理等，在这些应用系统中不仅大量累计的历史数据，同时还具有高流量的实时流式数据，因而在提供批处理计算模式的同时，系统还需要能具备高实时性的流式计算能力。因此，研究和设计一套高效，稳定的流式数据处理模型具有广泛的应用价值，目前也有比较流行的流式计算系统，比如像 Twitter公司的 Storm、 Yahoo公司的 S4以及 Apache Spark Steaming[7]。在传统的流式计算模型中，绝大多数都是利用数据库来实现的，而在大数据时代下的流式计算有了新的需求，表现在低时延、高带宽等。
+<br><br>
+<span style="margin-left:25px"></span>所以，如何构建一个低时延、高带宽、持续可靠、长期运行的大数据流式计算系统成为了当前亟待解决的问题。Redis这种基于内存计算的、可进行数据持久化的Key-Value存储系统[8]的诞生，为大数据流式计算提供了一个很好的解决方案。 Redis数据库最初是为了解决像 SNS类网站在数据存取过程中的实时性等刚性需求的，而传统的关系型数据库越来越难以胜任了，这也使得 Redis这种数据库也越来越受到人们的关注。如今Redis数据库已经得到了广泛的应用，不论是在高速缓存系统中，还是在海量文件的实时检索中，甚至是在如何如荼的各种推荐系统中，Redis都起着举足轻重的作用。Redis基于内存的数据计算和高效的数据存储策略也能够很好的满足实时流计算问题中的低时延的刚性需求。因此，研究redis的内存计算以及存储策略并将其运用到实时流式计算模型中具有重要的意义和实用价值。在流式数据处理中，因为无法确定数据是什么时候到来，按什么顺序到来，因此，不需要事先对流式数据进行存储，
+<br><br>
+<span style="margin-left:25px"></span>而是当流动的数据到来后在内存中直接进行数据的实时计算和分析。就像我们熟悉的Twitter的Storm、Yahoo的S4就是典型的流式数据处理框架，数据在任务拓扑中被计算，最后输出有价值的信息。目前这些流行的流式处理框架都有一个共同的缺点就是，没有一个方便的能够快速根据业务构建数据任务的拓扑计算流程，也就是我们所说的计算流（flow），同时也缺乏数据的流化功能。 Node- red本身是 node. js开发的，支持 node. js的事件驱动和非阻塞 IO机制，是一种可视化流程编辑框架[9]，它允许开发人员仅仅使用一个基于浏览器的可视化界面流程编辑器来完成设备、服务器以及 API应用的连接。Node-red本身是IBM Emerging Technology团队创建的一个新型开源工具，它允许用户通过组合各种部件来编写应用程序，这些部件可以是硬件设备、Web API或者是在线服务。Node-red被广泛用于物联网领域，实现数据的流式传输。在 Node- red中从数据的接入，到数据的解析分析，最后到结果的输出都是通过各种各样的节点来完成的， IBM Emerging Technology团队在开发这个工具的时候只引入了少量的具有特殊功能的节点，比如常用的 http节点、 tcp节点、 udp节点、 debug等数据输入输出节点，还有一些用于数据分析的节点比如 sentiment节点，还有一些用于访问存储设备的节点，如 mongodb节点；Node-red除了原始已经提供的这些节点外，还允许用户自己按照开发原则开发自己需要的节点。为了能够充分利用 Node- red的可视化流程编辑的直观性，结合 Rredis数据库的内存计算的特点，探索开发适应于流式数据分析的数据输入节点、数据输出节点、数据处理节点以及 Redis数据库访问节点，这对流式数据分析有着重要的实际意义。1.2 国内外研究现状
+<br><br>
+<span style="margin-left:25px"></span>1.2.1 实时流数据处理模型的研究应用现状
+<br><br>
+<span style="margin-left:25px"></span>大数据时代下的数据处理主要的两种方式就是实时流数据处理和批量数据处理。
+<br><br>
+<span style="margin-left:25px"></span>实时流数据处理主要适合于那些无需事先进行数据存储，可以直接进行数据分析处理，实时性要求比较严格，但数据的准确度要求比较宽松的应用场景。而对于传统的批量数据处理，首先要进行数据的存储，然后再对存储的静态数据进行集中或者分布式计算。目前，对于传统的批量数据处理模型的技术和研究成果已经相对成熟了，最初有 Google公司的 MapReduce并行编程模型[5]的提出，再有后来在开源社区的努力下开发的 Hadoop系统为代表的批处理系统，都已经是稳定而高效的批处理系统。而对于流式数据处理模型的研究仅仅处于一个初级阶段，在早期关于流式数据的研究也主要集中在以数据库为中心而开展的，主要是研究了数据计算的流式化，数据规模也比较小，数据对象也比较单一，很难适应在大数据时代下流式数据处理所呈现出来的新特性。因为，在新时期的流式数据主要呈现出实时性、突发性、无序性等特点，对新的流式计算系统就有了更高更严格的要求。在国外， Yahoo推出了 S4流式数据处理系统，随后在2011年， Twitter也推出了自己的流式数据处理系统 Storm，
+<br><br>
+<span style="margin-left:25px"></span>还有就是近年来开源社区新兴的 MOA（ Massive Online Analysis）、 Spark Stream都是流式处理系统，这在一定程度上推动了流式数据处理的发展和应用。但是像 S4、 Strom这样的流式数据处理系统在可伸缩性、容错性、数据吞吐量等方面存在着明显的不足，而对于 MOA， Spark Stream这样的系统，虽然功能和 API十分丰富，但是在稳定性和易用性上不尽如人意。所以，如果构建一个低延迟、高吞吐、易用且能持续可靠地运行的流式数据处理系统，是一个亟待解决的问题。在国内，目前关于流式数据处理模型的研究还比较少，但目前国内主要有百度公司自主研发的Dstream和TM实时计算平台，在学术界主要是有一些关于流式数据挖掘算法的研究。
+<br><br>
+<span style="margin-left:25px"></span>但是，流式数据的可视化分析已经在很多场景得到了应用，比如各大银行都陆续建立的大屏监控系统，就是实时地监控银行的业务状况、系统运行状况、用户行为分析等，又比如政府网站群的监控，也是通过实时监控网站的访问数据，分析用户的行为。在这些应用的背后，如何建立一个高效、稳定、易于维护的实时处理模型显得尤为重要。1.2.2Node-red的研究应用现状
+<br><br>
+<span style="margin-left:25px"></span>Node-red作为一种在物联网时代的新型产物，是一种用来快速搭建物联网应用程序的流式处理框架，在信息无处不在的时代，Node-red也越来越受到业界的关注和研究。
+<br><br>
+<span style="margin-left:25px"></span>它是由IBM Emerging Technologies团队发起的一个开源项目，其中Nick Leary 和Dave Conway-Jones工程师为Node-red的设计和开发做出了巨大的贡献。
+<br><br>
+<span style="margin-left:25px"></span>2013年，Node-red以开源项目的形式被发布，经过短短几年的发展，Node-red已经拥有了一大批活跃的用户和开发人员。Node-red依然是一个新型科技，时至今日，但凡用过Node-red的制造商、实验人员和一大批大大小小的公司，都已经见证了Node-red极具价值的应用之处。在国外，IBM公司率先将Node-red应用起来，Node-red被集成到IBM公司的最新的云产品Bluemix上。
+<br><br>
+<span style="margin-left:25px"></span>通过Bluemix提供的云服务，用Node-red来建立和管理一个实例（也就是一个应用流程），就可以实现消息的推送服务。Node-RED 的使用，与 Bluemix 中简单的 Push 服务相结合，使整个流程变得非常简单，需要调整的部分也少得多。在国内，目前也有很多智能设备制造公司在使用 Node- red，可以很方便地通过 Node- red节点来控制硬件设备的状态，
+<br><br>
+<span style="margin-left:25px"></span>比如拿 Node- RED搭配 Arduino，是一个快速原型化的好用工具，例如控制 RPI的某根管脚位去点亮 LED，只要简单的拉四个节点，串一串再写一点程序代码即可做到。因为Node-red还在进一步完善当中，原始开发的节点可能很难满足实际的需求，所以，我们在运用Node-red来管理数据流程的时候，还需要自己开发需要的功能节点。在这一点上，目前在不少银行的业务监控系统中引入了Redis的访问节点。1.2.3Redis的研究应用现状
+<br><br>
+<span style="margin-left:25px"></span>Redis作为存储系统[11]之中的后起之秀，由于其数据结构丰富、基于内存计算、支持网络又可进行数据持久化等特点，迅速为许多企业和开发者所爱戴。
+<br><br>
+<span style="margin-left:25px"></span>不论是在学术界还是在工业界，对Redis的研究都从未停止过。 Redis是由 Salvatore Sanfilippo为实时统计系统 LLOOGG量身定制的一个数据库，在2009年的时候将 Redis开源发布，
+<br><br>
+<span style="margin-left:25px"></span>并开始于另外一位 Redis代码贡献者 Pieter Noordhuis一起继续 Redis的开发，直到现在， Redis的代码托管在 GitHub上，并且开发也十分活跃。随着Redis内存数据库的发布，经过短短几年的发展，Redis已经拥有了一大批活跃的用户和开发人员。在国外，像GitHub、Viacom、Pinterest等都是Redis的用户，Github利用Redis集群，来统计用户项目的跟进状况。而在国内，新浪在研究了 Redis数据库的源码后，搭建了有号称史上最大的 Redis集群，实现了传统的 SQL数据库难以实现的计数分析（ counting）、反向缓存（ reverse cache）、 top10 list等功能。近年来，也有不少银行，在自己的实时数据监控平台引入了 Redis数据库，实现了数据的实时处理和分析，还有就是随着国家电子政务系统的逐渐推行，不少的地方政府也在自己的数据中心监控系统中引入了 Redis数据库，来实现数据实时计算和处理。1.3 论文主要工作和研究内容
+<br><br>
+<span style="margin-left:25px"></span>本文对大数据背景下流式数据处理过程中所遇到的挑战和难题进行了研究分析，详细研究了 Node- red流式处理框架的编程模型和消息推送机制，
+<br><br>
+<span style="margin-left:25px"></span> Redis数据库的实现原理及其基于内存计算的原理。设计了一种新的基于Node-red的流式管理和Redis的内存计算的流式数据处理模型，并通过实现网站访问实时监控系统来验证了该模型的可行性。主要工作内容如下：（1）本文首先对当前实时流数据处理模型的研究应用现状以及 Node- red与 Redis的研究应用现状进行分析，
+<br><br>
+<span style="margin-left:25px"></span>同时结合 node. js的事件驱动与非阻塞机制详细阐述 Node- red的消息推送原理。（2）对Redis数据库做了深入研究。
+<br><br>
+<span style="margin-left:25px"></span>因为在流式数据处理中，经常会遇到关于最大值，最小值，累计求和等指标的计算，而去重统计是计算这些指标的基础。因此，本文通过分析Redis有序集合的源码，结合Skip List的基本原理，提出了基于Redis有序集合的去重统计方法。（3）在研究分析了流式数据的特点和流式数据处理的基本原理后，结合 Node- red的编程模型和消息推送机制，
+<br><br>
+<span style="margin-left:25px"></span>设计了一种新的基于 Node- red的流式管理和 Redis的内存计算的流式数据处理模型。由于原始的 Node- red缺乏对 Redis数据库的访问节点以及 Redis的 pub/ sub节点，重新设计了新的数据输入、输出节点以及数据处理函数节点（ function_ node），并安装部署到 Node- red框架当中，实现数据的流式处理和数据流的管理。（4）本文最后还将设计好的流式数据处理模型，应用到实际生产环境中加以验证。
+<br><br>
+<span style="margin-left:25px"></span>使用该模型对某政府网站的访问流量数据进行实时监控分析，设计了一套实时数据监控系统，该系统包括了数据的实时采集、实时分析和处理，以及最后的数据可视化展示，并对结果进行了有效性分析。实现了从模型设计到模型应用的全过程。1.4 论文章节结构概述
+<br><br>
+<span style="margin-left:25px"></span>本论文共分为七章，其章节结构安排如下：
+<br><br>
+<span style="margin-left:25px"></span>第一章，绪论，首先介绍了本论文的研究背景和意义，通过阅读大量相关文献和论文资料，总结了国内外流式数据处理模型的研究现状，以及Node-red、Redis的研究应用现状。
+<br><br>
+<span style="margin-left:25px"></span>然后简单的介绍了本论文的主要研究内容和全文的章节结构安排。第二章，实时流数据处理的理论基础和技术，本章详细介绍了 node. js的异步非阻塞模式与事件驱动机制，
+<br><br>
+<span style="margin-left:25px"></span>这是进行 Node- red节点开发的理论基础，同时详细介绍了 Node- red可视化流式处理框架，本章最后还介绍了关于 Redis数据库的实现原理和 Pub/ Sub机制。第三章，基于 Redis有序集合的去重统计方法的研究，分析 Redis有序集合的底层源码，
+<br><br>
+<span style="margin-left:25px"></span>结合 Skip List算法研究了 Redis有序集合在实时流数据处理中的去重统计方法。第四章，基于 Node- red和 Redis的实时流数据处理模型的设计，本章首先对在实际场景中的流式数据处理应用做了详尽的需求分析，
+<br><br>
+<span style="margin-left:25px"></span>然后对模型的总体架构做了详细设计，最后对于 Node- red中原本缺少的用于流式数据的输入和输出节点以及数据处理节点做了重新设计，并将设计的各个节点重新部署到 Node- red框架当中，使其成为一个能够胜任流式数据处理的完整模型。第五章，实时流数据处理模型在网站访问监控系统中的应用，本章主要是对设计的新模型加以应用，以此来验证模型的可行性与高性能。
+<br><br>
+<span style="margin-left:25px"></span>为此设计了一个网站访问的实时监控系统，数据处理就用到了本文设计的流式数据处理模型，将数据处理的结果输出到前端页面做可视化展示。本章详细阐述了系统的功能，各个功能模块的设计与实现。第六章，系统测试与性能分析，这一章是整个模型以及应用系统的测试环节，主要是分析了模型对流式数据的处理能力并对设计的应用系统进行功能测试。
+<br><br>
+<span style="margin-left:25px"></span>第七章，全文总结与展望，是对本论文的主要工作进行最后总结，并对后续工作做了一些说明。
+<br><br>
+<span style="margin-left:25px"></span>实时流数据处理的基础理论和技术
+<br><br>
+<span style="margin-left:25px"></span>2.1 node.js的事件驱动和非阻塞机制
+<br><br>
+<span style="margin-left:25px"></span> node. js从2009年诞生至今，已近经过了八年的发展，目前 node. js已经进入了青年时期，
+<br><br>
+<span style="margin-left:25px"></span>在各大中小型 IT企业中的应用的十分广泛，尤其在 web领域，不论是前端 JS还是后端的 web服务器，它都有用武之地。node.js不仅仅是一种编程语言，更是一种工具和平台，为JavaScript提供运行环境。它封装了google的V8引擎，由于V8引擎解释执行JavaScript的速度快，效率高等特点，再加上node.js本身对其进行了优化，这使得node.js的性能也非常好。而底层的代码执行模块使利用C++编写的，同时底层通过libuv库来实现了对事件循环队列的处理，并将耗时较长的I/O请求交给liveio来处理，以此来提高运行效率。node.js的优秀性能主要体现在其优秀的系统架构上，图2-1 所展示的就是node.js的架构图。图2-1 node.js的系统架构图
+<br><br>
+<span style="margin-left:25px"></span>Node.js底层的事件循环机制是利用libuv来实现的，libuv是一种高性能的事件驱动程序库，它屏蔽了因为平台不同而带来的差异。
+<br><br>
+<span style="margin-left:25px"></span>在 Windows平台中， node. js是直接利用 Windows下的 IOCP（ I/ O Completion Port）通常称为 I/ O完成端口来实现的，在 IOCP的内部其实是利用了线程池的原理，这些线程是由 Windows系统内核自动管理，不需要我们手动加以管理。而在Linux平台上，node.js都是通过自行实现的线程池来完成异步非阻塞I/O的。而libuv就是起这样一个平台间的过渡角色，对外提供统一的API接口，图2-2 所展示的就是事件驱动策略。图2-2 node.js的事件驱动策略
+<br><br>
+<span style="margin-left:25px"></span>Node.js采用的是事件驱动，异步编程的模式。
+<br><br>
+<span style="margin-left:25px"></span>事件驱动这个词，对于程序员来说并不陌生，比如在网络套接字编程中，当 socket有数据到来的时候，就会触发我们之前所注册的 callback函数的执行，而 node. js所提供的绝大多数 API都是采用的这种编程模式。下面就来详细阐述一下node.js的这种事件驱动编程模式。我们可以与 apache服务器的原理相比较一下， apache服务器采用的是单进程、多线程模型，一个用户请求对应一个线程，
+<br><br>
+<span style="margin-left:25px"></span>而 node. js是单进程、单线程模型，它是通过事件驱动的方式来实现并发的，不会为每一个客户请求创建单独的线程，而是通过事件监听器来判断，最后触发 callback函数的执行。当 node. js的主线程运行的时候，就会创建一个事件队列（ event queue），在这个队列中几乎保存了程序所需要的每一个 I/ O操作，由于线程会循环地去处理事件队列中的 I/ O操作，该队列也被称为循环队列。如果在程序的执行过程中，遇到了比如像文件的读写、数据库的查询等 I/ O操作来阻塞任务时，线程不会停下来等待这些操作，而是注册一个 callback函数，转而继续执行队列中的下一个操作。而这里的callback函数，只有在这些阻塞任务执行结束之后通知主线程调用执行。在事件循环队列中，为了避免造成类似于递归调用的无限循环中，要求所有的callback函数都必须经过一个tick周期，在程序中的具体表现就是所有的callback函数都要执行process.nextTick()。图2-3 所展示的就是node.js的事件驱动原理图。图2-3 node.js 的事件驱动原理图
+<br><br>
+<span style="margin-left:25px"></span>从图2-3 node. js的事件驱动原理图可以看出，在 node. js的应用中有读文件和查询数据看两种 I/ O操作，
+<br><br>
+<span style="margin-left:25px"></span>该应用的主线程会创建一个事件循环队列，在这个循环队列中有文件的打开操作、读文件、连接数据库、查询数据库等操作。举一个实际的例子来说明，假如node.js在执行下面这样一段代码：程序的第二个参数就是一个回调函数，当程序运行到这里的时候，由于 I/ O操作会消耗大量时间而不会立刻返回查询的结果，
+<br><br>
+<span style="margin-left:25px"></span>而是将该事件插入事件队列中，转而继续执行下面的代码。而当数据库查询操作返回后，就会将该事件发送到事件循环队列中，直到下一次循环监听到了该事件，就会触发回调函数的执行。而只有当整个事件循环队列中的任务都执行结束后，node.js应用才会终止。对于node.js的异步I/O非阻塞机制也是建立在事件驱动机制之上的，对堵塞I/O的处理[16]，其底层是通过线程池来确保工作的正常执行。
+<br><br>
+<span style="margin-left:25px"></span>node.js从线程池中取得一个线程来执行复杂任务，而不必占用主循环线程，这样就防止堵塞I/O占用空闲资源而造成效率下降。在堵塞任务执行完毕后，通过查找到事件队列中相应的callback函数来处理接下来为完成的工作。也就是说，对于那些相对耗时比较长的 I/ O操作，比如读写文件等，还有一些网络通信，比如套接字， node. js会将这些操作交给一个称之为 worker threads的线程池去执行，当这些操作执行结束后，通过事件通知，并执行回调函数，这就是异步 I/ O非阻塞机制。正因为node.js的这种事件驱动机制，使得那些十分耗时的I/O操作都可以异步执行，有效地解决了因为I/O操作而带来的性能和效率瓶颈问题。
+<br><br>
+<span style="margin-left:25px"></span>在许多轻量级、高实时、高流量的应用系统中，都能见到node.js的身影。本文中各个数据处理节点的设计和开发都是基于node.js的，同时前端可视化模块也是利用node.js的express框架进行开发的。2.2 Node-red可视化流式处理框架
+<br><br>
+<span style="margin-left:25px"></span>2.2.1 Node-red的概述
+<br><br>
+<span style="margin-left:25px"></span>Node-red是IBM Emerging Technologies团队开发的一个可视化的数据流程编辑工具。
+<br><br>
+<span style="margin-left:25px"></span>程序员可以直接通过 web浏览器就可以实现各种数据流程的编辑，同时可以实现对数据处理逻辑的编写， Node- red把这些数据流程称为一个 flow，所编写的 flow可以以 json对象的形式保存为普通文件或者形成 js库，方便用户分享、修改。程序员在Node-red中可以通过组合各部件来编写应用程序，这些部件可以是硬件设备(如：Arduino板子)、Web API(如：WebSocket in和WebSocket out)、功能函数(如：range)或者在线服务(如：twitter)。 Node- Red提供基于网页的编程环境，通过拖拽已定义 node到工作区并用线连接 node创建数据流来实现编程，程序员通过点击 Deploy按钮实现一键保存并执行。 Node- red本身是基于 node. js开发的，它的执行模型和 node. js一样，也是通过事件驱动和非阻塞 I/ O机制来实现的，这一点在上一节关于 node的事件驱动和非阻塞机制已经作了详尽的阐述。理论上，node.js的所有模块都可以被封装成Node-red的一个或几个节点(node)。本文所设计的实时流数据处理模型是通过利用Node-red来完成数据流程的管理以及处理数据的业务代码的编写两项工作。
+<br><br>
+<span style="margin-left:25px"></span>接下来，详细阐述Node-red的编程模型以及它是如何管理数据流程。2.2.2 Node-red的编程模型
+<br><br>
+<span style="margin-left:25px"></span>本节我们通过介绍Node-red的一些关键概念和关键组件，并通过实际例子说明Node-red的编程模型。
+<br><br>
+<span style="margin-left:25px"></span>（1）数据流程（flow），这是Node-red中最重要的一个概念，一个flow就是一个Node-red程序，它是多个节点连接在一起进行数据交换的集合。
+<br><br>
+<span style="margin-left:25px"></span>在Node-red的底层，一个flow通常是由一系列的JavaScript对象和各个节点的配置信息组成，通过调用底层的node.js环境来执行JavaScript代码。（2）节点（node），它是组成flow的最基本的元素，也是真正进行数据处理的载体。
+<br><br>
+<span style="margin-left:25px"></span>当一个编写好的flow运行起来的时候，节点主要对从上游节点接收到的消息（简称message）进行处理，并产生新的消息传递给下游节点完成后续的处理工作。一个Node-red的节点主要包括js文件这html文件，分别完成对节点功能的具体实现和节点UI设计。（3）消息（message），它是节点之间进行传输的对象，也是数据的真正载体。
+<br><br>
+<span style="margin-left:25px"></span>本质上消息是一个JavaScript对象，包含了各种对数据描述的属性。消息是Node-red处理的最基本的数据结构，只有在节点被激活时消息才会被处理，再加上节点是相互独立的，这就保证了所有的数据流式互不影响且无状态。（4）连线（wire），它是节点与节点之间的连接桥梁，它们通常将节点的输出端点连接到下游节点的输入端，表示由一个节点生成的消息应该由下一个连接节点处理。
+<br><br>
+<span style="margin-left:25px"></span>在了解了这些基本的Node-red组件之后，下面通过举例说明Node-red的编程模型。
+<br><br>
+<span style="margin-left:25px"></span>假设要实时发送一个消息到 debug节点，来测试消息在节点之间的传输，用到了一个定时器 timestamp节点，一个函数节点 function_ node以及一个 debug节点，如图2-4所示。图2-4 Node-red中的数据流程图
+<br><br>
+<span style="margin-left:25px"></span>在图2-4所展示的 flow中 timestamp节点每隔两秒去触发 test function节点，执行其中的代码，
+<br><br>
+<span style="margin-left:25px"></span>而 msg. payload是一个 debug节点，用于在 debug面板展示 test function处理过的数据。这里仅仅是为了说明Node-red的编程模型，因此test function节点并没有复杂的数据处理逻辑，仅仅是返回一个hello world的消息，其实现代码如下：在function节点的内部可以编写任何JavaScript函数，用于处理上游节点发送过来的数据。
+<br><br>
+<span style="margin-left:25px"></span>2.2.3 Node-red的基本配置
+<br><br>
+<span style="margin-left:25px"></span>由于本文所设计的实时流数据处理模型，要对 Node- red的数据输入节点，输出节点以及数据处理节点进行重新设计，
+<br><br>
+<span style="margin-left:25px"></span>同时新增 Redis数据的访问节点，因此，需要对 Node- red进行源码安装。为了能够有效地利用Node-red进行流式数据处理和数据流程的管理，有必要阐述一下Node-red的基本配置。经过源码安装后，Node-red的目录是十分清晰，各个模块的划分也是仅仅有条。首先来了解一下Node-red的目录结构，图2-5展示了Node-red的目录结构。图2-5 Node-red目录结构图
+<br><br>
+<span style="margin-left:25px"></span>下面简单地介绍一下各个目录文件存储的内容和作用：
+<br><br>
+<span style="margin-left:25px"></span>（1）在/public目录下是一些关于Node-red本身的静态文件，包括资源文件、css样式文件、以及前端页面的html文件；
+<br><br>
+<span style="margin-left:25px"></span>（2）/node-modules目录下面是一些外部依赖库，也就是Node-red需要的一些Node.js模块。
+<br><br>
+<span style="margin-left:25px"></span>（3）/red目录下面就是真正的Node-red代码，主要是一些核心api、事件驱动程序、服务器端主程序、系统设计程序以及Node-red的入口程序等。
+<br><br>
+<span style="margin-left:25px"></span>（4）/test目录下面主要是放了一些用于测试的Node以及flow；
+<br><br>
+<span style="margin-left:25px"></span>（5）/nodes目录是一个极其重要的目录，Node-red中所有的节点都是存放在这个目录下的，包括各个节点的html和js文件。
+<br><br>
+<span style="margin-left:25px"></span>（6）settings.js文件是整个Node-red的系统配置文件，该文件描述了启动的参数细节、端口和IP设置以及各个启动目录的设置。
+<br><br>
+<span style="margin-left:25px"></span>接下来阐述如何配置Node-red。
+<br><br>
+<span style="margin-left:25px"></span>Node-red几乎所有的配置信息都记录在setting.js文件中，首先要清楚各个配置选项的功能作用，表2-1 展示了Node-red的常用配置选项极其作用。表2-1 Node-red常用配置选项说明
+<br><br>
+<span style="margin-left:25px"></span>选项名
+<br><br>
+<span style="margin-left:25px"></span>默认值
+<br><br>
+<span style="margin-left:25px"></span>作用
+<br><br>
+<span style="margin-left:25px"></span>uiPort
+<br><br>
+<span style="margin-left:25px"></span>1880
+<br><br>
+<span style="margin-left:25px"></span>指定Node-red网页的端口号
+<br><br>
+<span style="margin-left:25px"></span>uiHost
+<br><br>
+<span style="margin-left:25px"></span>127.0.0.1
+<br><br>
+<span style="margin-left:25px"></span>指定Node-red网页的ip地址
+<br><br>
+<span style="margin-left:25px"></span>debugMaxLength
+<br><br>
+<span style="margin-left:25px"></span>1000
+<br><br>
+<span style="margin-left:25px"></span>指定debug节点调试数据的最大显示长度
+<br><br>
+<span style="margin-left:25px"></span>flowFilePretty
+<br><br>
+<span style="margin-left:25px"></span>true
+<br><br>
+<span style="margin-left:25px"></span>是否保存编写的flow
+<br><br>
+<span style="margin-left:25px"></span>userDir
+<br><br>
+<span style="margin-left:25px"></span>安装目录
+<br><br>
+<span style="margin-left:25px"></span>指定flow保存的位置
+<br><br>
+<span style="margin-left:25px"></span>functionGlobalContext
+<br><br>
+<span style="margin-left:25px"></span>undefined
+<br><br>
+<span style="margin-left:25px"></span>用于加载外部依赖，其值是json对象
+<br><br>
+<span style="margin-left:25px"></span>按照表2-1 所示的配置选项说明进行配置，然后重新启动Node-red，就可以在浏览器中输入http:
+<br><br>
+<span style="margin-left:25px"></span>//127.0.0.1:1880，即可打开Node-red的可视化流程编辑界面。2.4 基于内存计算的数据库Redis
+<br><br>
+<span style="margin-left:25px"></span>2.4.1 Redis数据库的概述
+<br><br>
+<span style="margin-left:25px"></span>Redis是一个开源的高性能key-value存储系统，它通过提供多种键值数据类型来适应不同应用场景下的存储需求，并借助许多高级的接口使其可以胜任如缓存、队列系统等不同的角色。
+<br><br>
+<span style="margin-left:25px"></span> Redis和 Memcached类似，数据都是缓存在内存的，而不同之处主要有三点，第一点就是 Redis之处存储的数据类型相对来说更加丰富，
+<br><br>
+<span style="margin-left:25px"></span>比如像 string(字符串)、 list(链表)、 set(集合)、 zset(有序集合)以及 hash（哈希类型）。第二点 Redis还提供了数据持久化的功能，因为在内存中的数据有一个典型的问题，也就是当程序运行结束后，内存上的数据将会丢失，所以 Redis考虑到这点，提供了对数据持久化的支持，即将内存中的数据通过异步的方式写入到磁盘当中，同时也不影响继续提供服务。第三点就是在实现上， Memcached采用的是多线程技术，而 Redis采用的是单线程技术，所以在多核处理器上， Memcached的性能和资源利用率上要高于 Redis，但是针对这一点目前也有很好的解决方案，再加上 Redis的性能也已经足够优秀了，而且提供了许多 Memcached无法提供的高级功能，我们相信在不久的将来， Redis将会在很多领域完全替代 memcached。表2-2 给出了Redis与Memcached的对比。表2-2 Redis与Memcached的对比
+<br><br>
+<span style="margin-left:25px"></span>Redis
+<br><br>
+<span style="margin-left:25px"></span>Memcached
+<br><br>
+<span style="margin-left:25px"></span>数据库类型
+<br><br>
+<span style="margin-left:25px"></span>Key-value内存数据库
+<br><br>
+<span style="margin-left:25px"></span>Key-value内存数据库
+<br><br>
+<span style="margin-left:25px"></span>数据类型
+<br><br>
+<span style="margin-left:25px"></span>在定义value的时候
+<br><br>
+<span style="margin-left:25px"></span>就要固定数据类型
+<br><br>
+<span style="margin-left:25px"></span>不需要固定，支持字符串，链表，集合，有序集合，hash
+<br><br>
+<span style="margin-left:25px"></span>虚拟存储
+<br><br>
+<span style="margin-left:25px"></span>不支持
+<br><br>
+<span style="margin-left:25px"></span>支持
+<br><br>
+<span style="margin-left:25px"></span>过期策略
+<br><br>
+<span style="margin-left:25px"></span>支持
+<br><br>
+<span style="margin-left:25px"></span>支持
+<br><br>
+<span style="margin-left:25px"></span>分布式
+<br><br>
+<span style="margin-left:25px"></span>Magent
+<br><br>
+<span style="margin-left:25px"></span>Master-slave主从同步
+<br><br>
+<span style="margin-left:25px"></span>数据存储安全
+<br><br>
+<span style="margin-left:25px"></span>不支持
+<br><br>
+<span style="margin-left:25px"></span>备份到dump.rdb中
+<br><br>
+<span style="margin-left:25px"></span>灾难恢复
+<br><br>
+<span style="margin-left:25px"></span>不支持
+<br><br>
+<span style="margin-left:25px"></span>AOF用于数据容灾
+<br><br>
+<span style="margin-left:25px"></span>2.4.2 Redis数据库的实现原理
+<br><br>
+<span style="margin-left:25px"></span>我们已经知道Redis提供了五种数据类型，分别是字符串、链表、集合、有序集合以及哈希表。
+<br><br>
+<span style="margin-left:25px"></span>开发Redis数据库的作者，为了让Redis支持者五种数据结构，首先对Redis的内存模型进行了设计，如图2-7 所示。图2-7 Redis内存对象模型
+<br><br>
+<span style="margin-left:25px"></span>从图2-7所展示的内存模型可以看出， Redis是通过一个叫做 redisObject核心对象来管理这些数据类型的，
+<br><br>
+<span style="margin-left:25px"></span>在 redisObject对象内部提供了一个 tpye字段，用于表示 value到底是属于那种数据类型，而真正的值是通过一个数据指针来表示的。这里的编码方式也就是表明了该类型的数据在Redis底层是使用的什么数据结构，比如在列表的底层是通过双端链表实现的，而有序集合是通过Skip List实现的。另外，模型中还提供了一个虚拟内存字段，而只有在该字段的值为true的时候，才会真正地分配内存，在默认的情况下该字段值为false。在认识了Redis的核心对象后，接下来简单阐述在redis数据库中这五种数据类型的底层实现原理。
+<br><br>
+<span style="margin-left:25px"></span>Redis数据库底层提供了八种数据结构，在源码中都是通过宏来表示的，也就是之前提到的编码方式，如表2-3 所示。表2-3 Redis底层提供的八种数据结构
+<br><br>
+<span style="margin-left:25px"></span>编码常量
+<br><br>
+<span style="margin-left:25px"></span>对应的底层数据结构
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_INT
+<br><br>
+<span style="margin-left:25px"></span>Long类型的整数
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_EMBSTR
+<br><br>
+<span style="margin-left:25px"></span>Embstr编码的动态字符串
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_RAW
+<br><br>
+<span style="margin-left:25px"></span>简单的动态字符串
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_HT
+<br><br>
+<span style="margin-left:25px"></span>字典
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_LINKEDLIST
+<br><br>
+<span style="margin-left:25px"></span>双端链表
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_ZIPLIST
+<br><br>
+<span style="margin-left:25px"></span>压缩列表
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_INTSET
+<br><br>
+<span style="margin-left:25px"></span>整数集合
+<br><br>
+<span style="margin-left:25px"></span>REDIS_ENCODING_SKIPLIST
+<br><br>
+<span style="margin-left:25px"></span>跳表和字典
+<br><br>
+<span style="margin-left:25px"></span>对于字符串来说，其编码方式可以是long类型的整数，也可以是embstr编码的动态字符串，还可以是简单的动态字符串。
+<br><br>
+<span style="margin-left:25px"></span>embstr编码的动态字符串是在redis3.0中新增的数据结构，它的好处在于只需要进行一次内存分配，而简单的动态字符串需要进行两次内存分配。对字符串value的操作都是通过核心对象的数据指针进行的。 Redis中列表的底层数据结构可以利用双向链表实现，也可以利用压缩列表来实现，由于双向链表中的每个节点都具有直接前驱和直接后继，
+<br><br>
+<span style="margin-left:25px"></span>因此 Redis的列表支持许多反向操作，但是有一个不足之处就是，每增加一个节点都会向系统申请一次内存，这无疑带来了额外的内存开销。但是对于压缩链表来说，它就要比双向链表更加节省空间，因为压缩链表只需要申请一次内存，而且是一块连续的内存空间，但是为了保证内存的连续性，每次插入一个节点的时候都需要 realloc一次。集合的内部实现是一个hashtable，只是其中的value永远是null，这实际上是通过计算hash的方式来实现快速重排，这也是集合之所以能够快速地判断一个元素是否在集合中的重要原因。
+<br><br>
+<span style="margin-left:25px"></span>Redis中hash类型的底层数据结构可以是hashtable，也可以是压缩的列表，由于压缩列表是一段连续的内存空间，所以在压缩列表中的哈希对象是按照key1:value1，key2:value2这样的先后顺序来存放的，按这种方式实现的hash，在对象的数量不多且内容不大的情况下，效率是非常高的。Redis的有序集合的底层数据结构就是通过跳表来实现的，而没有采用hash和hashtable来实现，虽然hash可以实现快速的查找，但是无法保证有序。
+<br><br>
+<span style="margin-left:25px"></span>关于有序集合的底层实现原理我们将在第三章有序集合的源码分析中做详细阐述。2.4.3 Redis数据库的pub与sub机制
+<br><br>
+<span style="margin-left:25px"></span>pub/sub功能即publish/subscribe功能[21，22]。
+<br><br>
+<span style="margin-left:25px"></span>在基于事件的系统中，pub/sub是目前广泛使用的通信模型，它采用事件作为基本的通信机制，提供大规模系统所要求的松散耦合的交互模式：订阅者比如客户端以事件订阅的方式表达出它有兴趣接收的一个事件或一类事件，发布者比如服务器可以将订阅者兴趣的事件随时通知相关订阅者。 Redis数据库也支持 pub/ sub机制，本论文所设计的流式数据处理模型中，新引入了数据的输入节点也就是 redis的 subscribe节点，
+<br><br>
+<span style="margin-left:25px"></span>以及数据的输出节点 publish节点，将这两个节点在采集数据的时候用。订阅者可以订阅多个Channal[23]，而发布者可以通过Channel，向订阅者发送消息。但是发布者所发的消息是异步的，不需要等待订阅者订阅，也不关心订阅者是否订阅，简单地说就是订阅者只能收到发布者后续所发送到该 Channel上的消息，如果之前发送的消息没有接收，那么也再也接收不到了，下面是 Redis数据库的发布订阅命令。PUBLISH：
+<br><br>
+<span style="margin-left:25px"></span>向channel_test发布消息message。SUBSCRIBE：
+<br><br>
+<span style="margin-left:25px"></span>订阅channel_test消息，会收到发布者所发送的message消息。2.5本章小结
+<br><br>
+<span style="margin-left:25px"></span>本章主要是对本论文的相关技术进行了介绍，首先对 node. js的事件驱动和非阻塞机制进行了详细阐述，
+<br><br>
+<span style="margin-left:25px"></span>主要是为后面 Node- red的节点设计打下理论基础，然后再是对 Node- red进行了详细介绍，最后还详细介绍了 Redis数据库的基本概念、底层实现原理以及发布/订阅机制。基于Redis有序集合的去重统计方法的研究
+<br><br>
+<span style="margin-left:25px"></span>在实时流数据处理过程中，我们经常会遇到最大值、最小值、累计求和等指标的计算，而计算这些指标的基础就是去重统计。
+<br><br>
+<span style="margin-left:25px"></span>本文所设计的流式数据处理模型中用到了 Redis作为数据计算和中间结果集存储的中心，因此研究探索一种基于 Redis有序集合的去重统计方法具有重要的研究意义和实用价值。本章将从跳表Skip List的基本原理到Redis有序集合的源码分析，详细研究基于Redis有序集合的去重统计方法。3.1 Skip List基本原理
+<br><br>
+<span style="margin-left:25px"></span>SkipList是由William Pugh提出的一种基于并联链表的、随机化的数据结构。
+<br><br>
+<span style="margin-left:25px"></span>Skip List的查找效率与二叉查找树的查找效率差不多，可以实现平均复杂度为的插入、删除和查找操作。一般而言，跳表是通过在有序的链表的基础上增加额外的链接实现的，而这种链接方式的增加，并不是随便增加的而是以随机化的方式增加，同时对随机函数也有要求，必须是以对数函数的方式产生，所以在链表中的查找可以迅速地跳过部分链表，跳表也因此得名。众所周知，对于有序链表的查找操作，其时间复杂度为，尽管真正插入与删除节点的操作的复杂度只有，但是，这些操作都需要首先查找到节点的位置，换句话说，是查找拉低了有序链表的整体性能。而Skip List采用空间换时间的设计思想，除了原始链表外还保存一些跳跃的链表，达到加速查找的效果。可以很好解决有序链表查找特定值的困难。接下来研究一下Skip List实现的原理，首先来认识一下Skip List。
+<br><br>
+<span style="margin-left:25px"></span>因为，跳表是在有序链表的基础上做改进的，所以我们从认识有序链表开始研究Skip List。图4-1 展示的就是一个有序链表的数据结构图（这里H表示链表头部，T表示链表尾部，这两个节点不是有效节点）：图4-1 有序链表结构图
+<br><br>
+<span style="margin-left:25px"></span>现在假设要在该有序链表中查找value为7的节点，只能在有序链表中一步一步地从头到尾按照1-]2-]3...的顺序找下去，很明显查找效率是。
+<br><br>
+<span style="margin-left:25px"></span>如果是数组的话，可以利用二分查找，时间复杂度可以提高到。但是由于链表不支持随机访问，所以不能利用二分法进行查找。但是，如果我们确实想利用二分查找的思想，就可以考虑把中间位置的节点保存下来，重新构成新的顺序链表，经过重构的链表如图4-2 所示：图4-2 重构后的有序链表
+<br><br>
+<span style="margin-left:25px"></span>毫无疑问，这是一种典型的以空间换时间的设计思想。
+<br><br>
+<span style="margin-left:25px"></span>原始的顺序链表，经过重构后变成了三个顺序链表，从上到下将这三个链表编号为0、1、2，不难发现，2号链表就是原始链表，1号链表就是原始链表的四等分节点构成的，0号链表是原始链表的二等分节点构成的。现在，假设我们还是要查找value为7的节点则只需要如下三个步骤：（1）初始的的搜索范围是(H，T)，在0号链表中与4进行比较，7]4，将搜索范围更新为(4，T)。
+<br><br>
+<span style="margin-left:25px"></span>（2）在1号链表中与6进行比较，7]6，继续更新搜索范围(6，T)。
+<br><br>
+<span style="margin-left:25px"></span>（3）在2号链表中与7进行比较，结果7=7，查找成功。
+<br><br>
+<span style="margin-left:25px"></span>很明显，在Skip List中保存了二分查找的信息，以此来提高查找效率。
+<br><br>
+<span style="margin-left:25px"></span>不难发现在具体的实现上，如果要开辟额外的空间来保存新链表的话，会造成空间的极大浪费。由于是链表，可以利用链的性质，改进存储结构，以达到节省存储空间，降低空间复杂度的目的，经过改进后的Skip List的存储结构图4-3 所示。图4-3 改进后的Skip List存储结构
+<br><br>
+<span style="margin-left:25px"></span>前面所讨论的Skip List结构是一种比较理想的结构，仅仅是为了说明Skip List的原理，实际的Skip List算法是一种随机算法，它非常依赖于所生产的随机函数。
+<br><br>
+<span style="margin-left:25px"></span>当然对随机函数的要求也比较严格，不能简单的按照的形式来生成随机数，而是必须要按照满足概率的几何分布来构造随机函数。可以设计出如下随机函数randLevel():现在考虑的情况，可能的返回值有0、1、2、3四种情况，他们各自出现的概率是：
+<br><br>
+<span style="margin-left:25px"></span>、、、。也就是说，如果有16个元素的话，第零层预计有16个元素，第一层预计有8个元素，第二层约有4个元素，第三层约有2个元素，从下向上每层元素数量大约会减少一半。因此，Skip List适合自顶向下进行查找，理想情况下，每下降一层搜索的范围就会缩小一半，可以达到二分查找的效率，时间复杂度为。最坏的情况是当前节点从head移动到链表的尾部，时间复杂度为。3.2 Redis有序集合的源码分析
+<br><br>
+<span style="margin-left:25px"></span>Redis的有序集合(zset)的底层数据结构就是通过Skip List来实现的，而没有采用hash和hashtable来实现，虽然hash可以实现快速的查找，但是无法保证有序。
+<br><br>
+<span style="margin-left:25px"></span>在了解了Skip List的基本原理后，接下来通过分析Redis的源码，详细阐述有序集合的底层实现。Redis中的有序集合所使用的Skip List与William Pugh提出的基本一致，只是做了部分改进，主要体现在一下三个方面。（1）Redis中的Skip List可以有重复的分值score，这是为了支持有序集合中可能有多个元素具有相同的分值score这样的需求。
+<br><br>
+<span style="margin-left:25px"></span>（2）在节点进行比较的时候，不仅仅比较他们的score，同时还要比较他们所关联的元素的value。
+<br><br>
+<span style="margin-left:25px"></span>（3）在Skip List中每个节点还有一个前向指针，这就相当于在双向链表中的prev指针，通过这个指针，可以从表尾向表头进行遍历。
+<br><br>
+<span style="margin-left:25px"></span>正因为有了这个改进，zset就支持一些逆向操作命令，比如zrevrange、zremrangebyscore等。在Redis的源码中，有序集合的Skip List的节点的数据结构是定义在redis.h头文件中，其具体定义如下：
+<br><br>
+<span style="margin-left:25px"></span>有了节点的定义，那么就该是Skip List的定义了，Skip List同样也是定义在redis.h头文件中的。
+<br><br>
+<span style="margin-left:25px"></span>和定义链表的结构一样，需要头节点、尾节点，他们都是指向zskiplistNode 的指针，同时还需要定义节点的数量，目前跳表的最大层数。下面就是有序集合的跳表数据结构定义：其实，Redis的有序集合主要支持的编码方式有两种（所谓的编码方式就是底层的实现方式），一种是ZIPLIST（压缩列表）方式，另一种是SKIPLIST（跳表）方式。
+<br><br>
+<span style="margin-left:25px"></span>其中ZIPLIST方式可以表示较小的有序集合，而SKIPLIST方式可以表示任意大小的有序集合。如果zset当前使用的编码方式是ZIPLIST，只要满足下面两个条件之一就可以转换为SKIPLIST编码方式。（1）当新增加的字符串的长度超过了server.zset_max_ziplist_value的时候（默认值为64）。
+<br><br>
+<span style="margin-left:25px"></span>（2）当ziplist中保存的节点数超过了server.zset_max_ziplist_entries的时候（默认值为128）。
+<br><br>
+<span style="margin-left:25px"></span>在有序集合的源码中这两种方式的转换可以通过zsetConvert函数来完成。
+<br><br>
+<span style="margin-left:25px"></span>这里主要阐述SKIPLIST编码方式，利用该方式实现的有序集合的数据结构是定义在redis.h中的，其定义如下：有了数据结构的定义，接下来就是考虑对这些数据结构的操作了。
+<br><br>
+<span style="margin-left:25px"></span>在Redis的实现中，将对zkiplist的操作都放在t_zset.c源文件中，所支持的操作有三十多种之多。包括创建层数为某一level的跳表节点、创建一个跳表、释放跳表、向跳表中插入一个节点、删除一个节点等基本操作。下面来看一下有序集合在创建一个空的跳表后是如何向跳表中插入节点的。首先，调用zslCreate()函数创建并初始化一个空的Skip List，一个空的Skip List如图4-4 所示。图4-4 空跳表结构图
+<br><br>
+<span style="margin-left:25px"></span>在该跳表的结构图中，level 0到level 31是一个长度为32的zskiplistLevel结构体数组，其大小由redis.h文件中的宏ZSKIPLIST_MAXLEVEL定义，值为32。
+<br><br>
+<span style="margin-left:25px"></span>在zskiplistLevel结构体中还包括了span和forward两个数据成员，这一点从该结构体的定义中可以看出，这里为了展示方便，忽略了span。创建完跳表之后，调用zslInsert()函数，就向该空跳表中插入节点。
+<br><br>
+<span style="margin-left:25px"></span>插入一个新的节点的大致过程如下：（1）按照跳表的结构按层数从上向下遍历。
+<br><br>
+<span style="margin-left:25px"></span>（2）在当前level的当前节点向右遍历，如果发现分值score相同就比较value的值，否则进入下一步。
+<br><br>
+<span style="margin-left:25px"></span>（3）调用随机函数，产生随机的层数。
+<br><br>
+<span style="margin-left:25px"></span>（4）比较当前level与随机函数产生的随机level，记录最大的level，作为下一步遍历的level。
+<br><br>
+<span style="margin-left:25px"></span>（5）插入节点，并更新跨度span
+<br><br>
+<span style="margin-left:25px"></span>在第三步中调用随机函数，生成随机的层数，这一点在上一小节关于Skip List的实现原理中已经做了阐述。
+<br><br>
+<span style="margin-left:25px"></span>关于如何查找插入位置，在有序集合的源码中是这样实现的：下面举例说明跳表节点的插入操作，假设要向跳表中插入 A、 B、 C、 D四个节点，
+<br><br>
+<span style="margin-left:25px"></span>它们对应的分值为3、5、7、9，则对应的跳表结构如图4-5所示：图4-5 跳表节点插入步骤图
+<br><br>
+<span style="margin-left:25px"></span>从图中可以看出，跳表中的节点都是按照分值score来进行排序的。
+<br><br>
+<span style="margin-left:25px"></span>同时，每个节点的backward指针都指向它的前一个节点，因此，跳表和双向链表类似，支持许多逆向查找，提高了灵活性和操作的效率。3.3基于有序集合的去重统计方法
+<br><br>
+<span style="margin-left:25px"></span>去重统计，在数据分析领域是一个耳熟能详的词语，可以说去重统计在大部分数据处理过程中都要用到。
+<br><br>
+<span style="margin-left:25px"></span>众所周知，在大部分的数据分析的中间计算过程中，最终的数据指标主要呈现以下几种形式：最大、最小、稳定性、叠加、去重统计。在这五种数据指标中，前四种在大部分的实时处理框架和nosql中都可以使用相对较小的开销就可以完成计算。而对于去重统计，由于去重的数据有可能是多维的，所以不论是IO效率上，还是计算的效率上都没有前四种标高。本文所设计的实时流数据处理模型中，也对这五种数据指标的计算做了设计。
+<br><br>
+<span style="margin-left:25px"></span>经过前两节对Skip List的基本原理和Redis有序集合的源码分析研究，本文认为利用Redis的有序结合来做数据去重统计是可行的。在许多流式数据处理的应用中都会涉及到最大值、最小值、累计求和等数据指标的计算，而要计算这些数据指标的基础就是去重统计，因此，涉及一种高效的去重统计方法显得意义也十分重大。本文所提出的基于有序集合的去重统计方法，就是在流式处理模型中引入 Redis数据库的访问节点（第三章所设计的 redis_ in和 redis_ out节点），
+<br><br>
+<span style="margin-left:25px"></span>通过这些节点在流式计算的过程中，将产生的中间结果集存储到 Redis的有序集合中，并根据上游节点提供的命令格式，对指定的集合进行 zincrby操作。在Redis所提供的客户端进行zincrby操作的命令格式是这样的： zincrby zsetkey increment member，如果在名称为 zsetkey的有序集合中已经存在元素 member，那么该元素的 score增加 increment，否则向该集合中添加该元素，其 score的值为 increment，若增加成功返回的是 member增长之后的序列号。也就是说，在Node-red中进行去重统计的过程就是通过redis_in节点对相应结合进行zincrby操作的过程。本文在设计redis_in节点的时候规定了上游节点传输过来的数据格式，因为redis_in节点操作数据库的命令就是从上游节点传输过来的数据中获取的。
+<br><br>
+<span style="margin-left:25px"></span>就以实际项目中一个功能来说明这一点，关于某一网站错误页面的统计。对于这个功能，前端页面要求展示错误页面的URL、错误类型、错误页面所属的网站的域名、该错误页面是从哪个页面跳转来的等信息。很显然错误页面具有着四个维度，如果我们单独去统计每一个维度的信息，最后再来进行整合，这样会大大减低计算的效率。为此，我们要将多维统计转换为一维统计，同时也不能影响展示界面要求的四维信息。本文所采取的降低维度的做法是将这四个维度拼接在一起，每个维度之间用特殊字符间隔，这样就形成了一个维度的指标，让后将这个指标作为有序集合的 key值，当有序集合在进行 zincrby操作的时候，就会根据这个 key来进行插入操作。图4-6 所展示的就是在Node-red中redis_in节点所要求的数据格式：图4-6 redis_in要求的数据格式
+<br><br>
+<span style="margin-left:25px"></span>在图4-6所编写的函数中，就用到了 Node- red的 function node，该节点将数据封装在 msg对象的 payload字段中，
+<br><br>
+<span style="margin-left:25px"></span>同时返回 msg对象，在该节点的内部调用了 node. send()方法，将 msg对象发送给下一个节点，供下一个节点接收处理。在图中整个msg.payload=[’zincrby’，’errPageDisplay’，1，err]，就是操作redis有序集合的zincrby命令，其中errPageDisplay是有序集合的名字，err是通过降低维度后的一维指标。上面这个例子展示了在实际项目中利用本文所设计的redis_in节点进行去重统计的过程。
+<br><br>
+<span style="margin-left:25px"></span>之所以说去重统计是一项基础计算，是因为，在进行去重统计的同时，只需要一些简单的操作就可以去计算最大值、最小值、累计求和等计算指标。不如要想知道有序集合中的最大值或最小值，只需要返回集合中的第一个元素或者最后一个元素，有时候需要返回排名前 N的记录，也就是常用的 Top n操作，在去重统计的基础上也很容易实现。3.4 本章小结
+<br><br>
+<span style="margin-left:25px"></span>由于，实时流数据处理中会经常遇到去重统计，而本文所设计的实时流式数据处理模型中引入了 Redis作为数据计算中心，
+<br><br>
+<span style="margin-left:25px"></span>基于 Redis有序集合的去重统计方法也被应用到该模型中。本章主要是对Redis的有序集合底层实现原理进行分析研究，同时研究分析了有序集合的底层实现源码，最后也阐述了基于有序集合的去重统计方法在该模型中的具体应用。基于Node-red与Redis的实时流数据处理模型的设计
+<br><br>
+<span style="margin-left:25px"></span>第三章对基于Redis有序集合的实现原理及其源码进行了分析研究，并提出了在流式数据处理模型中利用Redis有序集合来进行去重统计的方法。
+<br><br>
+<span style="margin-left:25px"></span>本章将从需求分析到模型的总体架构设计再到各数据处理节点的详细设计对该实时流数据处理模型进行详细阐述。4.1 需求分析
+<br><br>
+<span style="margin-left:25px"></span>本论文主要研究并设计一种基于Node-red与Redis的实时流数据处理模型，应用场景为实际项目中的网站群的实时访问监控。
+<br><br>
+<span style="margin-left:25px"></span>本项目旨在实时了解用户访问网站群的行为，捕捉用户请求并跟踪其所有响应，收集、处理并显示用户行为的细节数据，并可视化展示数据和挖掘数据背后的信息。针对该流式计算模型在实际应用场景下的应用提出如下的需求。（1）高实时性；
+<br><br>
+<span style="margin-left:25px"></span>在许多实时流数据处理的应用场景中，不论是数据的采集，还是数据的处理，都要求具有高实时性。高实时性，要求模型在进行数据采集的时候满足不低于每秒钟50笔的采集速度，以免造成数据堆积，同时也要求具备高效的数据计算和处理能力。（2）高性能；
+<br><br>
+<span style="margin-left:25px"></span>随着业务的不断扩展，数据量也不断的增大，对实时流数据处理模型及应用系统的性能要求也越来越严格。因此，从数据采集到数据处理再到数据可视化展示，各个环节都要求系统具有良好的性能。最直观的表现就是在用户看到的可视化模块的数据更新延迟不能超过2秒钟。（3）高可用；
+<br><br>
+<span style="margin-left:25px"></span>要求模型可以通过集群等方式实现分布式部署，避免单点故障。（4）可扩展；
+<br><br>
+<span style="margin-left:25px"></span>数据量、计算量会随着业务的不断扩展而不断增大，这就要求模型需要有良好的扩展性。（5）分布式；
+<br><br>
+<span style="margin-left:25px"></span>为了提高数据的处理能力和计算效率，模型还需要具备分布式的处理能力；（6）安全性；
+<br><br>
+<span style="margin-left:25px"></span>数据安全是任何系统的一个首要前提，流式数据处理模型也必须要保证数据的安全性。本论文在这些需求的基础之上，提出一种新的实时流数据处理模型，要在Node-red上设计出高效的数据接入和输出节点，同时也要有高效的数据处理节点。
+<br><br>
+<span style="margin-left:25px"></span>结合Redis的内存计算的优势，设计出对Redis数据库访问操作节点，用于对中间结果集进行统计计算，以提高模型数据计算的效率。同时，充分利用Redis的pub/sub机制来实现数据的流式异步传输。最终将这套模型应用到实际应用系统中去加以验证。4.2 模型的总体架构
+<br><br>
+<span style="margin-left:25px"></span>基于Node-red与Redis的实时流式数据处理模型是搭建在Ubuntu环境下的，也可以部署在分布式环境上以提高流式数据的处理能力和计算效率。
+<br><br>
+<span style="margin-left:25px"></span>该模型通过重新设计数据输入、输出以及数据计算节点，以完成对实时流式数据的处理。整个模型的架构如图3-1 所示：图3-1 流数据处理模型架构图
+<br><br>
+<span style="margin-left:25px"></span>从该模型的架构图中可以看出，Redis数据库充当了数据交换的中心，而整个数据流的处理逻辑都交给计算节点群去完成。
+<br><br>
+<span style="margin-left:25px"></span>数据首先通过 Redis的 channel（通道）进入 Redis server，然后 Node- red利用 redisSub节点去订阅相应通道（ channel）的数据交给计算节点（ function nodes）集群进行数据计算，而计算节点集群所产生的中间结果集，通过 redis_ in节点传给 Redis server进行统计，最后产生的最终计算结果通过 redisPub节点发布到指定的 Redis通道中，前端可视化模块在从指定通道去订阅数据做可视化展示。在原始的Node-red中是没有任何节点可以与Redis进行交互，为此，新增加了redisSub、redisPub、redis_in和redis_out节点。
+<br><br>
+<span style="margin-left:25px"></span>为了用户可以自定义数据的处理逻辑，引入了函数节点，多个函数节点构成了整个流式计算的计算节点群。有了这些节点，就可以方便快捷地在Node-red上编写流式数据处理的业务代码，更为重要的是，这些业务代码可以实现一次编写多次使用，方便移植和维护。4.3 各数据处理节点的设计
+<br><br>
+<span style="margin-left:25px"></span>节点是 Node- red的重要组成元素，所有的数据流（在 Node- red中简称 flow）都是通过一个一个的节点组成的，
+<br><br>
+<span style="margin-left:25px"></span>在 Node- red中有三类基本的节点，数据输入节点、输出节点以及数据处理节点。为了设计出适合流式数据处理的节点，这里必须对这三类节点进行重新设计，在这一节中主要是对整个流式数据处理模型所需要的节点给出详细的设计方案。Node-red的节点本身主要包括两份文件：js文件和html文件，js文件主要定义了节点具体做些什么事情，有什么样的功能；html文件主要定义了节点的属性，节点编辑框格式和帮助信息等，图3-2 所展示的就是Node-red中一个节点的设计方案：图3-2 Node-red的节点设计方案图
+<br><br>
+<span style="margin-left:25px"></span>将设计好的新节点重新安装部署到Node-red中，就可以在Node-red的前端编辑界面使用该节点进行数据处理。
+<br><br>
+<span style="margin-left:25px"></span>Node-red强大的扩展能力就是体现在用户可以设计Node-red没有提供的节点，来完成特定的任务。为了保证节点设计的正确性和有效性，在节点设计的时候必须按照如下原则来进行：（1）要求创建的节点要对各种数据类型的输入数据进行必要的处理，即使某些类型并不是这个节点所需要的。
+<br><br>
+<span style="margin-left:25px"></span>这样做有两个目的，一是为了便于对原始数据进行追加额外说明信息，二是为了便于节点的扩展。（2）由于Node-Red在识别和处理节点的时候使用了大量的字符串匹配操作，所以在节点的定义中有一些名字的字符串是必须保持一致的，否则Node-Red在解析的时候就会出错。
+<br><br>
+<span style="margin-left:25px"></span>（3）.html文件分为3部分：
+<br><br>
+<span style="margin-left:25px"></span>节点的定义，节点的编辑模板和节点的帮助信息。节点的定义主要用于：确定节点的类型，可编辑的属性，在浏览器中显示的样式，是一段可执行的js代码，RED.nodes.registerType；编辑模板主要是生成用户编辑该节点的实例时的界面(由data-template-name包括的一段HTML代码)，用户的输入最终会保存在node的定义中。（4）在.html文件中，data-template-name、node-input-xx、data-help-name都是Node-Red系统保留字。
+<br><br>
+<span style="margin-left:25px"></span>data-template-name、data-help-name的取值必须和文件名字的name部分一致。RED.nodes.registerType的第一个参数也必须和文件名字的name部分一致。（5）每个节点的可编辑的域在defaults中声明，data-template-name所包含的node-input-xx负责生成输入框。
+<br><br>
+<span style="margin-left:25px"></span>defaults的每个域的名字必须和node-input-xx中的名字保持一致。在.js文件中使用可编辑域的值的时候，直接访问defaults的域就可以，不必添加defaults前缀。（6）在.js文件中，RED.nodes.registerType用来注册一个node实例的生成函数，它的第一个参数必须和文件名字的name部分一致。
+<br><br>
+<span style="margin-left:25px"></span>传给生成函数的参数是node可编辑域的值(已编辑完成)及节点共享域的值。（7）input的callback是节点输入的处理函数。
+<br><br>
+<span style="margin-left:25px"></span>需要注意的是，Node-Red节点之间数据传输使用的是名字为payload的域，这个也是Node-Red系统保留的。4.3.1 数据输入节点的设计
+<br><br>
+<span style="margin-left:25px"></span>数据的输入节点（input node），主要是用于从外部设备或者其他外部接口获取数据到Node-red中进行数据分析。
+<br><br>
+<span style="margin-left:25px"></span>在Node-red的一个flow中，输入节点是所有message的入口，为下一个Node产生新的message。由于Node-red自带的输入节点很有限，而且不适合流式数据的输入，所以在这里必须补充设计数据的输入节点。为了满足流式数据的输入需求，数据的输入节点的设计必须要满足以下几个原则：（1）流式化数据，为了让成批到达的数据也能够在这样一个模型中得到计算，我们在设计数据输入节点的时候就要考虑到这点，
+<br><br>
+<span style="margin-left:25px"></span>也就是说让批量到达的数据逐条进入 Node- red的 flow中。（2）统一的数据格式，在一个数据处理模型中，数据格式的好与坏意味着后序进行数据计算的简与繁。
+<br><br>
+<span style="margin-left:25px"></span>（3）高吞吐量，由于流式数据的产生是源源不断的，所以在设计输入节点的时候要充分考虑节点的数据吞吐量问题，
+<br><br>
+<span style="margin-left:25px"></span>不然会造成大量数据的堆积，从而影响后续的数据分析与计算。（4）高稳定性，输入节点是数据的入口，稳定性是必须考虑的一个因素。
+<br><br>
+<span style="margin-left:25px"></span>（5）可移植性，为了能够将自己设计的数据输入节点共享给其他用户，节点的可移植性也十分重要。
+<br><br>
+<span style="margin-left:25px"></span>为了设计出高效的适合流式数据传输的输入节点，考虑到流式数据的特点，结合Redis数据库的sub机制，可以为Node-red新增一个redisSub节点。
+<br><br>
+<span style="margin-left:25px"></span>从上一小节的总体架构图中我们可以看出，我们尽量让所有的数据通过 Redis的发布订阅机制来进行收集，把采集到的数据按类别放到不同的 Redis通道（ channel）中，避免数据间的相互影响，后在 Node- red中通过我们新增加的 redisSub节点去订阅相应 channel的数据，这样就可以把数据引入 Node- red中，完成了数据的接入工作。同样redisSub节点也包括两个文件，一个是编写具体功能的实现代码的文件js文件，另一个是用于界面设计和帮助文档描述的html文件。由于Node-red原始节点的存在，所以在进行文件命名标号的时候从52号开始，因为文件名编号和节点的ID是紧密相关的，所以节点的标号必须唯一。设计好新的节点后需要重新安装部署新节点到 Node- red中，在利用 npm安装的时候， Node- red的节点注册模块会去检测 setting. js配置文件，依次加载配置文件中的其他外部模块。图3-3 是整个redisSub节点的设计图。图3-3 redisSub节点设计图
+<br><br>
+<span style="margin-left:25px"></span>对于redisSub节点的界面ui设计，需要考虑有哪些信息需要用户输入该节点。
+<br><br>
+<span style="margin-left:25px"></span>因为每个节点都有自己的名字，所以首先需要的一个信息就是用户为该节点取一个名字，需要用户输入Name字段。由于数据是存放在Redis server上的，所以还需要redisSub节点的描述Redis server的IP地址和端口号。当redisSub节点连接上Redis server后，不知道数据是位于Redis的哪一个channel上，因此还必须给出通道名称，这些都是redisSub节点所需要的最基本的信息。另外还有就是redisSub节点的帮助信息也必须给出一定的说明。ui界面主要是定义在52_redisSub.html文件中。而对于redisSub节点的具体功能，是在52_redisSub.js文件中实现的。
+<br><br>
+<span style="margin-left:25px"></span>首先，要调用Node-red提供的节点创建函数createNode()创建一个节点，并把配置信息告诉节点。节点接收到这些信息后，创建一个数据库连接池函数redisConnectionPool，将Redis server的IP和port，和createNode函数内部所产生的uuid传递给连接池函数。数据库连接池函数主要是通过一个 connections数组的_ nodeCount来记录有多少 redisSub节点连接 Redis server，当有一个新节点连接 Redis时，该值就会加一，同样当有一个节点断开了解的时候就会减一。当有close请求到的时候首先要判断_nodeCount的值是否为0，来决定是否删除connections对象数组。关于redis数据库连接池函数的执行流程如图3-4 所示：图3-4 Redis数据库连接池函数执行流程
+<br><br>
+<span style="margin-left:25px"></span>有了数据库连接池函数，就可以来实现redisSub的功能了。
+<br><br>
+<span style="margin-left:25px"></span>redisSub节点的前端页面将用户输入的Redis server的信息保存起来，然后通过参数传给连接池函数连接Redis server。连接数据库后调用 client. subscribe()方法去订阅指定的通道，如果订阅成功，就让 client去监听一个 message事件，看通道是否有数据发送过来，如果有数据就封装在 msg. payload中，让 node的 send()方法发送出来，供下游节点接收。与此同时，client还要去监听Redis的close事件，当redisSub节点断开与Redis server的连接的时候，就要调用redisConnectionPool.close()方法去断开连接。下面就是redisSub的功能函数的伪代码：
+<br><br>
+<span style="margin-left:25px"></span>4.3.2 数据输出节点的设计
+<br><br>
+<span style="margin-left:25px"></span>数据进入Node-red后，经过各个计算节点的数据计算、封装等工作，然后打包成系统规定的数据格式后，需要从Node-red中输出，进入后续的数据可视化展示。
+<br><br>
+<span style="margin-left:25px"></span>数据的输出就用到了Node-red的输出节点。Node-red的输出节点允许把数据输出到Node-red的flow以外的其他服务和应用上去，对内有一个数据输入的左断点，对外暴露一个公共接口。在Node-red中有一个常用的输出节点就是debug节点，这个节点是在编写flow的时候调试的时候用的，主要显示并打印出数据经过上一节点处理之后的具体信息。
+<br><br>
+<span style="margin-left:25px"></span>debug节点是一个具有开关的节点，允许程序员手动开启或者禁用该节点。 debug节点的使用也非常简单，只需要在 Node- red左侧的节点栏中找到该节点然后拖拽到相应节点的后面，并用线连接起来就可以实现数据的传输，最后开启 debug的启动按钮，部署了所编写的 flow后，就可以在 Node- red的最右侧的 debug面板中看到打印出来的具体数据。值得注意的是， debug节点的只有一个数据的入口，而没有数据的输出端，在设计 debug的时候，重新封装了 sendDebug()函数，用来发送消息，将消息直接发送到 Node- red的网页编辑器 debug视图上直接显示，而不是交由下游节点做数据处理。下面给出debug节点的设计逻辑的部分伪代码。有了debug节点，可以方便用户在编写自己的flow的时候，及时查看数据的处理情况。
+<br><br>
+<span style="margin-left:25px"></span>本文在第四章中应用该模型来解决实际问题的时候，将大量应用到debug节点。为了保证数据的实时地输出到Node-red的flow以外的其他服务和应用上，这里我们新引入了redisPub节点。
+<br><br>
+<span style="margin-left:25px"></span>顾名思义， redisPub节点就是将 Redis的 publish功能嵌入到 Node- red中，通过设计一个新的节点来将经过 Node- red处理和计算过的数据输出来，这里之所以选择 Redis的 publis发布数据，一方面保证了数据的异步传输，另一方面也保证了数据的隔离（原因是各个 Redis的通道数据是相互隔离的，互补干预）。在坚持节点的设计原则的前提下，下面给出redisPub节点的设计方案，如图3-5 所示。图3-5 redisPub节点设计图
+<br><br>
+<span style="margin-left:25px"></span>结合上一小节数据输入节点的设计可知， redisPub节点和 redisSub节点的设计恰好相反， redisPub节点只具有一个数据的输入接口，
+<br><br>
+<span style="margin-left:25px"></span>也就是只有数据的输入端点，这一端是连接上一个数据处理节点的，用于接收从上游节点发送过来的数据，而对于该节点的输出端，已经固化在节点内部，就是 Redis指定的通道。在redisPub节点中也必须定位Redis的位置，也就是Redis服务器的IP，端口号，不管是在Redis集群还是在单点的Redis服务器中都必须要指定，同时还要指定数据输出到哪个Redis的channel中。所以redisPub节点的ui设计与redisSub节点的ui设计十分相识，不同的是他们的功能代码不一样，体现在js文件中。图3-6 展示了redisPub节点的设计逻辑的具体流程。图3-6 RedisPub设计逻辑流程图
+<br><br>
+<span style="margin-left:25px"></span>同样，在实现redisPub节点的时候，也用到了数据库连接池函数，关于这个函数的设计思想在上一小节redisSub的设计中已经做了详细阐述。
+<br><br>
+<span style="margin-left:25px"></span>从上面流程图可以看出，当 redisPub节点成功连接 Redis后，将去监听 input事件，当有数据输入该节点后，就会调用 this. client. publish()发布函数，将封装好的数据（ message对象）发布到指定的 channel上。4.3.3 数据计算节点的设计
+<br><br>
+<span style="margin-left:25px"></span>数据计算节点在Node-red中起着举足轻重的作用，几乎所有的flow中都会用到数据计算节点。
+<br><br>
+<span style="margin-left:25px"></span>数据计算节点允许用户编写JavaScript函数来处理进入Node-red中的数据，编写自己的业务代码，将定义好的数据类型转化为在Node-red中流动的message对象。在Node-red中的message实际上就是一个JavaScript对象，message对象至少要包含payload属性，用来保存具体的数据。就像下面这样一个最基本的Node-red的massage数据格式：计算节点接收到message后，主要处理的也是payload字段中保存的信息，处理后的数据也会封装成一个message对象传到下一个节点。
+<br><br>
+<span style="margin-left:25px"></span>然而，message对象不仅只具有payload字段，还可以扩展出更多的其他字段来补充说明message对象的属性。比如下面这个message对象：计算节点通常包含一个数据输入端点和一个或多个数据输出端点，在 Node- red中提供了部分具有特殊功能的数据处理节点，
+<br><br>
+<span style="margin-left:25px"></span>比如 change_ node，可以用来增加或者删除 message的字段，再如 switch_ node，可以用来做开关节点使用，它是通过判断 message对象的某一字段是否存在或者真假来决定最后输出什么样的 message对象。为了能够进一步扩展Node-red的功能，方便利用JavaScript函数加载外部的js模块，这里引入function_node，也就是函数节点。可以说function_node在Node-red中就像一把瑞士军刀，可以使用户不必依赖于现有的数量有限的几个节点来处理数据。顾名思义，函数节点其实就是暴露出来的一个JavaScript函数，用户可用通过编写一个JavaScript函数来处理从上游节点流下来的message，并返回处理后的一个或多个massage。函数节点是用来做数据处理和数据格式化的利器，引入函数节点使得Node-red的对流式数据进行处理变得简单容易。图3-7 是function_node的设计图：图3-7 Function_node的设计图
+<br><br>
+<span style="margin-left:25px"></span>用户可以通过function_node内置的编辑器sandBox，编写用户自己的JavaScript函数来处理message。
+<br><br>
+<span style="margin-left:25px"></span>在 function_ node内编写的 JavaScript函数内部是调用本机上的 JavaScript运行环境来解释执行的，同时在函数节点中可以去调用外部的 js模块，但是这首先会去配置文件 setting. js文件中找到要包含的模块。所以function_node在执行每一个函数的时候首先会去检查这个配置文件，在这个文件中去查找全局的函数模块。在setting.js中，通过functionGlobalContext支持全局模块：对于自己编写的 JavaScript函数要求每一个函数都有一个返回值，也就是一个 message对象，
+<br><br>
+<span style="margin-left:25px"></span>即使没有显式地返回，每个函数都会默认返回一个 payload字段为空字符串的 message对象。4.3.4 数据库访问节点的设计
+<br><br>
+<span style="margin-left:25px"></span>由于在原始的 Node- red中没有与 Redis数据库进行交互的节点，但是本文所提出的模型中用到了 Redis server来存储中间结果集，
+<br><br>
+<span style="margin-left:25px"></span>并在 Redis server中进行去重统计，比如计算最大值、最小值、累计求和等。所以为了能够让Node-red与Redis进行数据交换和数据传输，必须设计出对Redis数据库的访问操作节点。在该模型中，主要需要的就是redis_in和redis_out节点，它们分别完成从Redis读取数据和把数据存储到Redis两项任务。在redis_in中封装了几乎所有的Redis操作命令，该节点提供一个命令选择器，指定用户命令进行Redis操作。
+<br><br>
+<span style="margin-left:25px"></span>另外， redis_ in节点是一个具有数据输入端点的节点，它的数据同样来源于上游函数节点提供的 message对象中的 payload字段( msg. payload)，用于指定命令的格式和所要操作的 Redis集合。而对于 redis_ out节点，它既有数据的输入端，又有数据的输出端，数据的输入端是接收的数据和 redis_ in节点接收的类似，都是通过上游的函数节点发送过来，用于指明读数据的命令格式和数据所在的集合，而数据的输出端，就是将从 Redis server上取得的数据封装成 message对象发送给下一个节点。根据以上对这两个节点功能的分析，接下来就对这两个节点进行详细设计。
+<br><br>
+<span style="margin-left:25px"></span>首先是 redis_ in节点，该节点第一步工作就是要去连接 Redis server，这里就会用到在3.3.1节中所提供的数据库连接池函数，连接成功后需要调用命令选择器，选择用户指定的命令，然后根据上游 function节点提供的命令格式和指定的数据集，将这些信息组装成一条完整的 Redis命令，最后调用 Redis客户端去执行该命令。在图3-8 中展示了redis_in节点的设计方案。图3-8 redis_in设计方案
+<br><br>
+<span style="margin-left:25px"></span>redis_in节点在向Redis server存储数据的时候，主要的工作任务集中在命令选择器上。
+<br><br>
+<span style="margin-left:25px"></span>在命令选择器中保存了几乎所有的 Redis写入操作的命令，是存放在一个数组对象中，首先要从这个数组中找到用户指定的命令，然后判断该命令是不是 psubscribe或者 subscribe命令，因为这两个命令在获 Rredis数据的时候还需要监听 message事件，而其他命令没有该事件，所以必须单独处理。最后，将用户指定的命令与上游节点传输过来的数据集拼接成Redis的命令交个redisClient执行。最终实现Node-red里的中间结果集存储到Redis server中，同时，通过上游节点指定的操作可以实现中间结果集在Redis中的统计计算。对于redis_out节点的设计与redis_in节点类似，不同的是，在redis_out节点中同样封装了Redis命令，但是这些命令只是读取数据的命令，所以命令选择器中的命令与redis_in的不一样。
+<br><br>
+<span style="margin-left:25px"></span>另外，由于redis_out节点具有一个输出端，所以在input事件监听器中监听到的数据封装完成后，还要通过node.send()方法发送出去，供下一个节点接收。4.4 节点的重新部署
+<br><br>
+<span style="margin-left:25px"></span>节点的设计和实现完之后，一步重要的工作就是要将新设计的节点部署到Node-red中。
+<br><br>
+<span style="margin-left:25px"></span>节点可以作为模块打包或者发布到npm库中，这使得它们易于安装其所有依赖的模块。为了解决安装包的依赖关系，在打包节点的时候就要严格按照npm包管理规则来打包。图3-9 是一个redisSub节点打包的目录结构：图3-9 节点package目录结构
+<br><br>
+<span style="margin-left:25px"></span>本文采取的是本地模块安装的方式，在本地安装节点模块，就用到了npm link命令。
+<br><br>
+<span style="margin-left:25px"></span>将节点在本地目录，链接到一个本地Node-red安装目录，这和npm安装是一样的。本地部署节点按照如下两个步骤即可完成部署。1.在包含有package.json的目录下执行sudo npm link命令；
+<br><br>
+<span style="margin-left:25px"></span>2.在Node-red的运行运行目录下执行npm link [节点模块的名字]。
+<br><br>
+<span style="margin-left:25px"></span>部署成功后，重新启动Node-red，然后浏览器中打开编辑界面，在最右侧的节点视图就可以看到新增加的节点，这样就完成了节点的设计和部署工作。
+<br><br>
+<span style="margin-left:25px"></span>为接下来改模型的应用提供了技术支持。4.5本章小结
+<br><br>
+<span style="margin-left:25px"></span>本章首先对基于 Node- red与 Redis的实时流数据处理模型及其应用进行了需求分析，同时也对整个模型的总体架构进行了设计，
+<br><br>
+<span style="margin-left:25px"></span>简要阐述了架构中各个模块的功能以及整个模型的数据处理流程。然后对Node-red新引入的数据输入节点、输出节点、数据计算节点以及数据库访问节点给出详细设计方案。最后，阐述将新节点安装部署到Node-red中，使其成为一个完整的流式数据处理框架。实时流数据处理模型在网站访问监控系统中的应用
+<br><br>
+<span style="margin-left:25px"></span>第三章对基于 Redis有序集合的去重统计方法进行了研究，提出了新的应用方案，第四章已经对基于 Node- red与 Redis的实时流数据处理模型进行了详细设计，
+<br><br>
+<span style="margin-left:25px"></span>本章的重点是将所设计的流式数据处理模型应用到实际的工程项目中，设计并实现一个网站访问的实时监控系统。5.1 实时网站访问监控系统介绍
+<br><br>
+<span style="margin-left:25px"></span>该系统的所有数据是来源于某地方政府的电子政务网站群的访问流量，数据真实可靠、说服力强、具有重要的实际意义和研究价值。
+<br><br>
+<span style="margin-left:25px"></span>同时数据具有通用性，因为这是截取的服务器端的访问流量，也就是通用的HTTP报文，适合各类网站群的实时监控与数据分析。随着各级地方政府的电子政务系统的不断发展，但是信息收集与数据分析能力还比较薄弱，急需要一个统一的实时数据收集、储存、分析、应用的平台。
+<br><br>
+<span style="margin-left:25px"></span>因此，本文首先提出一个基于 Node- red与 Redis的实时流数据处理模型，并对流式数据处理过程中重要计算指标的统计方法进行了研究，随后应用这个模型来解决网站群的流量数据的实时收集和实时分析问题，最终将数据分析的结果在前端可视化模块以各种图表的方式做生动直观的展示。为政府的电子政务系统的不断完善，为政府工作任务的工作效率的提高提供数据基础。5.1.1 实时网站访问监控系统的功能介绍
+<br><br>
+<span style="margin-left:25px"></span>本文所设计的系统是通过实时采集网站群的访问流量，利用本文在第三章所设计的流式数据处理模型来解析处理实时数据，
+<br><br>
+<span style="margin-left:25px"></span>并从中挖掘出用户关心的有价值的信息，最后将分析出来的数据可视化地展示到前端界面。该系统主要包括以下几个功能：1.用户行为监控[27]
+<br><br>
+<span style="margin-left:25px"></span>实时了解用户访问网站群的行为，捕捉用户请求并跟踪其所有响应，收集、处理并显示用户行为的细节数据。
+<br><br>
+<span style="margin-left:25px"></span>具体实现以下功能：
+<br><br>
+<span style="margin-left:25px"></span>（1）用户终端类型统计，对用户访问网站群的终端进行统计；
+<br><br>
+<span style="margin-left:25px"></span>（2）受访页面统计，对用户访问网站所浏览的页面进行统计；
+<br><br>
+<span style="margin-left:25px"></span>（3）来路页面，统计用户是通过哪个页面跳转到所浏览网站；
+<br><br>
+<span style="margin-left:25px"></span>（4）地区分布，根据用户IP统计访问网站群的地区分布，并区分内外网用户（内网IP地址范围及相关部门的对照表需信息中心提供）；
+<br><br>
+<span style="margin-left:25px"></span>（5）IP/PV，一天之内独立IP数，相同IP数被计数一次；
+<br><br>
+<span style="margin-left:25px"></span>（6）重复访问率，同一IP，在同一天内访问同一页面的访问量/总访问量；
+<br><br>
+<span style="margin-left:25px"></span>2.网站群页面监控
+<br><br>
+<span style="margin-left:25px"></span>（1）错误页面跟踪，对返回码为404，500等出错页面进行统计跟踪；
+<br><br>
+<span style="margin-left:25px"></span>（2）关键词搜索频率，用户搜索关键词的频率；
+<br><br>
+<span style="margin-left:25px"></span>（3）二级域名访问统计（需信息中心提供二级域名对照表）；
+<br><br>
+<span style="margin-left:25px"></span>（4）频道访问统计（需信息中心提供频道名称对照表）；
+<br><br>
+<span style="margin-left:25px"></span>（5）热点页面统计；
+<br><br>
+<span style="margin-left:25px"></span>5.1.2 实时数据采集方案设计
+<br><br>
+<span style="margin-left:25px"></span>整个系统作为一个实时数据的交互处理中心，除了自己内部的数据通信以外，还需要对网站群的访问流量进行实时采集。
+<br><br>
+<span style="margin-left:25px"></span>这种数据具有实时性、连续性、非结构化等特点，同时数据量也非常巨大。由于实时性明显，同时也要求系统能够实时展示分析出网站群的访问情况，所以不能采用传统的先收集后处理的方案，需要重新设计一套实时流式数据收集方案，在服务器的网关直接利用 http_ tracer拷贝一份访问流量，让后实时的发布到 Redis Server的 http_ trace通道中。考虑到访问流量数据是一种非结构化的数据，为了能够更加准确地收集有效的信息，需要在采集数据的时候进行原始数据的预处理。
+<br><br>
+<span style="margin-left:25px"></span>因为原始的访问流量就是 HTTP请求和响应报文，如果仅仅是收集到了这些报文，它都是以字符串的形式存在的，字符串不论是在数据解析过程还是在最终的数据可视化过程都使得问题变得极为复杂，为了方便解析，更好更准确的处理这些数据，有必要进行初步地结构化处理。由于 json格式的数据能够有效地反映数据的特点，同时与 JavaScript对象能够实现无损转换，所以在进行数据格式化的时候选择 json格式，同时在后面处理和存储中间结果集的时候也选择 json格式。选择json格式来表示数据，还有一个重要的好处就是方便数据可视化，因为在数据可视化模块采用了highcharts来绘制图表，而highcharts要求的数据格式也是json格式。因此，我们设计出如图5-1 所示的实时数据采集方案：
+<br><br>
+<span style="margin-left:25px"></span>图5-1 实时数据采集方案图
+<br><br>
+<span style="margin-left:25px"></span>从该采集方案中可以看出，在客户的服务器端，我们将网站的访问流量做一份拷贝，
+<br><br>
+<span style="margin-left:25px"></span>利用 http_ tracer将这部分流量截取到 Redis server中，专门设置一个 Redis的通道（ channel）用于接收从 http_ tracer发布过来的原始数据。由于原始的数据报结构混乱，难以分析，所以在进行下一步数据分析之前进行了预处理。原始数据通过redisSub节点从Redis server上被订阅，交给msgToJSON模块（这个模块是利用Node-red中的function_node实现的）。msgToJSON模块把原始数据报文分为请求报文和响应报文两类，最后只是在message对象中增加一个type字段加以区分。最终产生的数据就是一个JSON对象，继续传递给下游的数据处理中心，进行后续的数据处理工作。下面展示的就是预处理前的原始数据报格式：采集到的数据都发布（ publish）到 Redis的一个通道中，得到的数据是原始的 HTTP请求和响应报文，
+<br><br>
+<span style="margin-left:25px"></span>再通过 redisSub节点从 Redis的指定的通道中去订阅（ subscribe）这些数据，通过 msgToJSON模块进行初步的结构化处理。经过预处理的HTTP报文变成形如下面这样的json对象。5.2 数据分析模块的设计与实现
+<br><br>
+<span style="margin-left:25px"></span>5.2.1 数据分析模块的总体架构设计
+<br><br>
+<span style="margin-left:25px"></span>数据分析模块是搭建在第四章所设计的基于 Node- red与 Redis的实时流数据处理模型上的，数据在
+<br><br>
+<span style="margin-left:25px"></span>不同模块之间的流动是利用 Redis的 publish和 subscribe机制以及 node. js的 socket. io通信机制来完成。位于网关的抓包模块抓取原始的报文信息，把数据发布到数据分析系统的 Redis server的 http_ trace通道上，然后在 Node- red中利用在第四章设计的数据输入节点 redisSub节点，从 Redis server的 http_ trace通道订阅原始数据。数据进入Node-red之后，经过计算节点进行数据处理和封装，最后通过redisPub将处理结果publish到Redis的指定通道中，供可视化模块去接收这些数据。在数据处理过程中，需要用到 Redis做中间结果集的保存和初步的去重统计工作，这里的去重统计就是利用第三章所设计的基于 Redis有序集合的去重统计方法，与 Redis进行通信的节点就是第四章所设计的 redis_ in和 redis_ out节点。在节点之间的数据是通过socket.io的emit和on事件机制进行，这种机制已经被集成到Node-red中，因为Node-red也是基于node.js开发的。在进行数据分析的时候，本文主要通过三个flow来完成，分别完成用户行为分析、网站群页面监控以及定时清理Redis server上的中间结果集。
+<br><br>
+<span style="margin-left:25px"></span>在进行用户行为分析的时候，计算节点按照功能的不同划分为5个计算节点 refererCount、 countUserAgent、 repeatVisit、 userIP以及 visitPage，分别完成来路页面统计、用户的浏览器类型统计、重复访问页面统计、独立访问的 IP地址以及受访页面统计。而对于网站群页面监控，主要涉及5个数据分析节点，分别是 errPage、 keyWordCount、 hotVisitPage、 channelVisit以及 hostCount，他们分别完成错误页面统计、关键词统计、热点页面统计、频道访问统计以及网站访问统计。这些节点一起组成了一个计算节点集群，但除了这些用于数据处理和计算的节点外，还包括 Redis数据库的访问节点用于传输中间结果集到 Redis数据库中，还包括一个功能节点（定时节点）用于定时向前端可视化模块推送数据，以达到实时更新显示数据的变化情况，该定时节点也用于清理 Redis的中间结果集，以减轻 Redis server的负担。整个数据分析模块的总体架构如图5-2所示。图5-2 用户行为分析模块总体架构图
+<br><br>
+<span style="margin-left:25px"></span>从数据分析模块的总体架构图可以看出，Redis是整个模块数据交换的纽带，也是进行数据计算的中心。
+<br><br>
+<span style="margin-left:25px"></span>Redis的发布/订阅机制使得各个功能的计算节点所计算的数据结果相互独立、互不影响，这样使得最终数据结果的展示变得清晰、一目了然。前端模块与Redis server进行通信的工具是socket.io，通过事件驱动机制，监听事件是否发生来判断是否有数据到来，从而达到数据传输的目的。另外，由于巨大的数据量和繁重的数据计算任务，导致Redis server的负担也异常繁重。为此，需要定时清理Redis server上的中间结果集以减轻其计算和存储压力，在架构图中的redisClearn_flow就是专门用于清理Redis server上的中间结果集。系统选择在每天的凌晨清理数据，这样一方面可以达到减轻 Redis server负担，提高运行效率的目的，另一方面也不会影响数据分析的结果和前端可视化模块的展示，因为一天的实时数据分析工作在凌晨已经全部完成。由于客户的要求，需要对用户的行为数据进行持久化，并且能够在系统的可视化模块中随时可以查询到历史的用户行为数据。
+<br><br>
+<span style="margin-left:25px"></span>为此，引入了 mongo数据库提供数据持久化功能，同时前端可视化模块中增加了统计查询页面，前端可视化模块是通过 socket. io来查询 mongo中的历史行为数据。5.2.2 数据库结果集设计
+<br><br>
+<span style="margin-left:25px"></span>数据分析模块得到的最终分析结果都存放在Redis中，在Redis中进行统计和初级计算。
+<br><br>
+<span style="margin-left:25px"></span>这些数据在Redis中是一系列的字符串、集合、有序集合以及hash表，用它们表示这用户行为数据。Redis中的哈希表（hash）是一种键值（key-value）结构，一个键对应一个值，根据键计算存储地址，访问速度很快。
+<br><br>
+<span style="margin-left:25px"></span>在进行用户行为分析的时候会用到 IP地址所属地的码表，域名与网站名的对应关系，在网站群页面监控的时候需要用到频道 url与频道名的对应关系，而这些信息都存放在 Redis的哈希表中。而对于像数据分析中的用户pv、uv、错误页面统计、热门关键词的搜索、热点页面等累加型数据指标，需要用到Redis的有序集合来存储。因为，要计算这些指标最基本的工作就是去重统计，本文在第三章就深入研究了Redis有序集合的去重统计方法，这里不再赘述。另外有有序集合来存储这些计算指标的一个好处在于，能够很容易地取到top (n)指标，因为有序集合中的元素是经过排序的。因此，在整个数据分析过程中，有序集合和哈希表是主要的存储结构，同时也有部分数据是通过集合和字符串来存储的。表5-1 所展示的就是在数据分析模块中用到的Redis数据结构。表5-1 用户行为分析模块中的Redis数据结构说明
+<br><br>
+<span style="margin-left:25px"></span>Redis表名
+<br><br>
+<span style="margin-left:25px"></span>类型
+<br><br>
+<span style="margin-left:25px"></span>功能描述
+<br><br>
+<span style="margin-left:25px"></span>visitPage.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>热点访问页面
+<br><br>
+<span style="margin-left:25px"></span>refererPage.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>来路页面
+<br><br>
+<span style="margin-left:25px"></span>userIP.set
+<br><br>
+<span style="margin-left:25px"></span>集合
+<br><br>
+<span style="margin-left:25px"></span>用户的ip统计
+<br><br>
+<span style="margin-left:25px"></span>repeatVisit.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>重复访问的页面统计
+<br><br>
+<span style="margin-left:25px"></span>HostName.set
+<br><br>
+<span style="margin-left:25px"></span>集合
+<br><br>
+<span style="margin-left:25px"></span>网站的域名
+<br><br>
+<span style="margin-left:25px"></span>IPBelong.hash
+<br><br>
+<span style="margin-left:25px"></span>哈希表
+<br><br>
+<span style="margin-left:25px"></span>访问ip所属区域
+<br><br>
+<span style="margin-left:25px"></span>userAgent.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>统计用户浏览器类型
+<br><br>
+<span style="margin-left:25px"></span>KeyWorld.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>关键词统计
+<br><br>
+<span style="margin-left:25px"></span>HotVisitPage.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>热点页面统计
+<br><br>
+<span style="margin-left:25px"></span>HostVisit.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>访问网站统计
+<br><br>
+<span style="margin-left:25px"></span>HostName.hash
+<br><br>
+<span style="margin-left:25px"></span>哈希表
+<br><br>
+<span style="margin-left:25px"></span>网站名称与域名对照
+<br><br>
+<span style="margin-left:25px"></span>ChannelName.hash
+<br><br>
+<span style="margin-left:25px"></span>哈希表
+<br><br>
+<span style="margin-left:25px"></span>频道连接与频道名对照
+<br><br>
+<span style="margin-left:25px"></span>ChannelVisit.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>频道访问统计
+<br><br>
+<span style="margin-left:25px"></span>errPage.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>错误页面
+<br><br>
+<span style="margin-left:25px"></span>errType.zset
+<br><br>
+<span style="margin-left:25px"></span>排序集合
+<br><br>
+<span style="margin-left:25px"></span>错误类型
+<br><br>
+<span style="margin-left:25px"></span>errWebHostName.string
+<br><br>
+<span style="margin-left:25px"></span>字符串
+<br><br>
+<span style="margin-left:25px"></span>错误页面所属的网站
+<br><br>
+<span style="margin-left:25px"></span>数据存储到Redis的这些数据结构中，进行统计计算，计算的最终结果就是下一阶段前端可视化模块中的图表（线图、饼图、柱状图）的原始数据。
+<br><br>
+<span style="margin-left:25px"></span>数据分析模块向中间结果集中单向写入数据，而数据可视化模块从中间结果集中单向读取数据，两个模块之间并无直接交互， Redis是连接它们的纽带，他们之间的通信是通过 node. js的 socket. io进行的。对于数据持久化这一功能，原始的 Node- red提供了 mongodb的访问节点，用于操作 mongo数据库，
+<br><br>
+<span style="margin-left:25px"></span>本文将不再详细讲述 mongodb节点的使用，为了存储这些历史行为数据，必须设计合适的 mongo数据集合， mongo数据集合必须要有时间和统计指标的表示，这样可以方便客户对历史数据的检索。具体的数据结构如表5-2、表5-3、表5-4所示，其中表5-2是每天独立 IP的访问量的 mongo集合，表5-3展示的是每天页面的访问量排名前十的 mongo集合，表5-4表示的是统计同一页面的重复访问情况的 mongo集合。而对于其他的访问数据，客户不要求存储，这里就不再设计相应的数据集合。表5-2统计独立ip的访问量mongo集合
+<br><br>
+<span style="margin-left:25px"></span>集合名
+<br><br>
+<span style="margin-left:25px"></span>unique_ip_count
+<br><br>
+<span style="margin-left:25px"></span>功能
+<br><br>
+<span style="margin-left:25px"></span>每天独立访问的IP数量，包括IP的地域信息
+<br><br>
+<span style="margin-left:25px"></span>键的说明
+<br><br>
+<span style="margin-left:25px"></span>键名
+<br><br>
+<span style="margin-left:25px"></span>数据类型
+<br><br>
+<span style="margin-left:25px"></span>说明
+<br><br>
+<span style="margin-left:25px"></span>_id
+<br><br>
+<span style="margin-left:25px"></span>objectid
+<br><br>
+<span style="margin-left:25px"></span>mongo数据库唯一性标识
+<br><br>
+<span style="margin-left:25px"></span>date
+<br><br>
+<span style="margin-left:25px"></span>time
+<br><br>
+<span style="margin-left:25px"></span>时间，用于表明是某一天的数据
+<br><br>
+<span style="margin-left:25px"></span>ip
+<br><br>
+<span style="margin-left:25px"></span>string
+<br><br>
+<span style="margin-left:25px"></span>独立ip
+<br><br>
+<span style="margin-left:25px"></span>ip_belong
+<br><br>
+<span style="margin-left:25px"></span>string
+<br><br>
+<span style="margin-left:25px"></span>该ip所属的区域（内网/外网）
+<br><br>
+<span style="margin-left:25px"></span>count
+<br><br>
+<span style="margin-left:25px"></span>int
+<br><br>
+<span style="margin-left:25px"></span>ip的计数
+<br><br>
+<span style="margin-left:25px"></span>表5-3 统计每天访问量排名前十的页面的mongo集合
+<br><br>
+<span style="margin-left:25px"></span>集合名
+<br><br>
+<span style="margin-left:25px"></span>page_visit_top10
+<br><br>
+<span style="margin-left:25px"></span>功能
+<br><br>
+<span style="margin-left:25px"></span>记录每天访问量排名前十的页面
+<br><br>
+<span style="margin-left:25px"></span>键的说明
+<br><br>
+<span style="margin-left:25px"></span>键名
+<br><br>
+<span style="margin-left:25px"></span>数据类型
+<br><br>
+<span style="margin-left:25px"></span>说明
+<br><br>
+<span style="margin-left:25px"></span>_id
+<br><br>
+<span style="margin-left:25px"></span>objectid
+<br><br>
+<span style="margin-left:25px"></span>mongo数据库唯一性标识
+<br><br>
+<span style="margin-left:25px"></span>date
+<br><br>
+<span style="margin-left:25px"></span>time
+<br><br>
+<span style="margin-left:25px"></span>时间，用于表明是某一天的数据
+<br><br>
+<span style="margin-left:25px"></span>url
+<br><br>
+<span style="margin-left:25px"></span>string
+<br><br>
+<span style="margin-left:25px"></span>访问页面的url
+<br><br>
+<span style="margin-left:25px"></span>url_belong
+<br><br>
+<span style="margin-left:25px"></span>string
+<br><br>
+<span style="margin-left:25px"></span>受访页面所属的网站名
+<br><br>
+<span style="margin-left:25px"></span>count
+<br><br>
+<span style="margin-left:25px"></span>int
+<br><br>
+<span style="margin-left:25px"></span>受访次数
+<br><br>
+<span style="margin-left:25px"></span>表5-4 统计每天重复访问率的mongo集合
+<br><br>
+<span style="margin-left:25px"></span>集合名
+<br><br>
+<span style="margin-left:25px"></span>repeat_visit_count
+<br><br>
+<span style="margin-left:25px"></span>功能
+<br><br>
+<span style="margin-left:25px"></span>记录每天同一ip访问同一页面的情况
+<br><br>
+<span style="margin-left:25px"></span>键的说明
+<br><br>
+<span style="margin-left:25px"></span>键名
+<br><br>
+<span style="margin-left:25px"></span>数据类型
+<br><br>
+<span style="margin-left:25px"></span>说明
+<br><br>
+<span style="margin-left:25px"></span>_id
+<br><br>
+<span style="margin-left:25px"></span>objectid
+<br><br>
+<span style="margin-left:25px"></span>mongo数据库唯一性标识
+<br><br>
+<span style="margin-left:25px"></span>date
+<br><br>
+<span style="margin-left:25px"></span>time
+<br><br>
+<span style="margin-left:25px"></span>时间，用于表明是某一天的数据
+<br><br>
+<span style="margin-left:25px"></span>url
+<br><br>
+<span style="margin-left:25px"></span>string
+<br><br>
+<span style="margin-left:25px"></span>访问页面的url
+<br><br>
+<span style="margin-left:25px"></span>ip
+<br><br>
+<span style="margin-left:25px"></span>string
+<br><br>
+<span style="margin-left:25px"></span>用户的ip
+<br><br>
+<span style="margin-left:25px"></span>count
+<br><br>
+<span style="margin-left:25px"></span>int
+<br><br>
+<span style="margin-left:25px"></span>访问次数
+<br><br>
+<span style="margin-left:25px"></span>5.2.3 数据分析算法的设计与实现
+<br><br>
+<span style="margin-left:25px"></span>本小节将对数据分析模块中，在进行用户独立 IP的访问量、用户浏览器类型统计、页面的重复访问率、错误页面统计以及热门关键词搜索统计，
+<br><br>
+<span style="margin-left:25px"></span>这五个指标的计算时所用到的算法流程进行详细阐述。首先是用户独立IP访问量，由于同一IP在同一天的多次访问只能记录一次，所以鉴于这个特性，利用Redis的集合来进行存储统计。当流量数据进入计算节点后，首先判断是否解析到了userIP字段，如果解析到了就去redis的userIP.set中去查找是否有该IP信息，如果没有就插入该IP。具体算法流程如图5-3 所示：图5-3 独立ip访问统计的算法流程图
+<br><br>
+<span style="margin-left:25px"></span>该算法主要通过两个函数节点来完成，第一个函数节点是判断msgToJSON节点发送过来的数据是否是请求报文，并且是否解析到了userIP。
+<br><br>
+<span style="margin-left:25px"></span>该函数节点所实现的代码如下：另外一个函数节点是用于将上面函数节点传递过来的msg重新以命令的形式封装起来，通过redis_in节点去操作Redis中的userIP.set集合。
+<br><br>
+<span style="margin-left:25px"></span>这里用到集合的zadd命令，该命令是向集合中插入一个元素，如果该元素已经在集合中，就不做任何操作，如果不在集合中就插入。对于用户浏览器类型统计，是根据msgToJSON节点发送过来的数据中的user_agent字段来进行统计的。
+<br><br>
+<span style="margin-left:25px"></span>如果从原始报文中解析到了该字段，得到的数据格为”user_agent”:”Mozilla/4.0(compatible;MSIE8.0;WindowsNT5.1; Trident/4.0)\ n”，然后再利用正则表达式，解析出浏览器的类型为微软公司的 IE浏览器，相应的版本号是8.0，再将解析结果封装为 Redis有序集合 zset的 zincrby命令操作格式，并传递给 redis_ in节点进行去重统计。图5-4 所展示的就是用户浏览器类型统计的算法流程图。图5-4 用户浏览器类型统计算法流程图
+<br><br>
+<span style="margin-left:25px"></span>在 Node- red中，该算法主要通过一个函数节点来实现的，首先判断 msg. payload. user_ agent是不是 undefined，
+<br><br>
+<span style="margin-left:25px"></span>如果从用户的请求报文中没有解析到浏览器类型， msgToJSON节点所发送的数据中将没有 user_ agent字段，也就是未定义的。如果解析到user_agent，那么就利用JavaScript的字符串操作函数indexOf()和substring()解析出浏览器的类型和版本号，并保存到type和version两个变量中。然后，将 type和 version两个变量拼接起来，中间用特殊字符#分隔，这样是为了后面封装数据时利用 split()函数将其切割开，这样做还有一个好处就是可以降低统计指标的维度以减轻计算的复杂度。最后，将拼接好的两个数据封装在Redis有序集合的zincrby命令中，作为msg的payload字段，发送到下一个节点（redis_in）。下面展示的就是该函数节点的部分实现代码：要计算页面的重复访问率，需要首先计算出同一IP，在同一天访问同一页面的次数，同时还要计算出该IP的访问总数，然后将它们的值相比，就得到了重复访问率。
+<br><br>
+<span style="margin-left:25px"></span>该指标具有用户IP和受访页面的URL两个维度，所以在计算该指标之前必须从target字段中解析出某一用户IP当前所访问页面的URL。将IP和URL作为一个统一体来进行计算，这样才能保证计算的是同一IP访问同一页面的次数。因此，需要将解析到的URL与userIP进行拼接，拼接后的结果作为有序集合中的键值，再利用Redis有序集合的去重统计方法进行统计计算。如何从 msg. payload. target中解析出受访页面的 URL是该算法的重点，众所周知，页面的 URL都是以. html结尾而不包含其后面的乱码信息，所以利用 JavaScript处理字符串的正则规则就可以得到该页面的 URL，在该 URL前面加上网站的域名就是完整的 URL。图5-5 所展示的就是重复访问率的统计算法流程图。图5-5 重复访问率统计算法流程图
+<br><br>
+<span style="margin-left:25px"></span>在 Node- red中该算法主要是通过两个函数节点来实现的，第一个就是从 target字段中解析出请求页面的 URL，
+<br><br>
+<span style="margin-left:25px"></span>并把解析结果和 userIP封装在 msg的 payload字段中，传递给下一个函数节点。第二个函数节点的功能仍然是封装数据结果形成zincrby命令中，这里就不作详细阐述了，下面展示的是解析URL的部分实现代码：对于错误页面统计，需要给出错误页面的错误类型、错误页面所属的网站以及错误页面的 URL，而这些信息分别来源于 msgToJSON节点的 msg. payload. errType、 msg. payload. host、 msg. paylosd. target，
+<br><br>
+<span style="margin-left:25px"></span>但是 msg. payload. host给出的是网站的域名，为了取得网站的名字，还需要去查 Redis中的 hostName. hash。图5-6展示的就是该算法的具体流程。图5-6错误页面统计的算法流程图
+<br><br>
+<span style="margin-left:25px"></span>该算法主要通过两个函数节点来完成，第一个函数节点的主要功能是从请求报文中解析错误页面所需的信息，
+<br><br>
+<span style="margin-left:25px"></span>包括错误的状态码，错误页面的 URL以及错误页面所属网站。第二个函数节点的主要功能是将第一个函数节点发送过来的数据封装成Redis有序集合的zincrby命令，交给redis_in节点去操作Redis server，进行去重统计。这里主要阐述第一个函数节点的具体实现代码，因为第二个函数节点的实现与之前的用户行为分析模块中的命令封装函数十分类似，这里就不再赘述。众所周知，在HTTP所有的响应码中凡是大于400的都是错误的，比如用户最关心的是404错误，表示链接所指向的页面不存在，即网页的URL失效。所以在对响应码进行筛选的时候只需要判断响应码是否大于400即可，下面就是解析错误页面所需信息函数节点的部分核心代码。对于热门关键词搜索统计，用户搜索的关键词都会在请求报文中以字符串 q=开头，以 结尾，而这些信息都包含在msgToJSON节点发送过来的target字段中。
+<br><br>
+<span style="margin-left:25px"></span>由于客户的要求，需要统计出每个关键字来自于哪个网站，因此在记录关键字的同时，还需要保存网站的域名，在通过查找hostName.hash找到相应的网站名称。图5-7 展示的就是该算法的流程图。图5-7热门关键词统计算法流程图
+<br><br>
+<span style="margin-left:25px"></span>在该算法中，关于命令封装函数的实现与用户行为分析中用到的方式几乎一样，不同的是操作的有序集合名不同，在此就不赘述了，下面主要展示的是关键字的解析函数的核心实现：
+<br><br>
+<span style="margin-left:25px"></span>5.2.4 在Node-red中的数据处理流程
+<br><br>
+<span style="margin-left:25px"></span>数据通过 redisSub节点从 Redis通道获得原始数据，再经过初始化模块 msgToJSON对原始数据进行初步的结构化处理，
+<br><br>
+<span style="margin-left:25px"></span>然后就进入后续的数据分析处理阶段，各个计算节点是通过 Node- red的 function节点实现的，各计算节点产生的 message对象传递给下一个 function节点，数据最终被封装成 Redis server中相应数据结构，通过 redis_ in节点将这些中间结果集保存起来，在 Redis中进行统计计算。然后将 Redis上的计算结果通过 redis_ out节点取得，并封装成前端可视化模块需要的数据格式，最后通过 redisPub节点将最终的数据定时（每两秒钟发送一次）发送的 Redis server的指定通道上供可视化模块接收并展示。下面将逐一阐述在 Node- red中整个数据分析模块的数据处理流程，整个数据处理流程由三个 flow构成，
+<br><br>
+<span style="margin-left:25px"></span>其中第一个 flow是将原始数据按功能需求，解析形成中间结果集并存储到 Redis中进行统计计算，正如图5-8所示。图5-8用户行为分析模块中形成中间结果集的flow
+<br><br>
+<span style="margin-left:25px"></span>在图5-8所示的形成中间结果的 flow中， Http_ traceReader节点就是本文所设计 redisSub节点，
+<br><br>
+<span style="margin-left:25px"></span>该节点是从 Redis的 http_ trace通道订阅到原始数据，交给 msgToJSON节点进行原始数据预处理。各计算节点从预处理节点 msgToJSON节点中得到初始化的数据后，将数据分发到各个功能单一的计算节点上，按照上一小节的算法流程编写相应的功能函数进行数据封装和计算。这里有11个功能节点， visitPage、 refererCount、 countUserAgent、 uniqueUserIP、 repeatVisit、 userIP、 errPage、 keyWord、 hostCount、 hotVistPage以及 channelVisit，分别完成受访页面统计、来路页面统计、用户浏览器类型统计、独立访问 IP统计、重复访问率统计、用户 IP所属地统计、错误页面统计、热门关键词统计、域名访问统计、热点页面统计以及频道访问统计。每个功能节点后面都有一个 ToRedis的函数节点，该节点主要完成上游节点处理后的数据封装工作，将其封装成 Redis中指定有序集合的 key值，并利用 zincrby命令对该 key值进行去重统计。接下来就以统计重复访问率为例来阐述ToRedis函数节点的具体实现方式，下面展示的就是repeatVisitToRedis函数节点中的具体实现代码：在图5-8所示的flow中，其余ToRedis函数节点的msg.payload格式与repeatVisitToRedis中的类似，主要区别在于操作的有序集合和向有序集合中cherub的记录不同。
+<br><br>
+<span style="margin-left:25px"></span>封装好的msg就会传递给redis_in节点，通过redis_in节点去操作相应的有序集合。经过Redis server的去重统计后，结果会保存到Redis的有序集合zset中，另外有一些码表之类的数据会保存到hash表中，以便快速查找。
+<br><br>
+<span style="margin-left:25px"></span>为了能够实时地更新数据，在 Node- red中设置了一个定时器，规定每两秒钟去 Redis server上去取一次数据，将取得的数据封装成可视化模块需要是数据结构，实际上就是 highcharts所需要的数据结构，关于 highcharts的数据格式将在可视化模块设计中加以阐述。用户行为分析模块的第二个flow就是实时取得数据并发布数据到相应的Redis通道中，供前端可视化模块展示。需要注意的是，这里的通道必须与前端可视化模块对应的展示图表所绑定的通道保持一致，各个图表所需要的数据都是放在不同的通道中的。图5-9所展示的就是定时取得并推送数据的flow。图5-9定时取得数据并推送数据的flow
+<br><br>
+<span style="margin-left:25px"></span>在图5-9所示的flow中，每条数据流上的最后一个节点就是本文所设计的redisPub节点，它将上游节点发送过来的已经被封装好的数据发布到指定的Redis通道当中。
+<br><br>
+<span style="margin-left:25px"></span>而每条数据流上的 publish_函数节点是用于封装取得的数据， publish_函数节点所封装的数据格式必须与前端可视化模块的 highcharts要求的格式一致，关于这一点将在下一小结可视化模块的设计中详细阐述 highcharts的数据格式，同时， redisPub节点所指定的 Redis通道一定要与前端可视化模块中相应图表所绑定的通道一致，因为这些图表的数据都是从 redisPub节点所发布的通道中获取的。另外，每一条数据流上都有一个get_的函数节点，该节点是用于封装Redis的取数据命令，通过redis_out节点去取得相应的数据。这些节点的具体实现代码非常相似，不同之处在于命令所操作的有序集合以及所去元素个数不同。表5-5 展示了各个get_函数节点的取数据命令。表5-5 各数据获取函数的取数据命令对照表
+<br><br>
+<span style="margin-left:25px"></span>函数名
+<br><br>
+<span style="margin-left:25px"></span>取数据命令
+<br><br>
+<span style="margin-left:25px"></span>说明
+<br><br>
+<span style="margin-left:25px"></span>getIPBelong
+<br><br>
+<span style="margin-left:25px"></span>[’IPBelong.zset’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>排名前20的访问ip的所属地
+<br><br>
+<span style="margin-left:25px"></span>getVisitPage
+<br><br>
+<span style="margin-left:25px"></span>[’visitPage.zset’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>访问量排名前20的受访页面
+<br><br>
+<span style="margin-left:25px"></span>getReferer
+<br><br>
+<span style="margin-left:25px"></span>[’referer.zset’，0，10， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>排名前10的来源页面
+<br><br>
+<span style="margin-left:25px"></span>getRepeatVisit
+<br><br>
+<span style="margin-left:25px"></span>[’repeatVisit.zset’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>重复访问量排名前20的页面
+<br><br>
+<span style="margin-left:25px"></span>getUserAgent
+<br><br>
+<span style="margin-left:25px"></span>[’user_agent.zset’，0，8， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>排名前8的用户浏览器类型
+<br><br>
+<span style="margin-left:25px"></span>getUserIP
+<br><br>
+<span style="margin-left:25px"></span>[’userIP.set’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>排名前20的独立访问ip
+<br><br>
+<span style="margin-left:25px"></span>getErrPage
+<br><br>
+<span style="margin-left:25px"></span>[’errPage.zset’，0，1000， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>排名前1000位的错误页面
+<br><br>
+<span style="margin-left:25px"></span>getHostVisit
+<br><br>
+<span style="margin-left:25px"></span>[’hostVisit.zset’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>访问量排名前20的网站
+<br><br>
+<span style="margin-left:25px"></span>getHotVisitPage
+<br><br>
+<span style="margin-left:25px"></span>[’hotVisitPage.zset’，0，50，’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>访问量排名前50的页面
+<br><br>
+<span style="margin-left:25px"></span>getKeyWord
+<br><br>
+<span style="margin-left:25px"></span>[’keyWord.zset’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>搜索量排名前20的关键字
+<br><br>
+<span style="margin-left:25px"></span>getChannel
+<br><br>
+<span style="margin-left:25px"></span>[’channelCount’，0，20， ’withscores’]
+<br><br>
+<span style="margin-left:25px"></span>访问量排名前20的频道
+<br><br>
+<span style="margin-left:25px"></span>由于数据是不间断的到来，数据量也十分巨大，所以每天在Redis server中都会堆积大量的中间结果集，再加之Redis还要完成基本的计算工作，Redis server一般都是超负荷运行的。
+<br><br>
+<span style="margin-left:25px"></span>为了减轻Redis server的运行负担和存储压力，提高Redis的计算效率，必须对Redis server上的中间结果集进行定时清理，同时也要保证被清理的数据不会影响最终的分析结果。定时清理的flow如图5-10所示。图5-10清理redis server中间结果集的flow
+<br><br>
+<span style="margin-left:25px"></span>在图5-10所示的 flow中用到了一个定时节点，选择在每天的凌晨进行中间结果集的清理工作，
+<br><br>
+<span style="margin-left:25px"></span>这是因为一天的数据分析任务在每天的凌晨就全部完成，所以不会影响最终的分析结果。每个del_函数节点把所产生的message发送给redis_in节点，由redis_in节点去执行中间结果集的删除操作。其中del_函数就是封装删除Redis中所存储的中间结果集的命令，表5-6 展示了各个删除函数与删除命令的对照关系。表5-6 各删除函数与删除命令的对照关系
+<br><br>
+<span style="margin-left:25px"></span>函数名
+<br><br>
+<span style="margin-left:25px"></span>删除命令
+<br><br>
+<span style="margin-left:25px"></span>说明
+<br><br>
+<span style="margin-left:25px"></span>delVisitPage
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’visitPage.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录受访页面的zset
+<br><br>
+<span style="margin-left:25px"></span>delRefererCount
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’referer.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录来路页面的zset
+<br><br>
+<span style="margin-left:25px"></span>delUserIP
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’userIP.set’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录用户IP情况的zset
+<br><br>
+<span style="margin-left:25px"></span>delRepeatVisit
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’repeatVisit.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录重复访问页面的zset
+<br><br>
+<span style="margin-left:25px"></span>delUserAgent
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’userAgent.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录用户浏览器信息的zset
+<br><br>
+<span style="margin-left:25px"></span>delIPBelong
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’IPBelong.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录IP所属地信息的zset
+<br><br>
+<span style="margin-left:25px"></span>delErrPage
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’errPage.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录错误页面信息的zset
+<br><br>
+<span style="margin-left:25px"></span>delHostVisit
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’hostVisit.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录网站访问量的zset
+<br><br>
+<span style="margin-left:25px"></span>delHotVisitPage
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’hotVisitPage.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录热点访问页面的zset
+<br><br>
+<span style="margin-left:25px"></span>delChannelCount
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’channel.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录频道访问量的zset
+<br><br>
+<span style="margin-left:25px"></span>delKeyWord
+<br><br>
+<span style="margin-left:25px"></span>[’del’，’keyWord.zset’]
+<br><br>
+<span style="margin-left:25px"></span>删除记录关键字搜索频率的zset
+<br><br>
+<span style="margin-left:25px"></span>到目前为止，本文所设计的网站访问监控系统的数据利用本文所设计的流式数据处理模型进行了计算处理，
+<br><br>
+<span style="margin-left:25px"></span>也产生了最终的数据结果，但是由于用户不知道具体的数据分析处理过程，因此，对客户来说这些数据都不便于观察，不便于分析其变化情况，需要设计一种数据可视化方案来形象、直观地展示这些数据。本文将在下一小节围绕数据可视化模块进行详细阐述。5.3数据可视化模块设计
+<br><br>
+<span style="margin-left:25px"></span>5.3.1 数据可视化模块的功能需求
+<br><br>
+<span style="margin-left:25px"></span>经过用户行为分析之后，得到的结果是代表用户的访问量、新用户的数量、访问的来源、用户浏览器类型等信息。
+<br><br>
+<span style="margin-left:25px"></span>而网站群页面监控分析，最后的结果是代表关键词搜索频率、热点页面统计、错误页面统计等信息。所有最终结果的数据都是一系列统计表和集合的数据结构，这些数据不能直接交由用户，因为用户不了解分析的过程，就不知道这些数据代表什么含义，可视化模块的功能就是要把这些结果生动直观地显示出来。同时，可视化模块要实时更新，当新的用户行为数据和网站群监控数据被分析出来后，要能立刻在可视化模块中看到。需要支持的图表形式有：1. 饼图，用于显示用户设备和浏览器使用比例。
+<br><br>
+<span style="margin-left:25px"></span>2. 柱状图，展示错误页面统计信息、错误类型统计信息、网站的访问量等。
+<br><br>
+<span style="margin-left:25px"></span>3. 列表，用于显示关键词统计、热点页面等信息。
+<br><br>
+<span style="margin-left:25px"></span>本文在设计可视化模块的时候，为了适应多样化的数据展示，便于系统的扩展，所支持的图表不局限于以上三种，还提供了曲线图、散点图等。
+<br><br>
+<span style="margin-left:25px"></span>5.3.2 可视化模块的架构设计
+<br><br>
+<span style="margin-left:25px"></span>监控系统的可视化模块使用了MVC架构的Web网站来实现的。
+<br><br>
+<span style="margin-left:25px"></span>使用MVC架构的Web网站，就是通过模型(model)－视图(view)－控制器(controller)这样一种典型的软件设计范式而设计出来的一种网站结构模式。model（模型）是应用程序的核心部分（比如数据库记录列表）。view（视图）是显示数据的模块（图表、柱状图、饼图）。controller（控制器）处理输入（响应请求的接口，接收消息）。图5-11所展示的就是该系统的MVC架构图。图5-11监控系统的MVC架构图
+<br><br>
+<span style="margin-left:25px"></span>按照图5-11所展示的监控系统网站的架构模型，从功能上也分为model、view和controller三个功能模块。
+<br><br>
+<span style="margin-left:25px"></span>使用MVC架构的网站前端，具有数据格式统一并且显示风格多变的特点，因此，十分适合多样化数据呈现的网站群用户行为数据的展示。前端页面设计为一个 web应用，使得显示的界面可以在任何一台机器上都可以查看，不需要而外安装单独的应用软件，只需要通过浏览器登录就可以访问，这样就减少了软件安装和软件更新所带来的麻烦，同时提高了系统的灵活性。整个前端的显示系统是利用Node.js的express框架[34，35]来实现的，express是一个简洁、灵活的 web应用框架，它的强大特性有助于快速创建各种web应用，以及丰富的http工具。
+<br><br>
+<span style="margin-left:25px"></span>监控系统前端网站所使用的express框架的各个文件的调用关系如图5-12所示：图5-12 express框架的调度关系图
+<br><br>
+<span style="margin-left:25px"></span>从express框架各个文件的调度关系图中可以看到，它首先调用中间件，中间件的作用主要是改写改写request，response 请求的。
+<br><br>
+<span style="margin-left:25px"></span>将这2个请求导出，方便后面的模板渲染，然后再调用路由模块route，路由模块只要是根据path调用路由来分发函数以及分发路由，最终执行callback回调函数。最后调用view 模块，渲染事先编辑好的模板。有了express框架后，下面的任务就是按照这个框架实现数据可视化的web网站。
+<br><br>
+<span style="margin-left:25px"></span>本文所用的 express框架是4.0.0版本的，该版本在代码的组织结构上与以前的版本有所不同，图5-13所展示的是本文所设计的可视化网站的代码结构，整个工程的名为 myboard。图5-13可视化网站的代码结构图
+<br><br>
+<span style="margin-left:25px"></span>下面简单阐述一下各个文件的功能作用：
+<br><br>
+<span style="margin-left:25px"></span>（1）bin/www，最终生成的可执行文件，是整个程序的入口。
+<br><br>
+<span style="margin-left:25px"></span>（2）bin/app.js，用于注册各种外部模块，设置express的各种属性；
+<br><br>
+<span style="margin-left:25px"></span>在4.0.0以前的版本中，是没有www文件的，而app.js才是真正的程序入口。（3）router是路由模块，主要是进行路由分发，比对，执行callback回调函数。
+<br><br>
+<span style="margin-left:25px"></span>（4）views是视图模块，所有的前端界面（即.html模板）都放在该文件中。
+<br><br>
+<span style="margin-left:25px"></span>其中，在index.html中嵌入了highcharts的图表显示方法。（5）public用于存放静态资源、前端js以及各种页面样式。
+<br><br>
+<span style="margin-left:25px"></span>（6）database数据库建模工具集，系统中用到了mongodb来保存用户的登陆注册信息，因此，利用mongoose.js来实现与mongodb的连接。
+<br><br>
+<span style="margin-left:25px"></span>（7）node_modules是整个工程所有需要的外部模块，也就是以来包。
+<br><br>
+<span style="margin-left:25px"></span>5.3.3 数据显示方法的设计
+<br><br>
+<span style="margin-left:25px"></span>为了使数据显示更加生动、直观，能够一目了然地洞见数据背后的信息。
+<br><br>
+<span style="margin-left:25px"></span>在系统的可视化模块中提供了曲线图、饼图、柱状图、表格等显示方法，同时具有交互式的显示效果。为了支持这些图表的显示，系统采用了第三方插件highcharts[38，39]。highcharts是一个非常流行，界面美观的纯JavaScript图表库，可以为网站或Web应用程序提供直观，互动式的图表。highcharts和其他许多JavaScript库一样，沿用了jQuery、MooTool、Prototype等Javascript框架来处理基本的Javascript任务。因此，在使用Highcharts之前，需要在页面头部引用这些脚本文件，js文件可以引入在线的，也可以引入本地的。在配置好highcharts之后，就可以调用它提供的highcharts接口来填写图表的数据格式。在本文所设计的网站访问监控系统中用到了饼图、柱状图以及列表，其中列表是实用 html画出来的，
+<br><br>
+<span style="margin-left:25px"></span>没有用到 highcharts，当然在设计可视化模块的时候，考虑到业务的不断扩展，系统中还提供了曲线图、散点图、面积图等基本图形。highcharts的所有图表都包括了基本的配置选项，在填写数据之前就要完成这些选项配置。这些选项都是以json格式来存储的，正因为如此，本文在流式数据处理过程中所采用的数据格式也是json，这样可以方便数据的展示。下面就以柱状图为例展示这些选项的配置：下面详细阐述json对象中的各个字段所代表的意思和作用：
+<br><br>
+<span style="margin-left:25px"></span>（1）chart：
+<br><br>
+<span style="margin-left:25px"></span>图表区、图形区和通用图表配置选项，包括图表类型、背景颜色等信息。（2）title：
+<br><br>
+<span style="margin-left:25px"></span>设置图表的标题，包括主标题和副标题，其中副标题不是必须的。（3）tooltip：
+<br><br>
+<span style="margin-left:25px"></span>设置数据点提示框的样式，当鼠标滑过某一点时，以框的形式提示该点的数据，比如该点的值、数据单位等信息。（4）series：
+<br><br>
+<span style="margin-left:25px"></span>数据列，图表上一个或多个数据系列，比如图表中的一条曲线，一个柱形。（5）Axis：
+<br><br>
+<span style="margin-left:25px"></span>坐标轴，包括x轴和y轴。多个不同的数据列可共用同一个x轴或y轴，当然，还可以有两个x轴或y轴，分别显示在图表的上下或左右。图表的数据主要是通过series字段来表示，其余的字段是用来描述图表的样式以及图表说明。
+<br><br>
+<span style="margin-left:25px"></span>所有的series字段的数据是在server端封装完成后，通过socket.io来向前端监控页面push。前端页面运行客户端代码，监听一个 socket. io的端口，这样就可以在 socket. io的客户端接收到数据，然后封装到 highcharts模块中，就可以绘制出相应的图表，并及时更新图表上的数据。socket.io实时地从server端接收数据，使前端监控页面的图表实时动态变化。5.4本章小结
+<br><br>
+<span style="margin-left:25px"></span>本章主要介绍网站访问监控系统的设计与实现，首先阐述了实时数据的采集方案，
+<br><br>
+<span style="margin-left:25px"></span>然后利用基于 Node- red与 Redis的实时流数据处理模型对用户行为分析模块以及网站群页面监控模块进行设计与实现，最后阐述了数据可视化模块的设计。系统测试与性能分析
+<br><br>
+<span style="margin-left:25px"></span>评定一个模型与系统的好与坏，有两个基本标准，一个就是该系统的功能是否满足需求，另一个就是该系统的性能是否满足需求，
+<br><br>
+<span style="margin-left:25px"></span>本文将基于这两个标准，对所设计的流式处理模型和应用系统展开测试。6.1 测试条件准备
+<br><br>
+<span style="margin-left:25px"></span>在进入系统测试与性能分析之前，需要做一些测试前的准备工作，最基本的准备工作就是测试数据与测试平台的准备。
+<br><br>
+<span style="margin-left:25px"></span>1.测试数据的准备：
+<br><br>
+<span style="margin-left:25px"></span>系统所用的测试数据，是实际生产线上截取的某政府的政务网站一天的访问流量，已经通过日志的方式保存下来，通过一个readline.js的程序来模拟http_tracer的功能。
+<br><br>
+<span style="margin-left:25px"></span>目的，就是将这个日志发布到redis的通道中，供Node-red通过redisSub节点去订阅这些数据。为了对系统进行压力测试，以此来检验系统的性能与数据的吞吐量，本文将采集到的实时数据分为5个独立文件，同时利用 readline. js并发进行，发布到 http_ trace通道，在 Node- red中去订阅这些数据。这样通过提高数据的输入速度来检验系统的数据吞吐量以及数据的处理和计算能力。图6-1 展示了实际的部分样本数据。图6-1 实际系统中的样本数据
+<br><br>
+<span style="margin-left:25px"></span>2.测试环境的准备：
+<br><br>
+<span style="margin-left:25px"></span>测试环境检验一个系统最基本的需求，包括硬件环境和软件环境。
+<br><br>
+<span style="margin-left:25px"></span>硬件环境：
+<br><br>
+<span style="margin-left:25px"></span>一台装有两台独立虚拟机的PC机，一台虚拟机上部署本文所设计的实时流数据处理模型，另一台部署数据可视化系统也就是本文所提到的myboard。表6-1所展示的是虚拟机的硬件配置信息。表6-1测试的硬件环境
+<br><br>
+<span style="margin-left:25px"></span>名称
+<br><br>
+<span style="margin-left:25px"></span>VMware 虚拟机
+<br><br>
+<span style="margin-left:25px"></span>CPU
+<br><br>
+<span style="margin-left:25px"></span>IntelI CoreI i7-4720HQ 四核CPU @ 2.60GHz(2601 MHz)
+<br><br>
+<span style="margin-left:25px"></span>内存
+<br><br>
+<span style="margin-left:25px"></span>8.00 GB ( 1600 MHz)
+<br><br>
+<span style="margin-left:25px"></span>硬盘
+<br><br>
+<span style="margin-left:25px"></span>32M硬盘缓存1 TB硬盘存储
+<br><br>
+<span style="margin-left:25px"></span>网卡
+<br><br>
+<span style="margin-left:25px"></span>Killer e2200 Gigabit Ethernet Controller (NDIS 6.30)
+<br><br>
+<span style="margin-left:25px"></span>软件环境：
+<br><br>
+<span style="margin-left:25px"></span>部署实时流数据处理模型最基本的软件需求，基本信息显示如表6-2所示：表6-2测试的软件环境
+<br><br>
+<span style="margin-left:25px"></span>机器名
+<br><br>
+<span style="margin-left:25px"></span>软件名称
+<br><br>
+<span style="margin-left:25px"></span>软件版本
+<br><br>
+<span style="margin-left:25px"></span>Core 01
+<br><br>
+<span style="margin-left:25px"></span>(192.168.1.113)
+<br><br>
+<span style="margin-left:25px"></span>操作系统
+<br><br>
+<span style="margin-left:25px"></span>Ubuntu LTS 14.04
+<br><br>
+<span style="margin-left:25px"></span>数据库（active）
+<br><br>
+<span style="margin-left:25px"></span>Redis 2.8.19
+<br><br>
+<span style="margin-left:25px"></span>Node-red
+<br><br>
+<span style="margin-left:25px"></span>V0.10.6
+<br><br>
+<span style="margin-left:25px"></span>node.js
+<br><br>
+<span style="margin-left:25px"></span>V5.0.4
+<br><br>
+<span style="margin-left:25px"></span>数据库
+<br><br>
+<span style="margin-left:25px"></span>mongodb2.4.6
+<br><br>
+<span style="margin-left:25px"></span>Core 02
+<br><br>
+<span style="margin-left:25px"></span>(192.168.1.114)
+<br><br>
+<span style="margin-left:25px"></span>操作系统
+<br><br>
+<span style="margin-left:25px"></span>Ubuntu LTS 14.04
+<br><br>
+<span style="margin-left:25px"></span>数据库（active）
+<br><br>
+<span style="margin-left:25px"></span>Redis 2.8.19
+<br><br>
+<span style="margin-left:25px"></span>myboard（可视化系统）
+<br><br>
+<span style="margin-left:25px"></span>V1.0
+<br><br>
+<span style="margin-left:25px"></span>数据库
+<br><br>
+<span style="margin-left:25px"></span>mongodb2.4.6
+<br><br>
+<span style="margin-left:25px"></span>mode.js
+<br><br>
+<span style="margin-left:25px"></span>V5.0.4
+<br><br>
+<span style="margin-left:25px"></span>6.2 系统功能测试
+<br><br>
+<span style="margin-left:25px"></span>本文所设计的网站监控系统主要提供了用户行为分析和网站群页面监控这两大功能，针对这两大功能展开测试工作。
+<br><br>
+<span style="margin-left:25px"></span>用户行为分析，包括独立访问的IP统计、热点页面统计、用户浏览器类型统计以及热门关键词统计。
+<br><br>
+<span style="margin-left:25px"></span>图6-2 ，图6-3 所展示的就是对该功能的测试结果。图6-2 用户行为分析模块测试图（A）
+<br><br>
+<span style="margin-left:25px"></span>图6-3 用户行为分析模块测试图（B）
+<br><br>
+<span style="margin-left:25px"></span>网站群页面监控包括网站访问量统计，错误类型统计，错误网站统计等，测试结果如图6-4和图6-5 所示。
+<br><br>
+<span style="margin-left:25px"></span>图6-4 网站群页面监控模块测试图（A）
+<br><br>
+<span style="margin-left:25px"></span>图6-5 网站群页面监控模块测试图（B）
+<br><br>
+<span style="margin-left:25px"></span>从上面的测试结果可以看出本文所设计的系统，在功能上基本满足用户的需求，下一小节我们将对系统进行一次性能分析，
+<br><br>
+<span style="margin-left:25px"></span>检测模型在低时延、高并发的条件下的数据吞吐量和数据计算能力。6.3 系统性能分析
+<br><br>
+<span style="margin-left:25px"></span>在系统性能分析过程中，我们首先将原始数据报以日志的方式存储到本地硬盘里，通过编写日志读取程序来读取日志文件来模拟大量的大量数据流，
+<br><br>
+<span style="margin-left:25px"></span>样本数据如图6-1所示。读取的方式为按条读取，通过控制信息的条数来观察系统的性能。性能分析主要分为两个方面：一方面是数据从接收到处理再到存入数据库进行统计计算所消耗的处理时间，另一个方面是可视化界面中数据的更新频率以及响应时间。表6-3显示了实时流数据处理模型处理数据时所需要的处理时间，其中 messages表示模拟读入日志数据到实时流数据模型的记录条数，
+<br><br>
+<span style="margin-left:25px"></span> time表示实时流数据处理模型处理这些数据所需要的时间。通过测试发现，随着消息条数的指数增加，实时流数据处理模型的数据处理时间的增长速度低于线性增长速度。表6-3实时流数据处理模型的数据处理时间测试结果
+<br><br>
+<span style="margin-left:25px"></span>编号
+<br><br>
+<span style="margin-left:25px"></span>messages（条）
+<br><br>
+<span style="margin-left:25px"></span>time（ms）
+<br><br>
+<span style="margin-left:25px"></span>102
+<br><br>
+<span style="margin-left:25px"></span>22880
+<br><br>
+<span style="margin-left:25px"></span>103
+<br><br>
+<span style="margin-left:25px"></span>23891
+<br><br>
+<span style="margin-left:25px"></span>104
+<br><br>
+<span style="margin-left:25px"></span>26980
+<br><br>
+<span style="margin-left:25px"></span>105
+<br><br>
+<span style="margin-left:25px"></span>34655
+<br><br>
+<span style="margin-left:25px"></span>106
+<br><br>
+<span style="margin-left:25px"></span>39891
+<br><br>
+<span style="margin-left:25px"></span>表6-4 显示了数据的读入速度与页面数据的更新频率以及页面响应速度的测试结果。
+<br><br>
+<span style="margin-left:25px"></span>表6-4监控页面响应时间测试数据
+<br><br>
+<span style="margin-left:25px"></span>报文数（个）
+<br><br>
+<span style="margin-left:25px"></span>处理时间
+<br><br>
+<span style="margin-left:25px"></span>（ms）
+<br><br>
+<span style="margin-left:25px"></span>数据推送
+<br><br>
+<span style="margin-left:25px"></span>频率（s）
+<br><br>
+<span style="margin-left:25px"></span>最长响应
+<br><br>
+<span style="margin-left:25px"></span>时间（ms）
+<br><br>
+<span style="margin-left:25px"></span>页面数据更新
+<br><br>
+<span style="margin-left:25px"></span>时间（s）
+<br><br>
+<span style="margin-left:25px"></span>2525
+<br><br>
+<span style="margin-left:25px"></span>15
+<br><br>
+<span style="margin-left:25px"></span>90
+<br><br>
+<span style="margin-left:25px"></span>3189
+<br><br>
+<span style="margin-left:25px"></span>16
+<br><br>
+<span style="margin-left:25px"></span>97
+<br><br>
+<span style="margin-left:25px"></span>2722
+<br><br>
+<span style="margin-left:25px"></span>14
+<br><br>
+<span style="margin-left:25px"></span>120
+<br><br>
+<span style="margin-left:25px"></span>3012
+<br><br>
+<span style="margin-left:25px"></span>18
+<br><br>
+<span style="margin-left:25px"></span>118
+<br><br>
+<span style="margin-left:25px"></span>3717
+<br><br>
+<span style="margin-left:25px"></span>18
+<br><br>
+<span style="margin-left:25px"></span>109
+<br><br>
+<span style="margin-left:25px"></span>6.4 本章小结
+<br><br>
+<span style="margin-left:25px"></span>本章主要介绍了是对系统主要功能测试和性能方面的分析。
+<br><br>
+<span style="margin-left:25px"></span>首先介绍测试条件以及原始数据的获取，然后分别从功能和性能两个方面对系统进行了测试并得出结论。总结与展望
+<br><br>
+<span style="margin-left:25px"></span>7.1 本文总结
+<br><br>
+<span style="margin-left:25px"></span>实时流数据处理，已经成为大数据时代下一种重要的计算模式，不论是在学术界还是在商业界，对实时流数据处理的研究和应用都十分广泛，需求也越来越明显。
+<br><br>
+<span style="margin-left:25px"></span>本文是在科研团队与四川省欧润特软件科技有限公司的合作项目中展开叙述的，结合实时流数据处理的相关理论技术与实际项目的具体需求，设计出一套新的基于 Node- red与 Redis的实时流数据处理模型，同时将该模型应用到实际的生产环境中加以验证。对该模型的设计与应用，本文主要完成了一下几方面的工作。总结分析了当前流行的实时流数据处理框架，分析了各自的编程模型以及优缺点，同时结合node.js的事件驱动和非阻塞机制对Node-red的编程模型做了重点阐述。
+<br><br>
+<span style="margin-left:25px"></span>从总体架构上给出了基于 Node- red与 Redis的实时流数据处理模型的设计方案，
+<br><br>
+<span style="margin-left:25px"></span>对 Node- red的节点进行扩展设计，增加了原始没有的 redisSub、 redisPub数据输入输出节点，以及 Redis数据库访问节点，同时对这些节点加以实现，重新部署安装到 Node- red中。对基于 redis有序集合的去重统计方法进行研究，通过分析 Redis有序集合的源码并结合 Skip List的基本原理，
+<br><br>
+<span style="margin-left:25px"></span>提出了在实时流数据计算中基于 Redis有序集合的去重统计方法。利用所设计的流式数据处理模型，实现网站访问实时监控系统。
+<br><br>
+<span style="margin-left:25px"></span>对整个系统进行各个模块的设计与实现，包括数据实时采集模块、用户行为分析模块、网站群页面监控模块以及数据可视化模块，流式数据处理过程集中在用户行为分析模块和网站群页面监控模块。本文最后还对该模型和所设计的应用系统进行功能和性能上的测试，以此来验证模型的可行性和有效性。
+<br><br>
+<span style="margin-left:25px"></span>7.2 对未来工作的展望
+<br><br>
+<span style="margin-left:25px"></span>本文对Node-red与Redis做了许多研究和实践工作，设计出了一套新的流式计算模型，并将该模型应用到网站访问实时监控系统中。
+<br><br>
+<span style="margin-left:25px"></span>相比于其他流式计算框架而言，该模型能够快速，便捷地进行数据流程的管理，可以实现业务代码的重用。但是对于大数据背景下的实时流数据计算，该模型仍然有需要改进的地方，所设计的系统也有待完善的地方，但这是一个长期的需要不断坚持的应用研究领域。基于本文的研究，对未来有如下展望：本文对 Node- red的节点开发还比较单一，虽然设计了新的数据输入、输出和数据计算节点，但是这些节点进行数据交换的中间桥梁是 Redis数据库，
+<br><br>
+<span style="margin-left:25px"></span>所以后期的一个重要工作就是对节点的通用化设计和扩展。本文所设计的模型只是采用了单一节点的Redis server，没有利用Redis 集群来解决复杂的流式计算。
+<br><br>
+<span style="margin-left:25px"></span>所以，Redis集群的引入也是今后工作的一个重点。在本文所设计的应用系统中，也还存在一些不足。
+<br><br>
+<span style="margin-left:25px"></span>今后的另一项重要工作就是不断地完善该网站访问监控系统，引入更加复杂的流式计算，降低模块之间的耦合程度，完善可视化模块的展示效果，不断提升系统的运行效率。总之，系统的功能有待丰富，模型的性能也有待更深的优化，今后的工作会研究更有效、更适合的实时流数据处理模型，
+<br><br>
+<span style="margin-left:25px"></span>设计出功能更丰富、性能更优的实时流数据监控系统。致谢
+<br><br>
+<span style="margin-left:25px"></span>三年研究生的生活，带给自己的不仅是学习能力的提升，同样也带来个人素养以及认知水平的提高，自己的努力的同时，也得到了良师益友的帮助，在论文即将结束的地方，对他们表示衷心的感谢。
+<br><br>
+<span style="margin-left:25px"></span>首先，首先要感谢的是本人的研究生导师，***教授。
+<br><br>
+<span style="margin-left:25px"></span>*老师治学严谨，待人和蔼，同时学术知识渊博。在三年的学习过程以及项目方面，给了我很大的指导，并且在人生以及就业方面，提出了自己的经验和看法，让我学习到了很多。论文的研究过程中，*老师也对其进行指导，否则论文不会这么顺利的完成。再一次特别感谢恩师**教授。其次，要感谢实验室以及项目组的*老师、*老师、*老师、*老师等各位老师。
+<br><br>
+<span style="margin-left:25px"></span>在学习和论文的完成过程中，给我很多研究建议，解决其中的难点。另外，感谢我的师兄，同学以及项目相关人员。
+<br><br>
+<span style="margin-left:25px"></span>在课题的研究过程中，帮助我克服了很多困难。一起的学习生涯，让我学到了很多，在此向他们表示衷心的感谢和祝福。同样，论文期间，家人朋友的支持也是我的精神支柱，帮我客服生活、学习方面的困难，再次表达我真诚的感谢。
+<br><br>
+<span style="margin-left:25px"></span>最后，十分感谢评阅论文以及答辩过程的老师和专家，谢谢你们的辛苦付出。
+<br><br>
+<span style="margin-left:25px"></span>
+
+<br>
+<div style="margin-left:8px">
+
+<div style="text-align:center;background-color:#CA122C;margin-top:30px;overflow:hidden;">
+<a href="http://www.paperpass.com/publish/index?from=ppreport_banner" target="_blank" style="display:block;"><img height="180" src="http://file.paperpass.com/images/fabiao.jpg"></a>
+</div>
+
+</div>
+</div>
+
+
+<div class="zhengwencenter">
+<p>
+检测报告由<a href="http://www.paperpass.com/" target="_blank">PaperPass</a>文献相似度检测系统生成
+</p>
+<p>
+Copyright © 2007-2017 PaperPass
+</p>
+</div>
+<div style="margin-bottom:400px"></div>
+</body>
+</html>

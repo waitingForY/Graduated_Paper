@@ -100,8 +100,8 @@ a{TEXT-DECORATION:none}
 <a class="pagelink" href="paper_1.htm">首页</a>
 <a class="pagelink" href="#">上一页</a>
 <a class="pagelink" href="paper_2.htm">下一页</a>
-<a class="pagelink" href="paper_3.htm">尾页</a>
-页码：1/3页
+<a class="pagelink" href="paper_2.htm">尾页</a>
+页码：1/2页
 ]
 </div>
 
@@ -114,7 +114,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>第三章 基于Node-red与Redis的实时流数据处理模型的设计</span>
+<span style="margin-left:25px"></span><span class='green'>第四章 基于Redis有序集合的去重统计方法的研究</span>
 </p>
 </div>
 
@@ -127,7 +127,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>3.1 需求分析</span>
+<span style="margin-left:25px"></span><span class='green'>上一章详细阐述了基于 Node- red与 Redis的流式数据处理模型的设计，</span><span class='green'>在整个流式数据处理模型中， Redis作为数据交换和数据计算的中心， Redis的有序集合 zset被用来进行统计计算，</span><span class='green'>最重要的工作就是去重统计。</span><span class='green'>本章将从“跳表”Skip List的基本原理到zset的源码分析，详细阐述有序集合的去重统计的原理。</span>
 </p>
 </div>
 
@@ -140,7 +140,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>本论文主要是研究和设计一种基于Node-red与Redis的实时流数据处理模型，应用场景为实际项目中的网站群的实时访问监控。</span><span class='green'>在本项目中旨在实时了解用户访问网站群的行为，捕捉用户请求并跟踪其所有响应，收集、处理并显示用户行为的细节数据，并可视化展示数据和挖掘数据背后的信息。</span><span class='green'>针对该流式计算模型在实际应用场景下提出如下的需求。</span>
+<span style="margin-left:25px"></span><span class='green'>4.1 Skip List基本原理</span>
 </p>
 </div>
 
@@ -153,7 +153,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（1）高实时性；</span><span class='green'>在许多实时流数据处理的应用场景中，不论是数据的采集，还是数据的处理，都要求具有高实时性。</span><span class='green'>高实时性，要求模型在进行数据采集的时候满足不低于每秒钟50笔的采集速度，以免造成数据堆积，同时也要求具备高效的数据计算和处理能力。</span>
+<span style="margin-left:25px"></span><span class='green'>Skip List是由William Pugh提出的一种基于并联链表的、随机化的数据结构。</span><a href='../sentence_detail/7/7.htm' target='right' class='orange' >Skip List的查找效率与二叉查找树的查找效率差不多，可以实现平均复杂度为 的插入、删除和查找操作。</a><span class='green'>一般而言，跳表是在有序的链表的基础上增加的额外的链接，这种链接方式的增加，</span><span class='green'>不是随便增加的而是以随机化的方式增加的，同时对随机函数也有要求，必须是以对数函数的方式产生，</span><a href='../sentence_detail/10/10.htm' target='right' class='orange' >所以在链表中的查找可以迅速地跳过部分链表，跳表也因此得名。</a><a href='../sentence_detail/11/11.htm' target='right' class='orange' >众所周知，对于有序链表的查找操作，其时间复杂度为，尽管真正插入与删除节点的操作的复杂度只有，</a><span class='green'>但是，这些操作都需要首先查找到节点的位置，换句话说，是查找拉低了有序链表的整体性能。</span><span class='green'>而Skip List采用“空间换时间”的设计思想，除了原始链表外还保存一些“跳跃”的链表，达到加速查找的效果。</span><a href='../sentence_detail/14/14.htm' target='right' class='red' >可以很好解决有序链表查找特定值的困难。</a>
 </p>
 </div>
 
@@ -166,7 +166,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（2）高性能；</span><a href='../sentence_detail/9/9.htm' target='right' class='orange' >随着业务的不断扩展，数据量也不断的增大，对系统的性能要求也越来越严格。</a><span class='green'>因此，从数据采集到数据处理再到数据可视化展示，各个环节都要求系统具有良好的性能。</span><span class='green'>最直观的表现就是在用户看到的可视化模块的数据更新延迟不能超过2秒钟。</span>
+<span style="margin-left:25px"></span><span class='green'>接下来研究一下Skip List实现的原理，首先来认识一下Skip List。</span><span class='green'>因为，“跳表”是在有序链表的基础上做改进的，所以我们从认识有序链表开始研究Skip List。</span><span class='green'>图4-1 展示的就是一个有序链表的数据结构图（这里H表示链表头部，T表示链表尾部，不是有效节点）：</span>
 </p>
 </div>
 
@@ -179,7 +179,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（3）高可用；</span><span class='green'>系统可以通过集群等方式实现分布式部署，避免单点故障。</span>
+<span style="margin-left:25px"></span><span class='green'>图4-1 有序链表结构图</span>
 </p>
 </div>
 
@@ -192,7 +192,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（4）可扩展；</span><span class='green'>数据量、计算量会随着业务的不断扩展而不断增大，这就要求模型需要有良好的扩展性。</span>
+<span style="margin-left:25px"></span><span class='green'>现在假设要在该有序链表中查找value为7的节点，只能一步一步地从头到尾按照1-]2-]3...的顺序找下去，很明显查找效率是 。</span><a href='../sentence_detail/20/20.htm' target='right' class='orange' >如果是数组的话，可以利用二分查找，时间复杂度可以提高到 。</a><span class='green'>但是链表不支持随机访问，所以不能应用二分查找。</span><span class='green'>但是可以考虑把中间位置的节点保存下来，重新构成新的顺序链表，经过重构的链表如图4-2 所示：</span>
 </p>
 </div>
 
@@ -205,7 +205,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（5）分布式；</span><span class='green'>为了提高数据的处理能力和计算效率，模型还需要具备分布式的处理能力；</span>
+<span style="margin-left:25px"></span><span class='green'>图4-2 重构后的有序链表</span>
 </p>
 </div>
 
@@ -218,7 +218,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（6）安全性；</span><a href='../sentence_detail/19/19.htm' target='right' class='orange' >数据安全是任何系统的一个首要前提，流式数据处理模型也必须要保证数据的安全性。</a>
+<span style="margin-left:25px"></span><span class='green'>毫无疑问，这是一种典型的以空间换时间的设计思想。</span><span class='green'>原始的顺序链表，经过重构后变成了三个顺序链表，从下到上将这三个链表编号为0、1、2，</span><span class='green'>不难发现，2号链表就是原始链表，1号链表就是原始链表的四等分节点构成的，</span><a href='../sentence_detail/27/27.htm' target='right' class='orange' >0号链表是原始链表的二等分节点构成的。</a><span class='green'>现在，再来查找value为7的节点则只需要如下三个步骤：</span>
 </p>
 </div>
 
@@ -231,7 +231,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>本论文在这些需求的基础之上，提出一种新的实时流数据处理模型，要在Node-red上设计出高效的数据接入和输出节点，同时也要有高效的数据处理节点。</span><span class='green'>结合redis的内存计算的优势，设计出redis数据库访问节点，用于统计中间结果集，以调高统计计算的效率。</span><span class='green'>同时，充分利用Redis的pub/sub机制来实现数据的流式异步传输。</span><a href='../sentence_detail/23/23.htm' target='right' class='orange' >最终将这套模型应用到实际系统中去加以验证。</a>
+<span style="margin-left:25px"></span><span class='green'>（1）初始的的搜索范围是(H，T)，在0号链表中与4进行比较，7]4，将搜索范围更新为(4，T)。</span>
 </p>
 </div>
 
@@ -244,7 +244,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>3.2 模型的总体架构</span>
+<span style="margin-left:25px"></span><span class='green'>（2）在1号链表中与6进行比较，7]6，继续更新搜索范围(6，T)。</span>
 </p>
 </div>
 
@@ -257,7 +257,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>基于Node-red与Redis的实时流式数据处理模型的设计是搭建在Ubuntu环境下的，也可以部署在分布式环境上以提高流式数据的处理能力和计算效率。</span><span class='green'>该模型通过重新设计数据输入、输出以及数据计算节点，以完成对实时流式数据的处理。</span><span class='green'>整个模型的架构如图3-1 所示：</span>
+<span style="margin-left:25px"></span><span class='green'>（3）在2号链表中与7进行比较，结果7=7，查找成功。</span>
 </p>
 </div>
 
@@ -270,7 +270,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>图3-1 流数据处理模型架构图</span>
+<span style="margin-left:25px"></span><a href='../sentence_detail/32/32.htm' target='right' class='orange' >很明显，在Skip List中保存了二分查找的信息，以此来提高查找效率。</a><span class='green'>当然在具体的实现上，如果要开辟额外的空间来保存新链表的话，会造成空间的极大浪费。</span><span class='green'>由于是链表，可以利用链的性质，改进存储结构，改进后的Skip List的存储结构图4-3 所示。</span>
 </p>
 </div>
 
@@ -283,7 +283,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>从该模型的架构图中可以看出，Redis数据库充当了数据交换的中心，而整个数据流的处理逻辑都交给计算节点群去完成。</span><span class='green'>数据首先通过 Redis的 channel（通道）进入 Redis server，然后 Node- red利用 redisSub节点去订阅相应通道（ channel）的数据交给计算节点（ function nodes）集群进行数据计算，</span><span class='green'>而计算节点集群所产生的中间结果集，通过 redis_ in节点传给 redis server进行统计，最后产生的最终计算结果通过 redisPub节点发布到前端可视化模块中。</span>
+<span style="margin-left:25px"></span><span class='green'>图4-3 改进后的Skip List存储结构</span>
 </p>
 </div>
 
@@ -296,7 +296,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>在原始的Node-red中是没有任何节点可以与Redis进行交互，为此，新增加了redisSub、redisPub、redis_in和redis_out节点。</span><span class='green'>为了，用户可以自定义数据的处理逻辑，引入了函数节点，多个函数节点构成了整个流式计算的计算节点群。</span><span class='green'>有了这些节点，就可以方便快捷地在Node-red上编写流式数据处理的业务代码，更为重要的是，这些业务代码可以实现一次编写多次使用，方便移植和维护。</span>
+<span style="margin-left:25px"></span><span class='green'>前面所讨论的Skip List结构是一种比较理想的结构，实际的Skip List算法是一种随机算法，它非常依赖于所生产的随机函数。</span><span class='green'>当然对随机函数的要求也比较严格，不能简单的按照 的形式来生成随机数，而是必须要按照满足概率 的几何分布来构造随机函数。</span><span class='green'>可以设计出如下随机函数randLevel():</span>
 </p>
 </div>
 
@@ -309,7 +309,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>3.3 节点处理模块的设计</span>
+<span style="margin-left:25px"></span><span class='green'>现在考虑 的情况，可能的返回值有0、1、2、3四种情况，他们各自出现的概率是：</span><span class='green'>、 、 、 。</span><span class='green'>也就是说，如果有16个元素的话，第零层预计有16个元素，第一层预计有8个元素，</span><span class='green'>第二层约有4个元素，第三层约有2个元素，从下向上每层元素数量大约会减少一半。</span><span class='green'>因此，Skip List适合自顶向下进行查找，理想情况下，每下降一层搜索的范围就会缩小一半，可以达到二分查找的效率，时间复杂度为 。</span><a href='../sentence_detail/44/44.htm' target='right' class='orange' >最坏的情况是当前节点从head移动到链表的尾部，时间复杂度为 。</a>
 </p>
 </div>
 
@@ -322,7 +322,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>节点是Node-red的重要组成元素，所有的flow都是通过一个一个的节点组成的，在Node-red中有三类基本的节点，数据输入节点、输出节点以及数据处理节点。</span><span class='green'>为了设计出适合流式数据处理的节点，这里必须对这三类节点进行补充设计，</span><span class='green'>在这一节中主要是对整个流式数据处理模型所需要的节点给出详细的设计方案。</span><span class='green'>Node-red的节点本身主要包括两份文件：</span><span class='green'>js文件和html文件，js文件主要定义了组件具体做些什么事情，有什么样的功能；</span><span class='green'>html文件主要定义了组件的属性，组件编辑框格式和帮助信息等，图3-2 为一个Node的设计方案：</span>
+<span style="margin-left:25px"></span><span class='green'>4.2 redis有序集合zset的源码分析</span>
 </p>
 </div>
 
@@ -335,7 +335,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>图3-2 Node-red的节点设计方案图</span>
+<span style="margin-left:25px"></span><span class='green'>Redis的有序集合zset的底层数据结构就是通过Skip List来实现的，而没有采用hash和hashtable来实现，虽然hash可以实现快速的查找，但是无法保证有序。</span><span class='green'>在了解了Skip List的基本原理后，接下来通过分析redis的源码，详细阐述zset的实现。</span><span class='green'>Redis中的zset所使用的Skip List与William Pugh提出的基本一致，只是做了部分改进，主要有三个方面的改进。</span>
 </p>
 </div>
 
@@ -348,7 +348,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>将设计好的新节点重新安装部署到Node-red中，就可以在Node-red的前端编辑界面使用该节点进行数据处理。</span><span class='green'>Node-red强大的扩展能力就是体现在用户可以设计Node-red没有提供的节点，来完成特定的任务。</span><span class='green'>由于Node-red本身在定义节点的时候有自己的要求和原则，所以，为了保证节点设计的正确性和有效性，节点设计的必须按照如下原则来进行：</span>
+<span style="margin-left:25px"></span><span class='green'>（1）Redis中的Skip List可以有重复的分值score，这是为了支持有序集合中可能有多个元素具有相同的分值score这样的需求。</span>
 </p>
 </div>
 
@@ -361,7 +361,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><a href='../sentence_detail/46/46.htm' target='right' class='red' >（1）要求创建的节点要对各种数据类型的输入数据进行必要的处理，即使某些类型并不是这个节点所需要的。</a><span class='green'>这样做有两个目的，一是为了便于对原始数据进行追加额外说明信息，二是为了便于节点的扩展。</span>
+<span style="margin-left:25px"></span><span class='green'>（2）在节点进行比较的时候，不仅仅比较他们的score，同时还要比较他们所关联的元素的value。</span>
 </p>
 </div>
 
@@ -374,7 +374,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><a href='../sentence_detail/48/48.htm' target='right' class='red' >（2）由于Node-Red在识别和处理节点的时候使用了大量的字符串匹配操作，所以在节点的定义中有一些名字的字符串是必须保持一致的，否则Node-Red在解析的时候就会出错。</a>
+<span style="margin-left:25px"></span><span class='green'>（3）在Skip List中每个节点还有一个前向指针，这就相当于在双向链表中的prev指针，通过这个指针，可以从表尾向表头进行遍历。</span><span class='green'>正因为有了这个改进，zset就支持一些逆向操作命令，比如zrevrange、zremrangebyscore等。</span>
 </p>
 </div>
 
@@ -387,7 +387,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（3）.html文件分为3部分：</span><a href='../sentence_detail/50/50.htm' target='right' class='orange' >节点的定义，节点的编辑模板和节点的帮助信息。</a><span class='green'>节点的定义主要用于：</span><a href='../sentence_detail/52/52.htm' target='right' class='red' >确定节点的类型，可编辑的属性，在浏览器中显示的样式，是一段可执行的js代码，RED.nodes.registerType；</a><a href='../sentence_detail/53/53.htm' target='right' class='red' >编辑模板主要是生成用户编辑该节点的实例时的界面(由data-template-name包括的一段HTML代码)，用户的输入最终会保存在node的定义中；</a>
+<span style="margin-left:25px"></span><span class='green'>redis的源码中，zset的Skip List的节点定义在redis.h头文件中，其具体定义如下：</span>
 </p>
 </div>
 
@@ -400,7 +400,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><span class='green'>（4）在.html文件中，data-template-name、node-input-xx、data-help-name都是Node-Red系统保留字。</span><span class='green'>data-template-name、data-help-name的取值必须和文件名字的name部分一致。</span><a href='../sentence_detail/56/56.htm' target='right' class='red' >RED.nodes.registerType的第一个参数也必须和文件名字的name部分一致。</a>
+<span style="margin-left:25px"></span><span class='green'>有了节点的定义，那么就该是Skip List的定义了，Skip List同样也是定义在redis.h头文件中的。</span><span class='green'>和定义链表的结构一样，需要头节点、尾节点，他们都是指向zskiplistNode 的指针，同时还需要定义节点的数量，目前跳表的最大层数。</span><span class='green'>下面就是zset的跳表定义：</span>
 </p>
 </div>
 
@@ -413,7 +413,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><a href='../sentence_detail/57/57.htm' target='right' class='red' >（5）每个节点的可编辑的域在defaults中声明，data-template-name所包含的node-input-xx负责生成输入框。</a><a href='../sentence_detail/58/58.htm' target='right' class='red' >defaults的每个域的名字必须和node-input-xx中的名字保持一致。</a><a href='../sentence_detail/59/59.htm' target='right' class='red' >在.js文件中使用可编辑域的值的时候，直接访问defaults的域就可以，不必添加defaults前缀。</a>
+<span style="margin-left:25px"></span><a href='../sentence_detail/57/57.htm' target='right' class='orange' >其实，Redis的有序集合zset主要支持的编码方式有两种，一种是ZIPLIST方式，另一种是SKIPLIST方式。</a><span class='green'>其中ZIPLIST方式可以表示较小的有序集合，而SKIPLIST方式可以表示任意大小的有序集合。</span><span class='green'>如果zset当前使用的编码方式是ZIPLIST，只要满足下面两个条件之一就可以转换为SKIPLIST编码方式。</span>
 </p>
 </div>
 
@@ -426,46 +426,7 @@ a{TEXT-DECORATION:none}
 </tr>
 </table>
 
-<span style="margin-left:25px"></span><a href='../sentence_detail/60/60.htm' target='right' class='red' >（6）在.js文件中，RED.nodes.registerType用来注册一个node实例的生成函数，它的第一个参数必须和文件名字的name部分一致。</a><a href='../sentence_detail/61/61.htm' target='right' class='red' >传给生成函数的参数是node可编辑域的值(已编辑完成)及节点共享域的值。</a>
-</p>
-</div>
-
-<div>
-<p>
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-<tr>
-<td align="left" width="50"><div class="shubu">26</div></td>
-<td>&nbsp;&nbsp;</td>
-</tr>
-</table>
-
-<span style="margin-left:25px"></span><span class='green'>（7）input的callback是节点输入的处理函数。</span><a href='../sentence_detail/63/63.htm' target='right' class='red' >需要注意的是，Node-Red节点之间数据传输使用的是名字为payload的域，这个也是Node-Red系统保留的。</a>
-</p>
-</div>
-
-<div>
-<p>
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-<tr>
-<td align="left" width="50"><div class="shubu">27</div></td>
-<td>&nbsp;&nbsp;</td>
-</tr>
-</table>
-
-<span style="margin-left:25px"></span><span class='green'>3.3.1 数据输入节点的设计</span>
-</p>
-</div>
-
-<div>
-<p>
-<table border="0" width="100%" cellspacing="0" cellpadding="0">
-<tr>
-<td align="left" width="50"><div class="shubu">28</div></td>
-<td>&nbsp;&nbsp;</td>
-</tr>
-</table>
-
-<span style="margin-left:25px"></span><span class='green'>数据的输入节点（input node），主要是用于从外部设备或者其他外部接口获取数据到Node-red中进行数据分析。</span><span class='green'>在Node-red的一个flow中，输入节点是所有message的入口，为下一个Node产生新的message。</span><span class='green'>由于Node-red自带的输入节点很有限，而且不适合流式数据的输入，所以在这里必须补充设计数据的输入节点。</span>
+<span style="margin-left:25px"></span><a href='../sentence_detail/60/60.htm' target='right' class='orange' >（1）当新增加的字符串的长度超过了server.zset_max_ziplist_value的时候（默认值为64）。</a>
 </p>
 </div>
 
@@ -476,8 +437,8 @@ a{TEXT-DECORATION:none}
 <a class="pagelink" href="paper_1.htm">首页</a>
 <a class="pagelink" href="#">上一页</a>
 <a class="pagelink" href="paper_2.htm">下一页</a>
-<a class="pagelink" href="paper_3.htm">尾页</a>
-页码：1/3页
+<a class="pagelink" href="paper_2.htm">尾页</a>
+页码：1/2页
 ]
 </div>
 
